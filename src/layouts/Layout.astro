@@ -20,9 +20,11 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<Navigation />
-		<slot />
-		<Footer />
+		<div class="container">
+			<Navigation />
+			<slot />
+			<Footer />
+		</div>
 	</body>
 </html>
 <style is:global>
@@ -47,18 +49,6 @@ const { title } = Astro.props;
 		height: 100%;
 	}
 
-	:root {
-		--accent: 255, 5, 5;
-		--accent-light: 245, 100, 100;
-		--accent-dark: 101, 10, 10;
-		--accent-gradient: linear-gradient(
-			45deg,
-			rgb(var(--accent)),
-			rgb(var(--accent-light)) 30%,
-			white 50%
-		);
-	}
-
 	html {
 		font-family: system-ui, sans-serif;
 	}
@@ -76,7 +66,7 @@ const { title } = Astro.props;
 	}
 
 	main {
-		margin: auto;
+		margin: 0 auto;
 		padding: 1rem;
 		line-height: 1.6;
 	}
@@ -91,5 +81,12 @@ const { title } = Astro.props;
 	
 	blockquote {
 		font-style: italic;
+	}
+
+	.container {
+		width: 960px;
+		margin: 0 auto;
+		padding: 16px;
+		height: 100%;
 	}
 </style>
