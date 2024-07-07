@@ -10,3 +10,10 @@ const { frontmatter } = Astro.props;
         <slot />
     </main>
 </Layout>
+
+<style>
+    main :global(p) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+</style>
