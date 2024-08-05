@@ -8,6 +8,7 @@ interface Props {
 }
 
 const { title, description = "Kresna's domain on Software Development" } = Astro.props;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 ---
 
 <!doctype html>
@@ -19,6 +20,9 @@ const { title, description = "Kresna's domain on Software Development" } = Astro
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalURL}>
 	</head>
 	<body>
 		<div class="container">
