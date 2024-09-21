@@ -92,9 +92,14 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	}
 
 	.container {
-		width: 960px;
+		width: 100%;
 		margin: 0 auto;
 		padding: 16px;
-		height: 100%;
+	}
+
+	@media screen and (min-width: 1024px) {
+		.container {
+			max-width: 1024px;
+		}		
 	}
 </style>

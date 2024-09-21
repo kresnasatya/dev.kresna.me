@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+const posts = await Astro.glob('../pages/posts/*.md');
 ---
 
 <Layout title="dev.kresna.me" description="Kresna's domain for Software Development">
@@ -9,5 +11,13 @@ import Layout from '../layouts/Layout.astro';
 			Welcome to this site! 
 			I create this site to post contents related on software development topic. I try to post it in dual language: English and Bahasa Indonesia.
 		</p>
+
+		<h2 style="margin: 1rem 0;">Posts</h2>
+
+		{posts.map((post) => <article>
+				<h3><a href={post.url}>{post.frontmatter.title}</a></h3>
+				<span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.frontmatter.pubDate))}</span>
+				<p>{post.frontmatter?.description}</p>
+			</article>)}
 	</main>
 </Layout>

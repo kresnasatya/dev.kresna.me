@@ -5,10 +5,12 @@ const posts = await Astro.glob('../pages/posts/*.md');
 
 <Layout title="dev.kresna.me - Blog">
     <main>
-        <h1>Kresna's Blog</h1>
+        <h1>Blog</h1>
 
-        <ul>
-            {posts.map((post) => <li><a href={post.url}>{post.frontmatter.title}</a></li>)}
-        </ul>
+        {posts.map((post) => <article>
+            <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
+            <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.frontmatter.pubDate))}</span>
+            <p>{post.frontmatter?.description}</p>
+        </article>)}
     </main>
 </Layout>
