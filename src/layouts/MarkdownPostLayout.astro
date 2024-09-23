@@ -7,6 +7,7 @@ const { frontmatter } = Astro.props;
 <Layout title={frontmatter.title} description={frontmatter.description}>
     <main>
         <h1 style="text-align: left; font-size: 1.5rem;">{frontmatter.title}</h1>
+        <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
         <slot />
     </main>
 </Layout>
