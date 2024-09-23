@@ -28,7 +28,7 @@ There are programming languages that used imperative programming: JavaScript, PH
 
 > Wait! You say that HTML and CSS are a programming language? Non sense!
 
-Previously, I doubt that HTML and CSS are a programming language. But, after I listen explaination from Lara Schenk about CSS algorithm and supporting arguments from Heydon and Professor Brailsford about HTML is a programming language, I'm more confident to say that HTML and CSS are a programming language. To be more precice: HTML and CSS are a domain specific programming language to build web page. HTML is a programming language to make meaningful content on web and CSS is a programming language for styling the content on web.
+Previously, I doubt that HTML and CSS are a programming language. But, after I listen explaination from Lara Schenk about CSS algorithm and supporting arguments from Heydon and Professor Brailsford about HTML is a programming language, I'm more confident to say that HTML and CSS are a programming language. To be more precise: HTML and CSS are a domain specific programming language to build web page. HTML is a programming language to make meaningful content on web and CSS is a programming language for styling the content on web.
 
 **Reference**
 
