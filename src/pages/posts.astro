@@ -3,11 +3,11 @@ import Layout from '../layouts/Layout.astro';
 const posts = await Astro.glob('../pages/posts/*.md');
 ---
 
-<Layout title="dev.kresna.me - Blog">
+<Layout title="dev.kresna.me - Posts">
     <main>
-        <h1>Blog</h1>
+        <h1>Posts</h1>
 
-        {posts.map((post) => <article>
+        {posts.sort((a, b) => new Date(b.frontmatter.pubDate) - new Date(a.frontmatter.pubDate)).map((post) => <article>
             <h2><a href={post.url}>{post.frontmatter.title}</a></h2>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.frontmatter.pubDate))}</span>
             <p>{post.frontmatter?.description}</p>
