@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Setup'
 pubDate: 2024-08-17
 description: "We as a programmer (either professional or hobby) have a personal setup in our computer. When we get a fresh installed computer, we setup everything in order to make our computer fit with us."

@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: HTML and CSS are Programming Languages
 pubDate: 2024-09-23
 description: Wait! What!?

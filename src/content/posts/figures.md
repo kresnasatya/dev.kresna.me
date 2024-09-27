@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Figures'
 pubDate: 2024-09-13
 description: Here are list of figures in software development that I respect and I'm amazed at their artwork.

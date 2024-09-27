@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: Do I remember my code?
 description: No, I don't.
 pubDate: 2024-09-23

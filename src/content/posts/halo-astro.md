@@ -1,5 +1,4 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Halo Astro!'
 pubDate: 2024-06-01
 description: "Astro. Astro Boy? Astro (Korean Boyband)? No! The Astro that I mean is a web framework. At the first time I see Astro, I was thinking that it's a Static Site Generator (SSG) same as Hugo, a fast SSG build with Go programming language. Also, Astro build their engine with Go programming language. Astro offers two features that I could not resist to try it!"
