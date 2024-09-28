@@ -23,4 +23,18 @@ const { frontmatter } = Astro.props;
         padding-left: .5rem;
         color: gray;
     }
+
+    main :global(starlight-file-tree span.sr-only) {
+        visibility: hidden;
+        margin-right: -4rem;
+    }
 </style>
+
+<script>
+    const directoriesSrOnly = document.querySelectorAll('starlight-file-tree span.sr-only');
+    if (directoriesSrOnly !== undefined) {
+        Array.from(directoriesSrOnly).forEach(el => {
+            el.setAttribute('aria-label', 'Directory');
+        });
+    }
+</script>
