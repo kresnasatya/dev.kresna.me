@@ -28,6 +28,13 @@ const { frontmatter } = Astro.props;
         visibility: hidden;
         margin-right: -4rem;
     }
+
+    main :global(img) {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        display: block;
+    }
 </style>
 
 <script>
