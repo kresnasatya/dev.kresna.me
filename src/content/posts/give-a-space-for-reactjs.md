@@ -1,6 +1,6 @@
 ---
 title: Give a Space for ReactJS
-description: Thank you, Josh for the Joy of React course.
+description: Thank you Josh for the Joy of React course.
 pubDate: 2024-10-30
 author: Kresna Satya
 ---
