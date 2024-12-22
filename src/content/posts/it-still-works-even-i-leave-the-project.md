@@ -1,6 +1,6 @@
 ---
 title: It Still Works Even I Leave The Project
-description: Yes, it should!
+description: Yes, it should be!
 pubDate: 2024-10-30
 author: Kresna Satya
 ---
