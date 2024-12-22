@@ -5,7 +5,7 @@ description: Here are list of figures in software development that I respect and
 author: 'Kresna Satya'
 ---
 
-Here are list of figures in software development that I respect and I'm amazed at their artwork.
+These are figures in programming that I respect and amazed with their artwork. I wish I have a chance to meet them in person before I die.
 
 ### Rich Harris
 
@@ -35,7 +35,7 @@ Artwork: Laravel
 
 ### Adam Wathan
 
-Artwork: Tailwindcss
+Artwork: Tailwind CSS
 
 ### Julia Evans
 
@@ -43,7 +43,7 @@ Artwork: So you want to be a wizard
 
 Memorable talk: [Making Hard Things Easy](https://www.youtube.com/watch?v=30YWsGDr8mA&pp=ygULanVsaWEgZXZhbnM%3D)
 
-### Lara Scheck
+### Lara Schenck
 
 Artwork: [Notlaura - Speaking - CSS Algorithms](https://notlaura.com/speaking/#css-algorithms)
 
@@ -52,3 +52,19 @@ Memorable talk: ["CSS Algorithms" by Lara Schenck](https://www.youtube.com/watch
 ### Maggie Appleton
 
 Memorable talk: [Why Maggie Appleton gave up on goals - Web Lunch S1E2](https://www.youtube.com/watch?v=mRd_1Bt9qrs)
+
+### Amelia Wattenberger
+
+Memorable talk: [Using Svelte for Data Visualisation](https://www.youtube.com/watch?v=CenLcP8BwLQ)
+
+### Lin Clark
+
+Memorable talk: [A Cartoon Intro to WebAssembly](https://www.youtube.com/watch?v=HktWin_LPf4)
+
+### Mike Bostock
+
+Artwork: D3
+
+### Alex Russell
+
+Artwork: Progressive Web Apps (with his wife, Frances Berriman)
