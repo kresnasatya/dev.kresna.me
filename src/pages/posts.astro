@@ -10,7 +10,7 @@ const posts = await getCollection('posts');
         <h1>Posts</h1>
 
         {posts.sort((a, b) => new Date(b.data.pubDate) - new Date(a.data.pubDate)).map((post) => <article>
-            <h2 style="font-size: 1.25rem;"><a href={`/posts/${post.slug}`}>{post.data.title}</a></h2>
+            <h2 style="font-size: 1.25rem;"><a href={`/posts/${post.id}`}>{post.data.title}</a></h2>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
         </article>)}
