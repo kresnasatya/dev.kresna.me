@@ -5,8 +5,6 @@ pubDate: 2024-09-24
 author: Kresna Satya
 ---
 
-import { FileTree } from '@astrojs/starlight/components';
-
 ## Background
 
 Around 2019 until 2020, I continue to play RPG game called Brave Frontier. Actually, I already have this game account since 2014 when I'm in college but I take hiatus because my character level is lower and it's difficult to grinding. Back to 2019, I see Brave Frontier is getting better and there are characters called Omni Unit. This unit is a last evolution of unit like an ultimate power. Also, there are several omni units that have certain power called Dual Brave Burst (DBB). These omni units are useful to conquer quests or special events. Usually, Brave Frontier players use Brave Frontier fandom as source of truth to see recommendation of SP (Specialty Points). Each character have 100 SP and as player we can spend it to get certain buffs.
@@ -35,30 +33,37 @@ It's quite easy and now I get another problem. I want the REST API and web inter
 
 ## Last Problem: Can I add Netlify inside the Monorepo?
 
-Last year, I touch this project again although the game has sunset. I look my code, update the dependencies, update Vercel rules (the hard one), and it works. At that time, I want to add Netlify inside this project it's really difficult. Because, Vercel and Netlify have their rules and I don't have any reference how to do that. So, the quick solution is I create a repo name `bravefrontier-netlify` which is a fork from `bravefrontier-vercel`. I tweak the serverless functions to follow the Netlify rules and it works. Then, I see a problem: I HAVE 3 REPOSITORIES IN MY GITHUB ACCOUNT FOR THIS PROJECT! First, repo for the data. Second, repo for the Brave Frontier site hosted in Vercel. Third, repo for the Brave Frontier site hosted in Netlify. I see these as redundant and wasted my time in the future.
+Last year, I touch this project again although the game has sunset. I look my code, update the dependencies, update Vercel rules (the hard one), and it works. At that time, I want to add Netlify inside this project it's really difficult. Because, Vercel and Netlify have their rules and I don't have any reference how to do that. So, the quick solution is I create a repo name `bravefrontier-netlify` which is a fork from `bravefrontier-vercel`. I tweak the serverless functions to follow the Netlify rules and it works. Then, I see a problem: **I HAVE 3 REPOSITORIES IN MY GITHUB ACCOUNT FOR THIS PROJECT!**
 
-At that time, I'm frustrated then I left it for a distant time. Back to 2024, I back to this project again and do the experiment: Merge those three repository into one repository. Here's the brief structure to achieve the ideal.
+1. First, repo for the data. 
+2. Second, repo for the Brave Frontier site hosted in Vercel. 
+3. Third, repo for the Brave Frontier site hosted in Netlify. 
 
-<FileTree>
-- data
-  - dbb.json
-  - omniunits.json
-- api
-  - vercel
-    - omniunits
-      - index.js
-    - dbbs
-      - index.js
-  - netlify
-    - omniunits
-      - index.js
-    - dbbs
-      - index.js
-- js/ **components, routers, utilities**
-- scrapers/ **scraper service**
-- vercel.json
-- netlify.toml
-</FileTree>
+I see these as redundant and wasted my time in the future.
+
+At that time, I'm frustrated then I left it for a distant time. In 2024, I back to this project again and do the experiment: Merge those repositories into single repository. Here's the brief structure to achieve the ideal.
+
+```sh
+.
+├── data/
+│   ├── dbb.json
+│   └── omniunits.json
+├── api/
+│   ├── vercel/
+│   │   ├── omniunits/
+│   │   │   └── index.js
+│   │   └── dbbs/
+│   │       └── index.js
+│   └── netlify/
+│       ├── omniunits/
+│       │   └── index.js
+│       └── dbbs/
+│           └── index.js
+├── js/ **components, routers, utilities**
+├── scrapers/ **scraper service**
+├── vercel.json
+└── netlify.toml
+```
 
 The hard part is make this repo follow the netlify and vercel rules. Thanks to Claude.ai, it doesn't need to take around more than hours to solve this. I also implement it in API Hari Libur Nasional project. So the project can be accessed in Vercel or Netlify.
 

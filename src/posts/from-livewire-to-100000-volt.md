@@ -5,8 +5,6 @@ pubDate: 2024-11-22
 author: Kresna Satya
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
 Yesterday, I with my coworker get a project to make a web app. This web app is related with project management. In summary, manager can create a project and create tasks based on the project. Each tasks assign to the staff. Looks simple, but if we got into the detail, it's not easy as it says. I with my coworker agree that we use Larva (Laravel, Livewire, Tailwind, and Alpine) stack to create this web app. The problem comes when we want to create a component for a list of projects and project form. In Livewire, programmer give a choice to make a component either as full page component or literally a component.
 
 ```sh
@@ -64,39 +62,38 @@ new class extends Component {
 
 Let's compare it with the "old" Livewire.
 
-<Tabs>
-    <TabItem label="app/Livewire/Counter.php">
-    ```php
-    <?php
- 
-    namespace App\Livewire;
-    
-    use Livewire\Component;
-    
-    class Counter extends Component
+::: code-group labels=[app/Livewire/Counter.php, resources/views/livewire/counter.blade.php]
+
+```php
+<?php
+
+namespace App\Livewire;
+
+use Livewire\Component;
+
+class Counter extends Component
+{
+    public $count = 1;
+
+    public function increment()
     {
-        public $count = 1;
-    
-        public function increment()
-        {
-            $this->count++;
-        }
-    
-        public function render()
-        {
-            return view('livewire.counter');
-        }
+        $this->count++;
     }
-    ```
-    </TabItem>
-    <TabItem label="resources/views/livewire/counter.blade.php">
-    ```php
-    <div>
-        <h1>{{ $count }}</h1>
-        <button wire:click="increment">+</button>
-    </div>
-    ```
-    </TabItem>
-</Tabs>
+
+    public function render()
+    {
+        return view('livewire.counter');
+    }
+}
+```
+
+```html
+<div>
+    <h1>{{ $count }}</h1>
+    <button wire:click="increment">+</button>
+</div>
+```
+
+:::
 
 I wish you get the point what I want to tell you in this post. Well, Livewire Volt is actually for programmers who have experience with the "old" Livewire way and see the pain point with the "old" way. If you want to get your hands dirty with Livewire Volt, I encourage you to try [Laravel Bootcamp and choose Livewire section](https://bootcamp.laravel.com/livewire/installation). I have [migrate my "old" Livewire into Livewire Volt](https://youtu.be/Hffc1zi29Ts) into my project called [Larva Interactions](https://larva-interactions.senku.stream). Finally, Livewire get 100.000 volt power! ⚡️⚡️⚡️

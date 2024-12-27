@@ -14,6 +14,9 @@ importers:
       astro:
         specifier: ^5.1.1
         version: 5.1.1(rollup@4.29.1)(typescript@5.7.2)
+      rehype-code-group:
+        specifier: ^0.2.3
+        version: 0.2.3(typescript@5.7.2)
       sharp:
         specifier: ^0.33.5
         version: 0.33.5
@@ -923,6 +926,9 @@ packages:
   hast-util-to-parse5@8.0.0:
     resolution: {integrity: sha512-3KKrV5ZVI8if87DVSi1vDeByYrkGzg4mEfeu4alwgmmIeARiBLKCZS2uw5Gb6nU9x9Yufyj3iudm6i7nl52PFw==}
 
+  hast-util-to-string@3.0.1:
+    resolution: {integrity: sha512-XelQVTDWvqcl3axRfI0xSeoVKzyIFPwsAGSLIsKdJKQMXDYJS4WYrBNF/8J7RdhIcFI2BOHgAifggsvsxp/3+A==}
+
   hast-util-to-text@4.0.2:
     resolution: {integrity: sha512-KK6y/BN8lbaq654j7JgBydev7wuNMcID54lkRav1P0CaE1e47P72AWWPiGKXTJU271ooYzcvTAn/Zt0REnvc7A==}
 
@@ -1291,6 +1297,15 @@ packages:
 
   regex@5.1.0:
     resolution: {integrity: sha512-KNCzMdCkhhFKcWnqKIixAKDRzERQ/RTvENLRuLSqNFYdvn/XEgKSrpBHluYqnQxuDnzOB+iZRNGidQeEVe9upw==}
+
+  rehype-code-group@0.2.3:
+    resolution: {integrity: sha512-umvtm139AL1JxYRdOlq6PO8zz0P3zbbgo6j9FRCSr6MqrY4aku3Ch0itPslwW6tHnK0FNpjqaLeaexhJuNTamg==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      typescript: '>=5.0.4'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
 
   rehype-parse@9.0.1:
     resolution: {integrity: sha512-ksCzCD0Fgfh7trPDxr2rSylbwq9iYDkSn8TCDmEJ49ljEUBxDVCzCHv7QNzZOfODanX4+bWQ4WZqLCRWYLfhag==}
@@ -2515,6 +2530,10 @@ snapshots:
       web-namespaces: 2.0.1
       zwitch: 2.0.4
 
+  hast-util-to-string@3.0.1:
+    dependencies:
+      '@types/hast': 3.0.4
+
   hast-util-to-text@4.0.2:
     dependencies:
       '@types/hast': 3.0.4
@@ -3051,6 +3070,15 @@ snapshots:
   regex@5.1.0:
     dependencies:
       regex-utilities: 2.3.0
+
+  rehype-code-group@0.2.3(typescript@5.7.2):
+    dependencies:
+      hast-util-to-string: 3.0.1
+      rehype: 13.0.2
+      unified: 11.0.5
+      unist-util-visit: 5.0.0
+    optionalDependencies:
+      typescript: 5.7.2
 
   rehype-parse@9.0.1:
     dependencies:

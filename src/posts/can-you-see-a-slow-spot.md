@@ -5,8 +5,6 @@ pubDate: 2024-09-24
 author: Kresna Satya
 ---
 
-import { Tabs, TabItem } from '@astrojs/starlight/components';
-
 I create a project with Laravel Framework called Larva Interactions, a common use cases using Larva stack (Laravel + Livewire + AlpineJS + TailwindCSS).
 
 > Hold on! There's a term called TALL stack. Do you know that?
@@ -21,81 +19,78 @@ One of use cases in Larva Interactions is Job Batching that shipped in Laravel s
 
 Ok, now I want to give you two codes and I want you analize both of them. Which one is a slow spot?
 
-<Tabs>
-    <TabItem label="Code 1">
-    ```php
-    <?php
+::: code-group labels=[Code 1, Code 2]
 
-    function import() {
-        $path = base_path('csvfile/file.csv');
+```php
+<?php
+function import() {
+    $path = base_path('csvfile/file.csv');
 
-        $file = fopen($path, 'r');
+    $file = fopen($path, 'r');
 
-        if ($file !== false) {
-            $header = array_map(function ($head) {
-                return implode('_', explode(' ', strtolower($head)));
-            }, fgetcsv($file));
-            $data = [];
-            if ($header !== false) {
-                while (($record = fgetcsv($file)) !== false) {
-                    array_push($data, $record);
-                }
-
-                $batch = Bus::batch([])->dispatch();
-                collect($data)->chunk(1000)->each(function ($chunk) use ($header, $batch) {
-                    $arrs = [];
-                    foreach ($chunk as $item) {
-                        $arr = array_combine($header, $item);
-                        array_push($arrs, $arr);
-                    }
-                    $batch->add(new ProcessInsertRecord('table_name', $arrs));
-                });
-
-
-                $this->batchId = $batch->id;
+    if ($file !== false) {
+        $header = array_map(function ($head) {
+            return implode('_', explode(' ', strtolower($head)));
+        }, fgetcsv($file));
+        $data = [];
+        if ($header !== false) {
+            while (($record = fgetcsv($file)) !== false) {
+                array_push($data, $record);
             }
+
+            $batch = Bus::batch([])->dispatch();
+            collect($data)->chunk(1000)->each(function ($chunk) use ($header, $batch) {
+                $arrs = [];
+                foreach ($chunk as $item) {
+                    $arr = array_combine($header, $item);
+                    array_push($arrs, $arr);
+                }
+                $batch->add(new ProcessInsertRecord('table_name', $arrs));
+            });
+
+
+            $this->batchId = $batch->id;
         }
     }
-    ```
-    </TabItem>
-    <TabItem label="Code 2">
-    ```php
-    <?php
+}
+```
 
-    function import() {
-        $path = base_path('csvfile/file.csv');
+```php
+<?php
+function import() {
+    $path = base_path('csvfile/file.csv');
 
-        $file = fopen($path, 'r');
+    $file = fopen($path, 'r');
 
-        if ($file !== false) {
-            $header = array_map(function ($head) {
-                return implode('_', explode(' ', strtolower($head)));
-            }, fgetcsv($file));
+    if ($file !== false) {
+        $header = array_map(function ($head) {
+            return implode('_', explode(' ', strtolower($head)));
+        }, fgetcsv($file));
+        
+        if ($header !== false) {
+            $batch = Bus::batch([])->dispatch();
+            $chunk = [];
+            $chunkSize = 1000;
+            while (($record = fgetcsv($file)) !== false) {
+                $chunk[] = array_combine($header, $record);
+
+                if (count($chunk) === $chunkSize) {
+                    $batch->add(new ProcessInsertRecord('table_name', $arrs));
+                    $chunk = [];
+                }
+            }
             
-            if ($header !== false) {
-                $batch = Bus::batch([])->dispatch();
-                $chunk = [];
-                $chunkSize = 1000;
-                while (($record = fgetcsv($file)) !== false) {
-                    $chunk[] = array_combine($header, $record);
-
-                    if (count($chunk) === $chunkSize) {
-                        $batch->add(new ProcessInsertRecord('table_name', $arrs));
-                        $chunk = [];
-                    }
-                }
-                
-                if (!empty($chunk)) {
-                    $batch->add(new ProcessInsertRecord('table_name', $arrs));
-                }
-
-                $this->batchId = $batch->id;
+            if (!empty($chunk)) {
+                $batch->add(new ProcessInsertRecord('table_name', $arrs));
             }
+
+            $this->batchId = $batch->id;
         }
     }
-    ```
-    </TabItem>
-</Tabs>
+}
+```
+
+:::
 
 <p style="margin-bottom: 8rem; font-size: 1.5rem;"><strong>3</strong></p>
 <p style="margin: 8rem 0; font-size: 1.5rem;"><strong>2</strong></p>
