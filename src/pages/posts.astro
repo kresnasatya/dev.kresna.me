@@ -8,7 +8,7 @@ const posts = await getCollection('posts', ({ data }) => {
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title="dev.kresna.me - Posts">
+<Layout title="Posts - dev.kresna.me">
     <main>
         <h1>Posts</h1>
 

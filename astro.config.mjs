@@ -8,5 +8,9 @@ export default defineConfig({
     rehypePlugins: [
       rehypeCodeGroup
     ]
+  },
+  i18n: {
+    locales: ["en", "id"],
+    defaultLocale: "en"
   }
 });

@@ -1,0 +1,30 @@
+---
+import { getCollection, render } from "astro:content";
+import MarkdownPostLayout from "../../../layouts/MarkdownPostLayout.id.astro";
+
+export async function getStaticPaths() {
+    const posts = await getCollection('posts', ({ data }) => {
+        return import.meta.env.PROD ? data.draft !== true : true;
+    });
+    let indonesianPosts = posts.filter(post => {
+        return post.id.endsWith('id');
+    });
+    return indonesianPosts.map(post => {
+        const cleanSlug = post.id.slice(0, -2); // Remove 'id' from the end
+        const path = `/id/posts/${cleanSlug}`;
+        post = { ...post };
+        post.data.path = path;
+        return {
+            params: { slug: cleanSlug },
+            props: { post }
+        };
+    });
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+---
+
+<MarkdownPostLayout frontmatter={post.data}>
+    <Content />
+</MarkdownPostLayout>

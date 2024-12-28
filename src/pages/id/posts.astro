@@ -1,0 +1,31 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../../layouts/Layout.id.astro';
+
+const posts = await getCollection('posts', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+});
+let indonesianPosts = posts.filter(post => {
+    return post.id.endsWith('id');
+});
+indonesianPosts = indonesianPosts.map(post => {
+    const cleanSlug = post.id.slice(0, -2); // Remove 'id' from the end
+    const path = `/id/posts/${cleanSlug}`;
+    post = { ...post };
+    post.data.path = path;
+    return post;
+});
+indonesianPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title="Tulisan - dev.kresna.me">
+    <main>
+        <h1>Tulisan</h1>
+
+        {indonesianPosts.map((post) => <article>
+            <h2 style="font-size: 1.25rem;"><a href={post.data.path}>{post.data.title}</a></h2>
+            <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
+            <p>{post.data?.description}</p>
+        </article>)}
+    </main>
+</Layout>

@@ -1,0 +1,51 @@
+---
+import Layout from "./Layout.id.astro";
+
+const { frontmatter } = Astro.props;
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <main>
+        <h1 style="text-align: left; font-size: 1.5rem;">{frontmatter.title}</h1>
+        <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
+        <slot />
+    </main>
+</Layout>
+
+<style>
+    main :global(p) {
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    main :global(blockquote) {
+        border-left: 2px solid gray;
+        padding-left: .5rem;
+        color: gray;
+    }
+
+    main :global(starlight-file-tree span.sr-only) {
+        visibility: hidden;
+        margin-right: -4rem;
+    }
+
+    main :global(img) {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/9;
+        display: block;
+    }
+
+    main :global(pre) {
+        padding: 1rem;
+    }
+</style>
+
+<script>
+    const directoriesSrOnly = document.querySelectorAll('starlight-file-tree span.sr-only');
+    if (directoriesSrOnly !== undefined) {
+        Array.from(directoriesSrOnly).forEach(el => {
+            el.setAttribute('aria-label', 'Directory');
+        });
+    }
+</script>
