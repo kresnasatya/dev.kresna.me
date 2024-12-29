@@ -11,6 +11,12 @@ importers:
       '@astrojs/rss':
         specifier: ^4.0.10
         version: 4.0.10
+      '@fontsource/dm-serif-display':
+        specifier: ^5.1.0
+        version: 5.1.0
+      '@fontsource/eb-garamond':
+        specifier: ^5.1.1
+        version: 5.1.1
       astro:
         specifier: ^5.1.1
         version: 5.1.1(rollup@4.29.1)(typescript@5.7.2)
@@ -350,6 +356,12 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@fontsource/dm-serif-display@5.1.0':
+    resolution: {integrity: sha512-8IGBpTOn2XRA09plE6iAlZajL09iwCdSTd60FiM9NsD7VV4Nqseo9tgqiZLyuLC9D1jht5i39I2IYI/o2+Q0Kg==}
+
+  '@fontsource/eb-garamond@5.1.1':
+    resolution: {integrity: sha512-fB/T2F+Hvic0f8AU1oZXc64OyWDrce5x01JUafnC+u2OSILMales+g4CtD02CPP7l9x2AydqD4yV/tK7YbKeMg==}
 
   '@img/sharp-darwin-arm64@0.33.5':
     resolution: {integrity: sha512-UT4p+iz/2H4twwAoLCqfA9UH5pI6DggwKEGuaPy7nCVQ8ZsiY5PIcrRvD1DzuY3qYL07NtIQcWnBSY/heikIFQ==}
@@ -1873,6 +1885,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.24.2':
     optional: true
+
+  '@fontsource/dm-serif-display@5.1.0': {}
+
+  '@fontsource/eb-garamond@5.1.1': {}
 
   '@img/sharp-darwin-arm64@0.33.5':
     optionalDependencies:

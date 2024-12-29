@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@astrojs/rss": "^4.0.10",
+    "@fontsource/dm-serif-display": "^5.1.0",
+    "@fontsource/eb-garamond": "^5.1.1",
     "astro": "^5.1.1",
     "rehype-code-group": "^0.2.3",
     "sharp": "^0.33.5"

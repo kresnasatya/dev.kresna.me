@@ -1,4 +1,7 @@
 ---
+import '@fontsource/dm-serif-display';
+import '@fontsource/eb-garamond';
+import '@fontsource/eb-garamond/400-italic.css'
 import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
@@ -61,7 +64,20 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 	}
 
 	html {
-		font-family: Garamond, serif;
+		font-family: 'EB Garamond', serif;
+	}
+
+	h1,
+	h2 {
+		font-family: 'DM Serif Display', serif;
+	}
+
+	nav a, footer a {
+		font-family: sans-serif;
+	}
+
+	p, ol {
+		font-size: 1.25rem;
 	}
 
 	code {
@@ -74,6 +90,20 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 			Bitstream Vera Sans Mono,
 			Courier New,
 			monospace;
+		font-size: 1rem;
+		background-color: rgb(237, 238, 243);
+		padding: .25rem;
+		color: orangered;
+	}
+
+	pre {
+		margin-bottom: 1rem;
+	}
+
+	pre > code {
+		background-color: initial;
+		padding: initial;
+		color: initial;
 	}
 
 	main {
