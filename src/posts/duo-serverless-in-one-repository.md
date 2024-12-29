@@ -5,7 +5,7 @@ pubDate: 2024-09-24
 author: Kresna Satya
 ---
 
-> *2024-12-28: This post updated by add Cloudflare Functions (Pages) as serveless functions into single repository. Then, I give a brief syntax of serveless functions in Cloudflare, Netlify, and Vercel. The demo is a GET request as API and attach it into frontend in order to make a "Fullstack Vibes".*
+> *2024-12-28: This post updated by add Cloudflare Functions (Pages) as serverless functions into single repository. Then, I give a brief syntax of serverless functions in Cloudflare, Netlify, and Vercel. The demo is a GET request as API and attach it into frontend in order to make a "Fullstack Vibes".*
 
 ## Background
 
@@ -17,7 +17,7 @@ Here's the problem: the content inside Brave Frontier fandom is too much, not ju
 
 I was thinking that Brave Frontier fandom at that time have REST API endpoints for Omni Units and DBB. But, it doesn't. 😅 So, what should I do? I think about scraping and I see programmers use Python for scraping. Unfortunately, I'm not familar with Python, so I seek an alternative. AHA! I find JavaScript! I can use JavaScript to get the data by query Document Object Model (DOM). I use NodeJS and JSDOM at that time to get the data. I store the data inside JSON and store it inside GitHub repo name `bravefrontier-data`. Then, I set scheduler to get data with GitHub actions.
 
-> Honestly, JSDOM is too slow. I just use fetch API to get text/html data then parse it into DOM. But, NodeJS doesn't support DOMParser. So, I'm seeking alternative and find Linkedom.
+> Honestly, JSDOM is too slow. I just want to use fetch API to get text/html data then parse it into DOM. But, NodeJS doesn't support DOMParser. So, I'm seeking alternative and find Linkedom.
 
 ## Second Problem: Web Interface
 
@@ -29,7 +29,7 @@ I'm bad at CSS at that time but now I'm bit confident with my CSS skills, thanks
 
 To glue the data with Web Interface, I need to build REST API. At that time, I don't want to spent any dollars to built VPS to setup web server for serve the REST API. So, I'm seeking solution and find Vercel. Vercel (formerly Zeit) is amazing platform for fulfill my use case to build REST API by using term called Serverless functions. 
 
-> Serveless functions in short looks like I create functions inside the Vercel's server and I don't have control about the detail specification of Vercel's server (RAM, storage, bandwith). Vercel indrectly tell me that I don't need to know the detail of their server and just believe them as long as I follow the their serverless functions rule.
+> *Serverless functions in short looks like I create functions inside the Vercel's server and I don't have control about the detail specification of Vercel's server (RAM, storage, bandwith). Vercel indrectly tell me that I don't need to know the detail of their server and just believe them as long as I follow the their serverless functions rule.*
 
 Another wish is I want the REST API and web interface inside one repository or monorepo. Luckily, I find reference from Carlos Roso's post. It works after more tweaks. I give the repo name `bravefrontier-vercel`.
 
