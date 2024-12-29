@@ -7,12 +7,14 @@ interface Props {
 	description?: string;
 }
 
-const { title, description = "Kresna's domain on Software Development" } = Astro.props;
+const { title, description = "Kresna's blog for Programming" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={currentLang}>
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
@@ -20,6 +22,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		<meta property="og:type" content="website">
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:url" content={canonicalURL}>
@@ -29,7 +32,7 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 	</head>
 	<body>
 		<div class="container">
-			<Navigation />
+			<Navigation lang={currentLang} />
 			<slot />
 			<Footer />
 		</div>

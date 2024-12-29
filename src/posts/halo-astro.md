@@ -19,10 +19,8 @@ I imagine placeholders/slots like header, sidebar, and image carousel (wrapped b
 
 > Widget!? AHA! It remains me with calendar widget, popular posts on Blogspot and WordPress.
 
-
 Actually, Islands Architecture comes up from “Component Islands” that was created by Katie Sylor. Honestly, I’m pretty sure that around 2019 and 2020, I see a video presentation from Katie Sylor-Miller on YouTube or Vimeo that talks about “Component Islands” but I don’t see it anywhere now. I’m not sure if I’m hallucinate or not, but I’m pretty sure that I’m not hallucinate about it.
 
+Second, Astro provides UI agnostic. It means you can inject your favorite JavaScript framework code to Astro. So far, Astro support Preact, React, Svelte, Vue, Lit, and Solid. I personally will pick Svelte as favorite JavaScript framework although I don't use it seriously in another projects. I love Svelte because syntax brevity and Rich Harris’s marketing and philosophy to build better web development with less headache concepts (I talk about you, ReactJS). I can't wait to put Svelte code inside this site in a near future!
 
-Second, Astro provides UI agnostic. It means you can inject your favorite JavaScript framework code to Astro. So far, Astro support Preact, React, Svelte, Vue, Lit, and Solid. I personally will pick Svelte as favorite JavaScript framework although I don't use it seriously in another projects. I love Svelte because syntax brevity and Rich Harris’s marketing and philosophy to build better web development with less headache concepts (I talk about you, ReactJS). I can wait to put Svelte code inside this site in a near future!
-
-This site is on progress. I have several ideas for this site in the futures. The ideas are dual language (English and Bahasa Indonesia), search feature (cmd + k from Jacky Efendi's site), dark mode feature, and mini-playgrounds. I will use English as default language in this site because I would like interact with world-wide programmer, software developer, or anybody who share same interest topics with me.
+This site is on progress. I have several ideas for this site in the futures. The ideas are dual language (English and Bahasa Indonesia), search feature (cmd + k from Jacky Efendi's site), dark mode feature, and mini-playgrounds. I will use English as default language in this site because I would like interact with world-wide programmer or anybody who share same interest topics with me.

@@ -1,0 +1,37 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+    currentId: string; // The ID of the current post
+}
+
+const { currentId } = Astro.props;
+
+// Determine current language
+const isIndonesian = currentId.endsWith('id');
+
+// Get the "other" version ID
+const otherVersionId = isIndonesian 
+    ? currentId.slice(0, -2) // Remove 'id' for English version
+    : currentId + 'id'; // Add 'id' for Indonesian version
+
+// Check if the other language version exists
+const allPosts = await getCollection('posts');
+const otherVersionExists = allPosts.some(post => post.id === otherVersionId);
+
+// Generate the correct URL path
+const currentSlug = isIndonesian
+    ? currentId.slice(0, -2) // Remove 'id'
+    : currentId;
+
+const otherPath = isIndonesian
+    ? `/posts/${currentSlug}`
+    : `/id/posts/${currentSlug}`;
+
+const translateText = isIndonesian ? 'Terjemahan' : 'Translation';
+const linkText = isIndonesian ? 'English' : 'Bahasa Indonesia';
+---
+
+{otherVersionExists && (
+    <span>{translateText}: </span><a href={otherPath}>{linkText}</a>
+)}

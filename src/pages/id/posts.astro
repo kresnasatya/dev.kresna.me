@@ -1,6 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/Layout.id.astro';
+import Layout from '../../layouts/Layout.astro';
 
 const posts = await getCollection('posts', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true;
@@ -24,7 +24,7 @@ indonesianPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf
 
         {indonesianPosts.map((post) => <article>
             <h2 style="font-size: 1.25rem;"><a href={post.data.path}>{post.data.title}</a></h2>
-            <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
+            <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('id', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
         </article>)}
     </main>

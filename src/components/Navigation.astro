@@ -1,9 +1,40 @@
 ---
+import { navTranslations } from '../i18n/translations';
 
+interface Props {
+    lang: 'en' | 'id'; // Current language
+}
+
+const { lang } = Astro.props;
+const currentLang = lang ?? (Astro.url.pathname.startsWith('/id') ? 'id' : 'en');
+const t = navTranslations[currentLang];
+
+// Generate correct paths based on language
+const paths = {
+    en: {
+        home: '/',
+        about: '/about',
+        posts: '/posts'
+    },
+    id: {
+        home: '/id',
+        about: '/id/about',
+        posts: '/id/posts'
+    }
+};
+
+const currentPaths = paths[currentLang];
 ---
 
 <nav>
-    <a href="/">Home</a>
-    <a href="/about/">About</a>
-    <a href="/posts">Posts</a>
+    <a href={currentPaths.home}>{t.home}</a>
+    <a href={currentPaths.about}>{t.about}</a>
+    <a href={currentPaths.posts}>{t.posts}</a>
+    |
+    <!-- Language switcher -->
+    { currentLang === 'en' ? (
+        <a href={`/id${Astro.url.pathname}`}>Bahasa Indonesia</a>
+    ) : (
+        <a href={Astro.url.pathname.replace('/id', '')}>English</a>
+    )}
 </nav>
