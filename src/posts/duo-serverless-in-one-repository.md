@@ -17,13 +17,13 @@ Here's the problem: the content inside Brave Frontier fandom is too much, not ju
 
 I was thinking that Brave Frontier fandom at that time have REST API endpoints for Omni Units and DBB. But, it doesn't. 😅 So, what should I do? I think about scraping and I see programmers use Python for scraping. Unfortunately, I'm not familar with Python, so I seek an alternative. AHA! I find JavaScript! I can use JavaScript to get the data by query Document Object Model (DOM). I use NodeJS and JSDOM at that time to get the data. I store the data inside JSON and store it inside GitHub repo name `bravefrontier-data`. Then, I set scheduler to get data with GitHub actions.
 
-> Honestly, JSDOM is too slow. I just want to use fetch API to get text/html data then parse it into DOM. But, NodeJS doesn't support DOMParser. So, I'm seeking alternative and find Linkedom.
+> *Honestly, JSDOM is too slow. I just want to use fetch API to get text/html data then parse it into DOM. But, NodeJS doesn't support DOMParser. So, I'm seeking alternative and find Linkedom.*
 
 ## Second Problem: Web Interface
 
 I'm bad at CSS at that time but now I'm bit confident with my CSS skills, thanks Josh! I don't want to use any popular frameworks or UI libraries JavaScript. But, I'm okay with CSS frameworks. So, I pick HTML, CSS with Tailwind CSS, JavaScript with pagejs library (router for Single Page Application) and Choices JS (select dropdown), and Vite (modern front-end framework). It was hard but exciting because I usually programming for back-end development. This problem teach me how to treat my self as the owner of project and make it to be the best artwork for my self at that time.
 
-> I update the project by using Vite version 5 and before that I use Rollup.
+> *Before I use Vite, I used Rollup.*
 
 ## Third Problem: Glue the Data with Web Interface
 
@@ -73,7 +73,7 @@ The hard part is make this repo follow the netlify and vercel rules. Thanks to C
 
 ## Additional Problem: Add Cloudflare Functions. Oh God! 🥲
 
-> *When human has a strong will or strong desire then it will hard to stop them!*
+> *When human has a strong will or strong desire then it will be hard to stop them!*
 
 Yesterday (2024-12-27), I'm curious to add Cloudflare Functions a.k.a. Cloudflare's Serverless Functions into this repo. In my imagination, I was thinking that I just put the Cloudflare functions inside the `api` directory, update the `wrangler.toml`, and tell the Cloudflare that my functions is inside the `api` directory by tweak the `wrangler.toml`.
 
