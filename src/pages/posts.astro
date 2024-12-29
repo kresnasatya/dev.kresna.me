@@ -5,14 +5,17 @@ import Layout from '../layouts/Layout.astro';
 const posts = await getCollection('posts', ({ data }) => {
     return import.meta.env.PROD ? data.draft !== true : true;
 });
-posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+let englishPosts = posts.filter(post => {
+    return ! post.id.endsWith('id');
+});
+englishPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
 <Layout title="Posts - dev.kresna.me">
     <main>
         <h1>Posts</h1>
 
-        {posts.map((post) => <article>
+        {englishPosts.map((post) => <article>
             <h2 style="font-size: 1.25rem;"><a href={`/posts/${post.id}`}>{post.data.title}</a></h2>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
