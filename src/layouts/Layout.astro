@@ -3,11 +3,11 @@ import Navigation from '../components/Navigation.astro';
 import Footer from '../components/Footer.astro';
 
 interface Props {
-	title: string;
+	title?: string;
 	description?: string;
 }
 
-const { title, description = "Kresna's blog for Programming" } = Astro.props;
+const { title = "dev.kresna.me", description = "Kresna's blog for Programming" } = Astro.props;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
 const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
