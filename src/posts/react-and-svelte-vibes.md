@@ -55,7 +55,7 @@ class Button extends React.component {
 :::
 
 One year ago, I purchased a great interactive course called [Joy of React](https://www.joyofreact.com). This course created by Josh Comeau who worked for Khan Academy and Digital Ocean. 
-He has a great teaching skill that I cannot resist to purchased his course. Also, the another reason is that the React is still the great demand for job opportunity until this day... 
+He has a great teaching skill that I cannot resist to purchased his course. Another reason is that the React is still the great demand for job opportunity until this day... 
 
 > Yeah, until this day. 
 
@@ -77,11 +77,10 @@ In first chapter of this course, Josh tells why React born. Here's the quote.
 
 > The team eventually solved this problem by migrating to an experimental new internal tool: React. This problem, along with so many others, disappeared.
 
-Those quotes comes from [**Rethinking Web App Development at Facebook** presented by Jing Cheng](https://www.youtube.com/watch?v=nYkdrAPrdcw&t=624s).
+Please watch the [**Rethinking Web App Development at Facebook** presented by Jing Cheng](https://www.youtube.com/watch?v=nYkdrAPrdcw&t=624s).
 
 Few months ago before I purchased Joy of React course, I saw a tweet from ex Meta engineer.
 This tweet about Facebook Chat problem and is quite relate with the previous qoute. Here's the qoute.
-For full tweet, please see [Adam Wolff's tweet about behind the story of FB Chat and ReactJS](https://x.com/dmwlff/status/1762885255030259854).
 
 > I worked on Facebook Chat for several years, both on the front end and the infrastructure.
 
@@ -128,6 +127,8 @@ ReactJS
 
 > Instead, **the solution was to build observability that allowed us to track end-to-end message delivery.**
 
+For full tweet, please see [Adam Wolff's tweet about behind the story of FB Chat and ReactJS](https://x.com/dmwlff/status/1762885255030259854).
+
 After I read his tweet, I'm muttering:
 
 > If Facebook fix the DNS problem earlier, I think ReactJS will not exist and JQuery is still the king!
@@ -150,7 +151,7 @@ Until this day, I'm amazed with his speaking to promote his ideas. The thing tha
 The question is why Svelte can achieve this approach but other doesn't?
 
 Because Svelte actually a programming language that compile into tightly-optimized vanilla JavaScript.
-If you see the image above, here's the output when we declare and update value in Svelte way.
+Here's the output when we declare and update value in Svelte way.
 
 ::: code-group labels=[Svelte, Compiled Svelte]
 
@@ -205,7 +206,7 @@ She gave me a weird vibe. = She gave off a weird vibe. = I got a weird vibe from
 
 ### State + Create a Component
 
-I would like to think that State is a thing that can be change frequently regarding of user actions. Also, I would like to think State is a Model, a part of MVC or MVVM, etc. Let's see how to declare state in React and Svelte by visit project called Floating Coin.
+I would like to think that State is a thing that can be change frequently regarding of user actions. Also, I would like to think State is a Model, a part of MVC or MVVM, etc. Let's see how to declare state in React and Svelte by visit project called [Floating](https://github.com/senkulabs/floating-coin-react) [Coin](https://github.com/senkulabs/floating-coin-svelte).
 
 ::: code-group labels=[React, Svelte]
 
@@ -365,37 +366,13 @@ Second, let's see the Svelte part.
 </div>
 
 <style>
-.coin {
-    display: block;
-    background: transparent;
-    border: none;
-    width: 200px;
-    cursor: pointer;
-    transition: transform 500ms;
-    will-change: transform;
-}
-
-.coin:hover {
-    transform: scale(1.05);
-    transition: transform 200ms;
-}
-
-.coin:active {
-    transform: scale(0.95);
-    transition: transform 0ms;
-}
-
-.coin-image {
-    display: block;
-    width: 100%;
-    user-select: none;
-}
+/* Insert style here */
 </style>
 ```
 
 :::
 
-As we see, React and Svelte has similarity to split the component but have different vibes or syntax. In React, to receive the props or properties in `Coin.jsx`, the `Coin` function must accept the object parameter `{}`. In Svelte, to receive the props in `Coin.svelte`, it use `$props` rune.
+React and Svelte has similarity to split the component but have different vibes or syntax. In React, to receive the props or properties in `Coin.jsx`, the `Coin` function must accept the object parameter `{}`. In Svelte, to receive the props in `Coin.svelte`, it use `$props` rune.
 
 In React, to store and call CSS style, you should name it `_your_component.module.css` and import it as `import styles from './your_component.module.css'` then call the CSS class with syntax `{styles.cssClassName}`. This is intended to prevent conflict between each component in case there's the same CSS class name. In Svelte, you just put CSS style inside the component with `<style>` tag.
 
@@ -406,7 +383,7 @@ If we look the code above, we don't pass `numOfCoins` state in to the Coin compo
 Let's visit the Floating Coin. In this case, we add functionallity to buy a Chocolate with cost 9 coins. But, there's an issue.
 The floating text appear when we press the "Buy chocolate" button.
 
-Here are sites in [React](https://component-issue.floating-coin-react.pages.dev/) and [Svelte](https://component-issue.floating-coin-svelte.pages.dev/) issue.
+Examples of [React - Floating Coin - Buy Chocolate](https://component-issue.floating-coin-react.pages.dev/) and [Svelte - Floating Coin - Buy Chocolate](https://component-issue.floating-coin-svelte.pages.dev/).
 
 Here are React and Svelte code snippets.
 
@@ -1131,4 +1108,6 @@ React frameworks are NextJS and React Router v7 a.k.a. Remix. I don't use those 
 
 ## Personal Choice
 
-If I bring the term of vibes, React has a good vibes but Svelte has a great vibes. Why I say Svelte has a great vibes? First, you just need the fundamental knowledge of HTML, CSS, and JavaScript instead of steep learning curve provided by React. Second, JavaScript size in Svelte is less than React thanks to compiler and signal implementation by Svelte team. This also means that to achieve the same thing you just need a least of power (JavaScript).
+If I bring the term of vibes, React has a good vibes but Svelte has a great vibes. Why I say Svelte has a great vibes? Because Svelte doesn't sacrifice the programming experience and user experience. For programming experience, you just need the fundamental knowledge of HTML, CSS, and JavaScript instead of steep learning curve provided by React. For user experience, JavaScript size in Svelte is less than React thanks to compiler and signal implementation by Svelte team. By shipping the less, tightly-optimized JavaScript, user still can get good experience when access web app.
+
+> Achieve the same thing you just need a least of power (JavaScript).
