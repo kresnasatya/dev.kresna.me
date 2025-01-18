@@ -7,7 +7,7 @@ const { frontmatter } = Astro.props;
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
     <main>
-        <h1 style="text-align: left; font-size: 1.5rem;">{frontmatter.title}</h1>
+        <h1 style="text-align: left; font-size: 2rem;">{frontmatter.title}</h1>
         <span style="color: gray;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
         |
         <LanguageSwitcher currentId={frontmatter.id}/>
@@ -16,15 +16,28 @@ const { frontmatter } = Astro.props;
 </Layout>
 
 <style>
+    main :global(h2) {
+        font-size: 1.75rem;
+    }
+
+    main :global(h3) {
+        font-size: 1.5rem;
+    }
+
     main :global(p) {
         margin-top: 1rem;
         margin-bottom: 1rem;
+        font-size: 1.25rem;
+    }
+
+    main :global(ol), main :global(ul) {
+        font-size: 1.25rem;
     }
 
     main :global(blockquote) {
         border-left: 2px solid gray;
         padding-left: .5rem;
-        color: gray;
+        color: rgb(71 85 105 / 1);
     }
 
     main :global(starlight-file-tree span.sr-only) {

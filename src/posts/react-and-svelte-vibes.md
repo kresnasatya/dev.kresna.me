@@ -10,29 +10,1125 @@ This post is about when did I know React and Svelte, vibes between React and Sve
 
 ## Birth of React
 
-When React released, why it was released, when I know it?
+I know React when I was in the last semester in university around 2015 and 2016. I saw the Indonesia community posts from Riza Fahmi who works for Hacktiv8 and Sonny Lazuardi who works for Sales Stock at that time.
+
+If I'm not wrong see the posts, Riza was thinking that React is the future of JQuery and give some showcases. Meanwhile, Sonny gives showcase about React Native, a way to develop and build mobile app using React and the Sales Stock is the result of React Native.
+
+Also at that time, when you create a React component, you need to write it in class based approach instead of functional approach.
+
+::: code-group labels=[react_2015.js, react_2016.js]
+
+```js
+const Button = React.createClass({
+    state: {
+        count: 1
+    },
+});
+
+handleClick(event) {
+    console.log('clicked');
+    this.setState({ count: this.state.count + 1 });
+},
+
+render() {
+    return (
+        <button onClick={this.handleClick}>
+            {this.props.children}
+        </button>
+    )
+}
+```
+
+```js
+class Button extends React.component {
+    state = {
+        count: 1
+    };
+
+    handleClick = () => {
+        console.log('clicked');
+        this.setState({ count: this.state.count + 1 });
+    };
+}
+```
+
+:::
+
+One year ago, I purchased a great interactive course called [Joy of React](https://www.joyofreact.com). This course created by Josh Comeau who worked for Khan Academy and Digital Ocean. 
+He has a great teaching skill that I cannot resist to purchased his course. Also, the another reason is that the React is still the great demand for job opportunity until this day... 
+
+> Yeah, until this day. 
+
+Luckily, the course have purcased parity program so I can buy the course with safety budget.
+
+In first chapter of this course, Josh tells why React born. Here's the quote.
+
+> *In the early 2010s, Facebook developers had a problem. Thousands of people were complaining about "phantom messages".*
+
+> Users would see a little 1 notification badge by the "messages" icon, suggesting they had new messages. But when they'd click it, there wouldn't be anything new, just the same old messages.
+
+> At the time, the UI had 3 separate locations where message state was presented: Message Drawer, Chat Widget, and Main View.
+
+![Picture of Facebook UI Chat Phantom Messages](../images/facebook-phantom-message.png)
+
+> Users were getting phantom messages because these 3 parts of the UI were powered by separate views, and those views were getting out of sync.
+
+> This might seem like a trivial problem to solve, but Facebook is a tremendously complex app, with hundreds of developers across dozens of teams all collaborating, adding new features, moving fast and breaking things. Every week, some new edge-case would crop up, leading to phantom messages. It was like playing whack-a-mole; every time they fixed a bug, a new one would pop up.
+
+> The team eventually solved this problem by migrating to an experimental new internal tool: React. This problem, along with so many others, disappeared.
+
+Those quotes comes from [**Rethinking Web App Development at Facebook** presented by Jing Cheng](https://www.youtube.com/watch?v=nYkdrAPrdcw&t=624s).
+
+Few months ago before I purchased Joy of React course, I saw a tweet from ex Meta engineer.
+This tweet about Facebook Chat problem and is quite relate with the previous qoute. Here's the qoute.
+For full tweet, please see [Adam Wolff's tweet about behind the story of FB Chat and ReactJS](https://x.com/dmwlff/status/1762885255030259854).
+
+> I worked on Facebook Chat for several years, both on the front end and the infrastructure.
+
+> Before the major effort to redo the UI, FB Chat was super broken and we had no idea why.
+
+> We got tons of bug reports about Chat being broken every day, but we noticed an odd pattern in the data: the volume of reports didn't match the volume of usage. It was time-shifted from the peaks we'd see in the US.
+
+> We didn't know what was wrong, but we knew the code was a mess.
+
+> We set about rewriting both the front-end and the back-end in an effort to fix it.
+
+> The front-end rewrite pulled in a whole team of amazing engineers and became one of the big threads that led to 
+ReactJS
+
+> In the public eye, we portrayed this project as the one that ultimately fixed Chat.
+
+> And the way I've usually told it, fixing Facebook Chat and the birth of React are the same story.
+
+> But no framework was going to fix the worst problem with Chat.
+
+> During the time we were working on the Chat rewrite, we were also replacing the original Erlang backend with one written in C++.
+
+> This was probably a good move, but the problem wasn't with Erlang either.
+
+> Our initial spec for the new backend didn't say much about observability, but it was an important feature, and the rewrite forced us to rebuild it.
+
+> Little did we know this would lead us to the root cause of our problems…
+
+> When we finally gained insight into our deliverability data, we were able to cut it by region.
+
+> We noticed Chat was really popular in India. This was before WhatsApp, at a time when SMS wasn't reliable.
+
+> Eventually we pinpointed a region in India where one specific DNS provider was giving out the wrong IP addresses for our Chat servers.
+
+> So when people went to use Chat, they would sometimes get a notification that they had a message, and then it would disappear.
+
+> Or they'd send a message and it would get lost. All because they were connecting to the wrong IP address.
+
+> That was it!
+
+> None of the sexy new tech we were working on was going to solve that problem.
+
+> Ever.
+
+> Instead, **the solution was to build observability that allowed us to track end-to-end message delivery.**
+
+After I read his tweet, I'm muttering:
+
+> If Facebook fix the DNS problem earlier, I think ReactJS will not exist and JQuery is still the king!
+
+> Or maybe ReactJS still exist but will simpler learning curve instead of steeper learning curve.
+
+Well, I just muttering and I can be wrong. But, the things I learn is that **build observability is the key to to track end-to-end message delivery in Facebook Chat.**
+
+Also, I think [we should respect React](/posts/give-a-space-for-reactjs) because of them, many frameworks born with better ideas like Svelte with compiler approach and Solid with signal approach.
 
 ## Birth of Svelte
 
-When Svelte released, why it was released, when I know it?
+The first time I know Svelte is when I watched Rich Harris's presentation around 2019. At that time he presents rethinking reactivity and Svelte 3 is the result of it.
+Until this day, I'm amazed with his speaking to promote his ideas. The thing that I really like in Svelte is when you want to change the value use operator instead of function or dot notation of object.
+
+![Picture of Change value in Svelte 5](../images/change-value-in-svelte-5.jpg)
+
+![Picture of Operator in Svelte 3](../images/operator-in-svelte-3.jpg)
+
+The question is why Svelte can achieve this approach but other doesn't?
+
+Because Svelte actually a programming language that compile into tightly-optimized vanilla JavaScript.
+If you see the image above, here's the output when we declare and update value in Svelte way.
+
+::: code-group labels=[Svelte, Compiled Svelte]
+
+```html
+<script>
+    // Normal-ass values
+    let count = $state(0);
+    count += 1;
+    console.log({ count });
+</script>
+```
+
+```js
+// Compile output
+let count = $.state(0);
+
+$.set(count, $.get(count) + 1);
+console.log({ count: $.get(count) });
+```
+
+:::
+
+The syntax above is Svelte 5 which is the upgrade version of Svelte 3 and 4. In Svelte 3 and 4 there are some syntaxes that I dislike and luckily changed into Svelte 5.
+
+- `$:` for derived/effect. In Svelte 5 it turns out to be `$derived` and `$effect`.
+- `export let` for passing properties into component. In Svelte 5 it turns out to be `$props`.
+- Event listener like `on:click` changed into `onclick` in Svelte 5 which is it's a nature of HTML attribute.
+
+If you have try React before and now try Svelte 5, you will see that you never missing the home and you get the better home.
+
+Why? Because in Svelte, you just need the the fundamentals of HTML, CSS, and JavaScript. That's it.
+
+Also, why Rich Harris make Svelte like this? Because he works as visual journalism programmer.
+
+In journalism world, you have a tight deadline, you need to [build and deliver rich interactive application
+as soon as possible](https://www.youtube.com/watch?v=uMyvt9KfpFk). By using Svelte, this means that you just need tools that by syntax is your own home or nature
+as web programmer like HTML, CSS, and Javascript without any steep learning curve like ReactJS.
 
 ## Vibes
 
-Here's the [definition of Vibes according to Merriam-Webster](https://www.merriam-webster.com/dictionary/vibe).
+Let's talk about vibes. The vibes I mean is how I feel when I do web programming using React and Svelte.
+
+First, let's see the [definition of Vibes according to Merriam-Webster](https://www.merriam-webster.com/dictionary/vibe).
 
 > *"A distinctive feeling or quality capable of being sensed"*
 
 E.g.
 
 This place has a good/bad vibe.
+
 She gave me a weird vibe. = She gave off a weird vibe. = I got a weird vibe from her.
 
-The vibes I mean is how I feel when I do web programming using React and Svelte.
+### State + Create a Component
 
-- State
-- Derived
-- Effect
-- Hooks for React
-- Signal for Svelte
+I would like to think that State is a thing that can be change frequently regarding of user actions. Also, I would like to think State is a Model, a part of MVC or MVVM, etc. Let's see how to declare state in React and Svelte by visit project called Floating Coin.
+
+::: code-group labels=[React, Svelte]
+
+```js
+import { useState } from 'react'
+import './Coin.css'
+
+function App() {
+  const [numOfCoins, setNumOfCoins] = useState(0)
+
+  return (
+    <div className="wrapper">
+      <main>
+        <div className="coin-wrapper">
+          <button className="coin" onClick={() => setNumOfCoins(numOfCoins + 2)}>
+            <span className="visually-hidden">Add 2 coin</span>
+            <img className="coin-image" alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
+          </button>
+        </div>
+      </main>
+      <footer>
+        Your coin balance:
+        <strong>{numOfCoins}</strong>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+```
+
+```html
+<script>
+  import './Coin.css';
+
+  let numOfCoins = $state(0);
+</script>
+
+<div class="wrapper">
+  <main>
+    <div class="coin-wrapper">
+      <button class="coin" onclick={() => numOfCoins += 2}>
+        <span class="visually-hidden">Add 2 coin</span>
+        <img class="coin-image" alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
+      </button>
+    </div>
+  </main>
+  <footer>
+    Your coin balance:
+    <strong>{numOfCoins}</strong>
+  </footer>
+</div>
+```
+
+:::
+
+1. To create state in React, we use function called `useState()` which import from `react`. To create state in Svelte, we use a rune called `$state()`. You don't need to import anything for `$state` because it's a part of Svelte language.
+
+> Rune is a letter or mark used as a mystical or magic symbol.
+
+2. When you click the coin, the value change from 0 to increment by 2. In React, to change that value, you need to call `setNumOfCoins` function like this `setNumCoins(numOfCoins + 2)`. In Svelte, to change that value you just use operator like this `numOfCoins += 2` or `numOfCoins = numOfCoins + 2`. 
+
+3. To create component in React today, you use functional approach with JSX syntax. JSX looks like you write HTML in JavaScript. So the attribute like `class` and `onclick` that a part of HTML change into `className` and `onClick`. In my observation, we cannot write `class` as a part of HTML attribute for styling CSS in React because it will get a conflict with the `class` keyword of JavaScript.
+
+4. To create component in Svelte, you use HTML, a mother language of web. The attribute like `class` and `onclick` in Svelte still same in HTML. Thanks to compiler.
+
+### Separate Component + Principle of Least Privilege
+
+Let's refactor the Coin component by split it from the `App` component.
+
+First, let's see the React part.
+
+::: code-group labels=[App.jsx, Coin.jsx]
+
+```js
+import { useState } from 'react'
+import Coin from './Coin'
+
+function App() {
+  const [numOfCoins, setNumOfCoins] = useState(0)
+
+  function handleNumOfCoins () {
+    setNumOfCoins(numOfCoins + 2); 
+  }
+
+  return (
+    <div className="wrapper">
+      <main>
+        <Coin handleNumOfCoins={handleNumOfCoins} />
+      </main>
+      <footer>
+        Your coin balance:
+        <strong>{numOfCoins}</strong>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+```
+
+```js
+import styles from './Coin.module.css';
+
+function Coin({ handleNumOfCoins }) {
+    return (
+        <div className={styles.coinWrapper}>
+          <button className="coin" onClick={handleNumOfCoins}>
+            <span className="visually-hidden">Add 2 coin</span>
+            <img className={styles.coinImage} alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
+          </button>
+        </div>
+    )
+}
+
+export default Coin;
+```
+
+:::
+
+Second, let's see the Svelte part.
+
+::: code-group labels=[App.svelte, Coin.svelte]
+
+```html
+<script>
+  import Coin from './Coin.svelte';
+
+  let numOfCoins = $state(0);
+
+  function handleNumOfCoins() {
+    numOfCoins += 2;
+  }
+</script>
+
+<div class="wrapper">
+  <main>
+    <Coin handleNumOfCoins={handleNumOfCoins} />
+  </main>
+  <footer>
+    Your coin balance:
+    <strong>{numOfCoins}</strong>
+  </footer>
+</div>
+```
+
+```html
+<script>
+    let { handleNumOfCoins } = $props();
+</script>
+
+<div class="coin-wrapper">
+    <button class="coin" onclick={handleNumOfCoins}>
+        <span class="visually-hidden">Add 2 coin</span>
+        <img class="coin-image" alt="" src="https://sandpack-bundler.vercel.app/img/toonie.png" />
+    </button>
+</div>
+
+<style>
+.coin {
+    display: block;
+    background: transparent;
+    border: none;
+    width: 200px;
+    cursor: pointer;
+    transition: transform 500ms;
+    will-change: transform;
+}
+
+.coin:hover {
+    transform: scale(1.05);
+    transition: transform 200ms;
+}
+
+.coin:active {
+    transform: scale(0.95);
+    transition: transform 0ms;
+}
+
+.coin-image {
+    display: block;
+    width: 100%;
+    user-select: none;
+}
+</style>
+```
+
+:::
+
+As we see, React and Svelte has similarity to split the component but have different vibes or syntax. In React, to receive the props or properties in `Coin.jsx`, the `Coin` function must accept the object parameter `{}`. In Svelte, to receive the props in `Coin.svelte`, it use `$props` rune.
+
+In React, to store and call CSS style, you should name it `_your_component.module.css` and import it as `import styles from './your_component.module.css'` then call the CSS class with syntax `{styles.cssClassName}`. This is intended to prevent conflict between each component in case there's the same CSS class name. In Svelte, you just put CSS style inside the component with `<style>` tag.
+
+If we look the code above, we don't pass `numOfCoins` state in to the Coin component. Instead, we pass the handle function of update the `numOfCoins`. The handle function of update the `numOfCoins` has declared in `App` component. This is on purpose because we want to implement **Principle of Least Privilege**. In the `Coin` component, it just do one thing which is click the coin and hit the handle function which come from the props. Then, the value of `numOfCoins` updated on the `App` component. Think the **Principle of Least Privilege** as the term that give necessary power to the component. You may have heard that _Power tends to corrupt and absolute power corrupt absolutely_.
+
+### Derived
+
+Let's visit the Floating Coin. In this case, we add functionallity to buy a Chocolate with cost 9 coins. But, there's an issue.
+The floating text appear when we press the "Buy chocolate" button.
+
+Here are sites in [React](https://component-issue.floating-coin-react.pages.dev/) and [Svelte](https://component-issue.floating-coin-svelte.pages.dev/) issue.
+
+Here are React and Svelte code snippets.
+
+::: code-group labels=[React, Svelte]
+
+```js
+import { useState } from 'react'
+import Coin from './Coin'
+import styles from './App.module.css'
+import FloatingText from './FloatingText'
+
+const CHOCOLATE_COST = 9 
+
+function App() {
+  const [numOfCoins, setNumOfCoins] = useState(0)
+  const [numOfChocolates, setNumOfChocolates] = useState(0)
+
+  function buyChocolate() {
+    setNumOfCoins(numOfCoins - CHOCOLATE_COST);
+    setNumOfChocolates(numOfChocolates + 1);
+  }
+
+  function handleNumOfCoins () {
+    setNumOfCoins(numOfCoins + 2); 
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <main>
+        <Coin handleNumOfCoins={handleNumOfCoins} />
+        { numOfCoins > 0 && <div className={styles.floatingNumWrapper}>
+          <FloatingText key={numOfCoins}>
+            +2
+          </FloatingText>
+        </div> }
+        <button disabled={numOfCoins < CHOCOLATE_COST} className={styles.shopItem}
+        onClick={buyChocolate}>
+          Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+        </button>
+      </main>
+      <footer>
+        Your coin balance:
+        <strong>{numOfCoins}</strong>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+```
+
+```html
+<script>
+  import Coin from './Coin.svelte';
+  import FloatingText from './FloatingText.svelte';
+
+  const CHOCOLATE_COST = 9;
+
+  let numOfCoins = $state(0);
+  let numOfChocolates = $state(0);
+
+  function buyChocolate() {
+    numOfCoins = numOfCoins - CHOCOLATE_COST;
+    numOfChocolates = numOfChocolates + 1;
+  }
+
+  function handleNumOfCoins() {
+    numOfCoins += 2;
+  }
+</script>
+
+<div class="wrapper">
+  <main>
+    <Coin handleNumOfCoins={handleNumOfCoins} />
+    {#if numOfCoins > 0}
+    <div class="floatingNumWrapper">
+      {#key numOfCoins}
+      <FloatingText>
+        +2
+      </FloatingText>
+      {/key}
+    </div>
+    {/if}
+    <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
+      Buy chocolate {numOfChocolates > 0 ? (`(${numOfChocolates})`) : ''}
+    </button>
+  </main>
+  <footer>
+    Your coin balance:
+    <strong>{numOfCoins}</strong>
+  </footer>
+</div>
+```
+
+:::
+
+Here's the acceptance criteria:
+
+- Buying a chocolate shouldn't re-trigger the "+2" animation
+  - Chocolate cost 9 coins, so test this, you need to click the coin 5 times, and then click the "Buy chocolate"
+- Clicking the coin should still show the "+2" animation
+- The "+2" animation should still not be shown when the page first loads
+
+Let's take a silence moment. What are the solutions for this problem?
+
+> I give you a hint: There are two solutions to solve this problem. Let's guess it!
+
+<p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>3</strong></p>
+<p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>2</strong></p>
+<p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>1</strong></p>
+
+Ok! Here are the solutions. You don't need to use `useEffect` or `$effect`. 😉
+
+1. Create a new state called `floatingTextKey`. This state will handle when the `FloatingText` appeared.
+
+::: code-group labels=[React, Svelte]
+
+```js
+import { useState } from 'react'
+import Coin from './Coin'
+import styles from './App.module.css'
+import FloatingText from './FloatingText'
+
+const CHOCOLATE_COST = 9 
+
+function App() {
+  const [numOfCoins, setNumOfCoins] = useState(0)
+  const [numOfChocolates, setNumOfChocolates] = useState(0)
+  const [floatingTextKey, setFloatingTextKey] = useState('initial');
+
+  function buyChocolate() {
+    setNumOfCoins(numOfCoins - CHOCOLATE_COST);
+    setNumOfChocolates(numOfChocolates + 1);
+  }
+
+  function handleNumOfCoins () {
+    setNumOfCoins(numOfCoins + 2); 
+    setFloatingTextKey(crypto.randomUUID());
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <main>
+        <Coin handleNumOfCoins={handleNumOfCoins} />
+        { floatingTextKey !== 'initial' && <div className={styles.floatingNumWrapper}>
+          <FloatingText key={floatingTextKey}>
+            +2
+          </FloatingText>
+        </div> }
+        <button disabled={numOfCoins < CHOCOLATE_COST} className={styles.shopItem}
+        onClick={buyChocolate}>
+          Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+        </button>
+      </main>
+      <footer>
+        Your coin balance:
+        <strong>{numOfCoins}</strong>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+```
+
+```html
+<script>
+  import Coin from './Coin.svelte';
+  import FloatingText from './FloatingText.svelte';
+
+  const CHOCOLATE_COST = 9;
+
+  let numOfCoins = $state(0);
+  let numOfChocolates = $state(0);
+  let floatingTextKey = $state('initial');
+
+  function buyChocolate() {
+    numOfCoins = numOfCoins - CHOCOLATE_COST;
+    numOfChocolates = numOfChocolates + 1;
+  }
+
+  function handleNumOfCoins() {
+    numOfCoins += 2;
+    floatingTextKey = crypto.randomUUID();
+  }
+</script>
+
+<div class="wrapper">
+  <main>
+    <Coin handleNumOfCoins={handleNumOfCoins} />
+    {#if floatingTextKey !== 'initial'}
+    <div class="floatingNumWrapper">
+      {#key floatingTextKey}
+      <FloatingText>
+        +2
+      </FloatingText>
+      {/key}
+    </div>
+    {/if}
+    <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
+      Buy chocolate {numOfChocolates > 0 ? (`(${numOfChocolates})`) : ''}
+    </button>
+  </main>
+  <footer>
+    Your coin balance:
+    <strong>{numOfCoins}</strong>
+  </footer>
+</div>
+
+<style>
+/* Insert style here */
+</style>
+```
+
+:::
+
+2. Create a derived state called `totalCoinsWasted`. This is a derived state from calculation of `numOfCoins` and `numOfChocolates`.
+
+::: code-group labels=[React, Svelte]
+
+```js
+import { useState } from 'react'
+import Coin from './Coin'
+import styles from './App.module.css'
+import FloatingText from './FloatingText'
+
+const CHOCOLATE_COST = 9 
+
+function App() {
+  const [numOfCoins, setNumOfCoins] = useState(0)
+  const [numOfChocolates, setNumOfChocolates] = useState(0)
+
+  // Derived value
+  // We calculate how much coin user has wasted by
+  // adding the value of number of chocolates to their current coin balance:
+  const totalCoinsWasted = numOfCoins + numOfChocolates * CHOCOLATE_COST;
+
+  function buyChocolate() {
+    setNumOfCoins(numOfCoins - CHOCOLATE_COST);
+    setNumOfChocolates(numOfChocolates + 1);
+  }
+
+  function handleNumOfCoins () {
+    setNumOfCoins(numOfCoins + 2); 
+  }
+
+  return (
+    <div className={styles.wrapper}>
+      <main>
+        <Coin handleNumOfCoins={handleNumOfCoins} />
+        { totalCoinsWasted > 0 && <div className={styles.floatingNumWrapper}>
+          <FloatingText key={totalCoinsWasted}>
+            +2
+          </FloatingText>
+        </div> }
+        <button disabled={numOfCoins < CHOCOLATE_COST} className={styles.shopItem}
+        onClick={buyChocolate}>
+          Buy chocolate {numOfChocolates > 0 && (`(${numOfChocolates})`)}
+        </button>
+      </main>
+      <footer>
+        Your coin balance:
+        <strong>{numOfCoins}</strong>
+      </footer>
+    </div>
+  )
+}
+
+export default App
+```
+
+```html
+<script>
+  import Coin from './Coin.svelte';
+  import FloatingText from './FloatingText.svelte';
+
+  const CHOCOLATE_COST = 9;
+
+  let numOfCoins = $state(0);
+  let numOfChocolates = $state(0);
+
+  // We calculate how much coin user has wasted by
+  // adding the value of number of chocolates to their current coin balance:
+  const totalCoinsWasted = $derived(numOfCoins + numOfChocolates * CHOCOLATE_COST);
+
+  function buyChocolate() {
+    numOfCoins = numOfCoins - CHOCOLATE_COST;
+    numOfChocolates = numOfChocolates + 1;
+  }
+
+  function handleNumOfCoins() {
+    numOfCoins += 2;
+  }
+</script>
+
+<div class="wrapper">
+  <main>
+    <Coin handleNumOfCoins={handleNumOfCoins} />
+    {#if totalCoinsWasted > 0}
+    <div class="floatingNumWrapper">
+      {#key totalCoinsWasted}
+      <FloatingText>
+        +2
+      </FloatingText>
+      {/key}
+    </div>
+    {/if}
+    <button disabled={numOfCoins < CHOCOLATE_COST} class="shop-item" onclick={buyChocolate}>
+      Buy chocolate {numOfChocolates > 0 ? (`(${numOfChocolates})`) : ''}
+    </button>
+  </main>
+  <footer>
+    Your coin balance:
+    <strong>{numOfCoins}</strong>
+  </footer>
+</div>
+
+<style>
+/* Insert style here */
+</style>
+```
+
+:::
+
+Now, let's compare how much KB of JavaScript we get in both of solution by using `npm run build`.
+
+::: code-group labels=[React, Svelte]
+
+```sh
+# Solution 1 - Add new state
+dist/assets/index-BaPjxjso.js   144.35 kB │ gzip: 46.56 kB
+
+# Solution 2 - with derived state
+dist/assets/index-Dwi4HC3b.js   144.29 kB │ gzip: 46.52 kB
+```
+
+```sh
+# Solution 1 - Add new state
+dist/assets/index-CYXFLywj.js   15.56 kB │ gzip: 6.61 kB
+
+# Solution 2 - with derived state
+dist/assets/index-D8mISLR_.js   13.56 kB │ gzip: 5.87 kB
+```
+
+:::
+
+As we can see, that derived state give less KB of JavaScript instead of add new state. Although the difference size is trivial, but if we build rich features web apps, the derived state is a one of our saviours for optimize the performance. Why do I care about this? Because the cost of JavaScript to load in a web browser can be costly especially for low-end device. Please read [The Cost of JavaScript](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e) written by Addy Osmani or watch video [The Cost of JavaScript](https://www.youtube.com/watch?v=ZKH3DLT4BKw) created by Addy Osmani too.
+
+Let's talk more about derived state. What is this?
+
+"Derived state" (or values derived from state) refers to data that is calculated or computed based on your existing state values, rather than being stored directly in the state itself.
+
+Here's the example.
+
+```js
+const state = {
+  firstName: "Budi",
+  lastName: "Hartaguna",
+  birthYear: 1996
+};
+
+// This is derived from state
+const fullName = `${state.firstName} ${lastName}` // Budi Hartaguna
+const age = new Date().getFullYear() - state.birthYear // Current age
+```
+
+The benefits of using derived state are:
+
+1. Avoid data redundancy - you don't store data that can be calculated.
+2. Ensure consistency - derived values automatically update when base state changes.
+3. Better performance - you don't need to manually keep multiple state values in sync.
+
+### Effect
+
+In short, you use the `effect` for:
+
+1. Making network requests
+2. Manage timeouts / intervals
+3. Listening for global events
+4. Direct DOM manipulation
+
+Here's the example of `effect` in React and Svelte. I create a simulated playlist that if first song finish then the `effect` the it will jump to the next song.
+
+::: code-group labels=[React, Svelte]
+
+```js
+import { useState, useEffect, useRef } from 'react';
+
+export default function() {
+  const [currentSongIndex, setCurrentSongIndex] = useState(0);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [searchMode, setSearchMode] = useState('jump'); // jump or filter
+  const songRefs = useRef([]); // Why useRef?
+
+  // Sample playlist data
+  const playlist = [
+    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
+    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
+    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
+    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
+    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
+    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
+    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
+    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
+  ];
+
+  // Scroll to the current song when it changes
+  useEffect(() => {
+    if (songRefs.current[currentSongIndex]) {
+      songRefs.current[currentSongIndex].scrollIntoView({
+        behaviour: 'smooth',
+        block: 'center'
+      });
+    }
+  }, [currentSongIndex]);
+
+  const playSong = (index) => {
+    setCurrentSongIndex(index);
+    setIsPlaying(true);
+  };
+
+  // Simulate song completion and auto-scroll to the next song
+  const handleSongEnd = () => {
+    if (currentSongIndex < playlist.length - 1) {
+      let nextIndex = currentSongIndex + 1;
+      setCurrentSongIndex(nextIndex);
+    }
+  }
+
+  const highlightSearchTerm = (text) => {
+    if (!searchTerm) return text;
+    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+    return parts.map((part, index) => {
+      return part.toLowerCase() === searchTerm.toLowerCase()
+        ? <span key={index} className="bg-yellow-200">{part}</span>
+        : part
+    });
+  }
+
+  useEffect(() => {
+    if (searchMode === 'jump' && searchTerm) {
+      const firstMatch = playlist.findIndex(song => {
+        return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+      if (firstMatch !== -1) {
+        songRefs.current[firstMatch]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        })
+      }
+    }
+  }, [searchMode, searchTerm]);
+
+  const filteredPlaylist = playlist.filter(song => {
+    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
+  });
+
+  return (
+    <div className="w-full max-w-md mx-auto">
+      <div className="bg-gray-100 p-4 mb-4 rounded">
+        <div className="text-lg font-bold mb-2">
+          Now Playing: {playlist[currentSongIndex].title}
+        </div>
+        <div className="flex gap-2">
+          <button onClick={() => setIsPlaying(!isPlaying)}
+            className="bg-blue-500 text-white px-4 py-2 rounded">
+              {isPlaying ? 'Pause' : 'Play'}
+            </button>
+            {isPlaying && (
+              <button onClick={handleSongEnd}
+                className="bg-gray-500 text-white px-4 py-2 rounded">
+                Next
+              </button>
+            )}
+        </div>
+      </div>
+
+      <div className="mb-4">
+        <div className="flex items-center gap-2 mb-2">
+          <div className="relative flex-1">
+            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search songs or artists..."
+            className="w-full pl-10 pr-4 py-2 border rounded" />
+          </div>
+          <select value={searchMode} onChange={(e) => setSearchMode(e.target.value)} className="border rounded px-3 py-2">
+            <option value="jump">Jump</option>
+            <option value="filter">Filter</option>
+          </select>
+        </div>
+      </div>
+
+      <div className="h-64 overflow-y-auto border rounded">
+        {(searchMode === 'filter' ? filteredPlaylist : playlist).map((song, index) => {
+          return (
+            <div
+              key={song.id}
+              ref={el => songRefs.current[index] = el }
+              className={`p-4 border-b cursor-pointer ${
+                currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'
+              }`}
+              onClick={() => playSong(index)}>
+                <div className="font-medium">{highlightSearchTerm(song.title)}</div>
+                <div className="text-sm text-gray-500">{highlightSearchTerm(song.artist)} . {song.duration}</div>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  );
+}
+```
+
+```html
+<script>
+  let currentSongIndex = $state(0);
+  let isPlaying = $state(false);
+  let songRefs = $state([]);
+  let searchMode = $state('jump'); // jump or filter
+  let searchTerm = $state(''); // for filter mode
+  
+  // Sample playlist data
+  const playlist = [
+    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
+    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
+    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
+    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
+    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
+    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
+    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
+    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
+  ];
+
+  let filteredPlaylist = $derived(playlist.filter((song) => {
+    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
+  }))
+
+  // Simulate song completion and auto-scroll to next
+  const handleSongEnd = () => {
+    if (currentSongIndex < playlist.length - 1) {
+      currentSongIndex += 1;
+    }
+  }
+
+  const playSong = (index) => {
+    currentSongIndex = index;
+    isPlaying = true;
+  }
+
+  $effect(() => {
+    if (songRefs[currentSongIndex]) {
+      songRefs[currentSongIndex].scrollIntoView({
+        behavior: 'smooth',
+        block: 'center'
+      });
+    }
+  });
+
+  const highlightSearchTerm = (text) => {
+    if (!searchTerm) return text;
+    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
+    return parts.map((part, index) => {
+      return part.toLowerCase() === searchTerm.toLowerCase()
+        ? `<span class="bg-yellow-200">${part}</span>`
+        : part;
+    }).join('');
+  }
+
+  // Jump to first matching song
+  $effect(() => {
+    if (searchMode === 'jump' && searchTerm) {
+      const firstMatch = playlist.findIndex(song => {
+        return song.title.toLocaleLowerCase().includes(searchTerm.toLowerCase()) ||
+        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
+      });
+
+      if (firstMatch !== -1) {
+        songRefs[firstMatch]?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'center'
+        });
+      }
+    }
+  });
+</script>
+
+<div class="w-full max-w-md mx-auto">
+  <div class="bg-gray-100 p-4 mb-4 rounded">
+    <div class="text-lg font-bold mb-2">
+      Now Playing: {playlist[currentSongIndex].title}
+    </div>
+    <div class="flex gap-2">
+      <button onclick={() => isPlaying = !isPlaying}
+        class="bg-blue-500 text-white px-4 py-2 rounded">
+        {isPlaying ? 'Pause' : 'Play'}
+      </button>
+      {#if (isPlaying)}
+        <button onclick={handleSongEnd} class="bg-gray-500 text-white px-4 py-2 rounded">Next</button>
+      {/if}
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <div class="flex items-center gap-2 mb-2">
+      <div class="relative flex-1">
+        <input type="text" bind:value={searchTerm} placeholder="Search songs or artists..."
+        class="w-full pl-10 pr-4 py-2 border rounded">
+      </div>
+      <select bind:value={searchMode} class="border rounded px-3 py-2">
+        <option value="jump">Jump</option>
+        <option value="filter">Filter</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="h-64 overflow-y-auto border rounded">
+    {#each (searchMode === 'filter' ? filteredPlaylist : playlist) as song, index}
+      <!-- svelte-ignore a11y_click_events_have_key_events -->
+      <!-- svelte-ignore a11y_no_static_element_interactions -->
+      <div bind:this={songRefs[index]} class={`p-4 border-b cursor-pointer ${currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
+        onclick={() => playSong(index)}>
+        <div class="font-medium">{@html highlightSearchTerm(song.title)}</div>
+        <div class="text-sm text-gray-500">{@html highlightSearchTerm(song.artist)} . {song.duration}</div>
+      </div>
+    {/each}
+  </div>
+</div>
+```
+
+:::
+
+Websites: [Simulated Playlist - React](https://playlist-react.pages.dev) & [Simulated Playlist Svelte](https://playlist-svelte.pages.dev).
+
+In programming, a side effect refers to any change or interaction that a function or expression has with the program's state or the external world, beyond simply returning a value. Some key points about side effects:
+
+1. Common examples:
+
+- Modifying a global variable
+- Writing data to a file or database
+- Sending a network request
+
+2. Impact on program behavior:
+
+- Side effects can make code harder to understand and predict
+- They can lead to bugs that are difficult to track down
+- They can complicate testing and debugging
+
+If we can analogy in real world, there's a side effects when we consume a medicine.
+
+1. Intended effect vs. side effect:
+
+Medicine: The primary goal is to heal or treat a condition.
+Programming: The primary goal is to perform a specific task or computation.
+
+2. Unexpected consequences:
+
+Medicine: A drug might cause drowsiness or nausea as a side effect.
+Programming: A function might unintentionally modify a global variable or write to a file.
+
+3. Complexity and interactions:
+
+Medicine: Different drugs can interact, causing unexpected side effects.
+Programming: Multiple functions with side effects can interact in complex ways, leading to bugs.
+
+> Use the effect wisely!
+
+### Hooks and Signal
+
+React use Hooks to update and track state changes and Svelte use Signal to update and track state changes. Let's talk Hooks and Signal outside the Frameworks.
+
+Hooks are based on function composition - they're functions that provide additional functionallity through closures and return values. Each time the component function runs, the hooks run in sequence to build up the component's state and behavior.
+
+```js
+// Conceptually, hooks work like this
+function useState(initialValue) {
+  let state = initialValue;
+  
+  const setState = (newValue) => {
+    state = newValue;
+    // trigger re-render
+  };
+  
+  return [state, setState];
+}
+```
+
+Signals are based on reactive programming principles - they're references to values that can notify subscribers when they change. They maintain a dependency graph of computations that depend on their values.
+
+```js
+// Conceptually, signals work like this
+class Signal {
+  constructor(value) {
+    this._value = value;
+    this.subscribers = new Set();
+  }
+  
+  get value() {
+    // Track dependencies
+    return this._value;
+  }
+  
+  set value(newValue) {
+    this._value = newValue;
+    // Notify subscribers
+    this.subscribers.forEach(sub => sub());
+  }
+}
+```
+
+### Frameworks
+
+Svelte framework is SvelteKit. I have use it for several products:
+
+- [anime.kresna.me](https://anime.kresna.me) - List of original soundtrack of anime I've watched since childhood.
+- [buku.kresna.me](https://buku.kresna.me) - List of books I have read and review in Bahasa Indonesia and English.
+- [Laravel Diff](https://laraveldiff.org) - A utility to compare what files changed when upgrading your Laravel framework. Kind a Laravel Shift but tiny and manual.
+
+React frameworks are NextJS and React Router v7 a.k.a. Remix. I don't use those frameworks but If I have to choose, I prefer React Router v7 over NextJS because I saw in tweets that people complain NextJS about memory in development mode that consume more than 1GB, inconsistency API design, and a company switch their stack from NextJS to Ruby on Rails because NextJS doesn't fullfil their needs.
 
 ## Personal Choice
+
+If I bring the term of vibes, React has a good vibes but Svelte has a great vibes. Why I say Svelte has a great vibes? First, you just need the fundamental knowledge of HTML, CSS, and JavaScript instead of steep learning curve provided by React. Second, JavaScript size in Svelte is less than React thanks to compiler and signal implementation by Svelte team. This also means that to achieve the same thing you just need a least of power (JavaScript).
