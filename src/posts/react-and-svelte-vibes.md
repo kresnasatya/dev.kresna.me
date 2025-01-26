@@ -3,7 +3,7 @@ title: React and Svelte Vibes
 description: Two UI Libraries that have different vibes. Which one is your vibe?
 pubDate: 2025-01-18
 author: Kresna Satya
-draft: true
+draft: false
 ---
 
 This post is about when did I know React and Svelte, vibes between React and Svelte, and why I prefer Svelte over React.
@@ -54,8 +54,7 @@ class Button extends React.component {
 
 :::
 
-One year ago, I purchased a great interactive course called [Joy of React](https://www.joyofreact.com). This course created by Josh Comeau who worked for Khan Academy and Digital Ocean. 
-He has a great teaching skill that I cannot resist to purchased his course. Another reason is that the React is still the great demand for job opportunity until this day... 
+One year ago, I purchased a great interactive course called [Joy of React](https://www.joyofreact.com). This course created by Josh Comeau who worked for Khan Academy and Digital Ocean. He has a great teaching skill that I cannot resist to purchased his course. Another reason is that the React is still the great demand for job opportunity until this day... 
 
 > Yeah, until this day. 
 
@@ -144,13 +143,14 @@ Also, I think [we should respect React](/posts/give-a-space-for-reactjs) because
 The first time I know Svelte is when I watched Rich Harris's presentation around 2019. At that time he presents rethinking reactivity and Svelte 3 is the result of it.
 Until this day, I'm amazed with his speaking to promote his ideas. The thing that I really like in Svelte is when you want to change the value use operator instead of function or dot notation of object.
 
-![Picture of Change value in Svelte 5](../images/change-value-in-svelte-5.jpg)
-
 ![Picture of Operator in Svelte 3](../images/operator-in-svelte-3.jpg)
+
+![Picture of Change value in Svelte 5](../images/change-value-in-svelte-5.jpg)
 
 The question is why Svelte can achieve this approach but other doesn't?
 
-Because Svelte actually a programming language that compile into tightly-optimized vanilla JavaScript.
+Actually, [Svelte is a programming language](https://gist.github.com/Rich-Harris/0f910048478c2a6505d1c32185b61934) that compile into tightly-optimized vanilla JavaScript.
+
 Here's the output when we declare and update value in Svelte way.
 
 ::: code-group labels=[Svelte, Compiled Svelte]
@@ -180,14 +180,11 @@ The syntax above is Svelte 5 which is the upgrade version of Svelte 3 and 4. In 
 - `export let` for passing properties into component. In Svelte 5 it turns out to be `$props`.
 - Event listener like `on:click` changed into `onclick` in Svelte 5 which is it's a nature of HTML attribute.
 
-If you have try React before and now try Svelte 5, you will see that you never missing the home and you get the better home.
-
-Why? Because in Svelte, you just need the the fundamentals of HTML, CSS, and JavaScript. That's it.
+If you have try React before and now try Svelte 5, you will feel that how easier it is to built a component or web app just with fundamental of HTML, CSS, and JavaScript. That's it.
 
 Also, why Rich Harris make Svelte like this? Because he works as visual journalism programmer.
 
-In journalism world, you have a tight deadline, you need to [build and deliver rich interactive application
-as soon as possible](https://www.youtube.com/watch?v=uMyvt9KfpFk). By using Svelte, this means that you just need tools that by syntax is your own home or nature
+In journalism world, you have a tight deadline, you need to [build and deliver rich interactive application as soon as possible](https://www.youtube.com/watch?v=uMyvt9KfpFk). By using Svelte, this means that you just need tools that by syntax is your own home or nature
 as web programmer like HTML, CSS, and Javascript without any steep learning curve like ReactJS.
 
 ## Vibes
@@ -263,9 +260,7 @@ export default App
 
 :::
 
-1. To create state in React, we use function called `useState()` which import from `react`. To create state in Svelte, we use a rune called `$state()`. You don't need to import anything for `$state` because it's a part of Svelte language.
-
-> Rune is a letter or mark used as a mystical or magic symbol.
+1. To create state in React, we use function called `useState()` which import from `react`. To create state in Svelte, we use a rune called `$state()`. You don't need to import anything for `$state` because it's a part of Svelte language. _Rune is a letter or mark used as a mystical or magic symbol._
 
 2. When you click the coin, the value change from 0 to increment by 2. In React, to change that value, you need to call `setNumOfCoins` function like this `setNumCoins(numOfCoins + 2)`. In Svelte, to change that value you just use operator like this `numOfCoins += 2` or `numOfCoins = numOfCoins + 2`. 
 
@@ -376,7 +371,7 @@ React and Svelte has similarity to split the component but have different vibes 
 
 In React, to store and call CSS style, you should name it `_your_component.module.css` and import it as `import styles from './your_component.module.css'` then call the CSS class with syntax `{styles.cssClassName}`. This is intended to prevent conflict between each component in case there's the same CSS class name. In Svelte, you just put CSS style inside the component with `<style>` tag.
 
-If we look the code above, we don't pass `numOfCoins` state in to the Coin component. Instead, we pass the handle function of update the `numOfCoins`. The handle function of update the `numOfCoins` has declared in `App` component. This is on purpose because we want to implement **Principle of Least Privilege**. In the `Coin` component, it just do one thing which is click the coin and hit the handle function which come from the props. Then, the value of `numOfCoins` updated on the `App` component. Think the **Principle of Least Privilege** as the term that give necessary power to the component. You may have heard that _Power tends to corrupt and absolute power corrupt absolutely_.
+If we look the code above, we don't pass `numOfCoins` state in to the Coin component. Instead, we pass the handle function of update the `numOfCoins`. The handle function of update the `numOfCoins` has declared in `App` component. This is on purpose because we want to implement **Principle of Least Privilege**. In the `Coin` component, it just do one thing which is click the coin and hit the handle function which come from the props. Then, the value of `numOfCoins` updated on the `App` component. Think the **Principle of Least Privilege** as the term that give necessary power to the component. You may have heard a term that _Power tends to corrupt and absolute power corrupt absolutely_.
 
 ### Derived
 
@@ -495,7 +490,7 @@ Let's take a silence moment. What are the solutions for this problem?
 <p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>2</strong></p>
 <p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>1</strong></p>
 
-Ok! Here are the solutions. You don't need to use `useEffect` or `$effect`. 😉
+Ok! The solutions are create a new `state` or use `derived state`. You don't need to use `useEffect` or `$effect`. 😉
 
 1. Create a new state called `floatingTextKey`. This state will handle when the `FloatingText` appeared.
 
@@ -730,7 +725,7 @@ dist/assets/index-D8mISLR_.js   13.56 kB │ gzip: 5.87 kB
 
 :::
 
-As we can see, that derived state give less KB of JavaScript instead of add new state. Although the difference size is trivial, but if we build rich features web apps, the derived state is a one of our saviours for optimize the performance. Why do I care about this? Because the cost of JavaScript to load in a web browser can be costly especially for low-end device. Please read [The Cost of JavaScript](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e) written by Addy Osmani or watch video [The Cost of JavaScript](https://www.youtube.com/watch?v=ZKH3DLT4BKw) created by Addy Osmani too.
+As we can see, that derived state give less KB of JavaScript instead of add new state. Although the difference size is trivial, but if we build rich features web apps, the derived state is a one of our saviours for optimize the performance. Why do I care about this? Because the cost of JavaScript to load in a web browser can be costly especially for low-end device. Please read [The Cost of JavaScript](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e) or watch video [The Cost of JavaScript](https://www.youtube.com/watch?v=ZKH3DLT4BKw) created by Addy Osmani too.
 
 Let's talk more about derived state. What is this?
 
@@ -740,13 +735,13 @@ Here's the example.
 
 ```js
 const state = {
-  firstName: "Budi",
-  lastName: "Hartaguna",
-  birthYear: 1996
+  firstName: "Ishigami",
+  lastName: "Senku",
+  birthYear: 2004
 };
 
 // This is derived from state
-const fullName = `${state.firstName} ${lastName}` // Budi Hartaguna
+const fullName = `${state.firstName} ${lastName}` // Ishigami Senku
 const age = new Date().getFullYear() - state.birthYear // Current age
 ```
 
@@ -764,294 +759,6 @@ In short, you use the `effect` for:
 2. Manage timeouts / intervals
 3. Listening for global events
 4. Direct DOM manipulation
-
-Here's the example of `effect` in React and Svelte. I create a simulated playlist that if first song finish then the `effect` the it will jump to the next song.
-
-::: code-group labels=[React, Svelte]
-
-```js
-import { useState, useEffect, useRef } from 'react';
-
-export default function() {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchMode, setSearchMode] = useState('jump'); // jump or filter
-  const songRefs = useRef([]); // Why useRef?
-
-  // Sample playlist data
-  const playlist = [
-    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
-    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
-    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
-    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
-    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
-    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
-    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
-    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
-  ];
-
-  // Scroll to the current song when it changes
-  useEffect(() => {
-    if (songRefs.current[currentSongIndex]) {
-      songRefs.current[currentSongIndex].scrollIntoView({
-        behaviour: 'smooth',
-        block: 'center'
-      });
-    }
-  }, [currentSongIndex]);
-
-  const playSong = (index) => {
-    setCurrentSongIndex(index);
-    setIsPlaying(true);
-  };
-
-  // Simulate song completion and auto-scroll to the next song
-  const handleSongEnd = () => {
-    if (currentSongIndex < playlist.length - 1) {
-      let nextIndex = currentSongIndex + 1;
-      setCurrentSongIndex(nextIndex);
-    }
-  }
-
-  const highlightSearchTerm = (text) => {
-    if (!searchTerm) return text;
-    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-    return parts.map((part, index) => {
-      return part.toLowerCase() === searchTerm.toLowerCase()
-        ? <span key={index} className="bg-yellow-200">{part}</span>
-        : part
-    });
-  }
-
-  useEffect(() => {
-    if (searchMode === 'jump' && searchTerm) {
-      const firstMatch = playlist.findIndex(song => {
-        return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-      if (firstMatch !== -1) {
-        songRefs.current[firstMatch]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        })
-      }
-    }
-  }, [searchMode, searchTerm]);
-
-  const filteredPlaylist = playlist.filter(song => {
-    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="bg-gray-100 p-4 mb-4 rounded">
-        <div className="text-lg font-bold mb-2">
-          Now Playing: {playlist[currentSongIndex].title}
-        </div>
-        <div className="flex gap-2">
-          <button onClick={() => setIsPlaying(!isPlaying)}
-            className="bg-blue-500 text-white px-4 py-2 rounded">
-              {isPlaying ? 'Pause' : 'Play'}
-            </button>
-            {isPlaying && (
-              <button onClick={handleSongEnd}
-                className="bg-gray-500 text-white px-4 py-2 rounded">
-                Next
-              </button>
-            )}
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <div className="flex items-center gap-2 mb-2">
-          <div className="relative flex-1">
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search songs or artists..."
-            className="w-full pl-10 pr-4 py-2 border rounded" />
-          </div>
-          <select value={searchMode} onChange={(e) => setSearchMode(e.target.value)} className="border rounded px-3 py-2">
-            <option value="jump">Jump</option>
-            <option value="filter">Filter</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="h-64 overflow-y-auto border rounded">
-        {(searchMode === 'filter' ? filteredPlaylist : playlist).map((song, index) => {
-          return (
-            <div
-              key={song.id}
-              ref={el => songRefs.current[index] = el }
-              className={`p-4 border-b cursor-pointer ${
-                currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'
-              }`}
-              onClick={() => playSong(index)}>
-                <div className="font-medium">{highlightSearchTerm(song.title)}</div>
-                <div className="text-sm text-gray-500">{highlightSearchTerm(song.artist)} . {song.duration}</div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  );
-}
-```
-
-```html
-<script>
-  let currentSongIndex = $state(0);
-  let isPlaying = $state(false);
-  let songRefs = $state([]);
-  let searchMode = $state('jump'); // jump or filter
-  let searchTerm = $state(''); // for filter mode
-  
-  // Sample playlist data
-  const playlist = [
-    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
-    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
-    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
-    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
-    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
-    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
-    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
-    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
-  ];
-
-  let filteredPlaylist = $derived(playlist.filter((song) => {
-    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-  }))
-
-  // Simulate song completion and auto-scroll to next
-  const handleSongEnd = () => {
-    if (currentSongIndex < playlist.length - 1) {
-      currentSongIndex += 1;
-    }
-  }
-
-  const playSong = (index) => {
-    currentSongIndex = index;
-    isPlaying = true;
-  }
-
-  $effect(() => {
-    if (songRefs[currentSongIndex]) {
-      songRefs[currentSongIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }
-  });
-
-  const highlightSearchTerm = (text) => {
-    if (!searchTerm) return text;
-    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-    return parts.map((part, index) => {
-      return part.toLowerCase() === searchTerm.toLowerCase()
-        ? `<span class="bg-yellow-200">${part}</span>`
-        : part;
-    }).join('');
-  }
-
-  // Jump to first matching song
-  $effect(() => {
-    if (searchMode === 'jump' && searchTerm) {
-      const firstMatch = playlist.findIndex(song => {
-        return song.title.toLocaleLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-
-      if (firstMatch !== -1) {
-        songRefs[firstMatch]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-      }
-    }
-  });
-</script>
-
-<div class="w-full max-w-md mx-auto">
-  <div class="bg-gray-100 p-4 mb-4 rounded">
-    <div class="text-lg font-bold mb-2">
-      Now Playing: {playlist[currentSongIndex].title}
-    </div>
-    <div class="flex gap-2">
-      <button onclick={() => isPlaying = !isPlaying}
-        class="bg-blue-500 text-white px-4 py-2 rounded">
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
-      {#if (isPlaying)}
-        <button onclick={handleSongEnd} class="bg-gray-500 text-white px-4 py-2 rounded">Next</button>
-      {/if}
-    </div>
-  </div>
-
-  <div class="mb-4">
-    <div class="flex items-center gap-2 mb-2">
-      <div class="relative flex-1">
-        <input type="text" bind:value={searchTerm} placeholder="Search songs or artists..."
-        class="w-full pl-10 pr-4 py-2 border rounded">
-      </div>
-      <select bind:value={searchMode} class="border rounded px-3 py-2">
-        <option value="jump">Jump</option>
-        <option value="filter">Filter</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="h-64 overflow-y-auto border rounded">
-    {#each (searchMode === 'filter' ? filteredPlaylist : playlist) as song, index}
-      <!-- svelte-ignore a11y_click_events_have_key_events -->
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <div bind:this={songRefs[index]} class={`p-4 border-b cursor-pointer ${currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
-        onclick={() => playSong(index)}>
-        <div class="font-medium">{@html highlightSearchTerm(song.title)}</div>
-        <div class="text-sm text-gray-500">{@html highlightSearchTerm(song.artist)} . {song.duration}</div>
-      </div>
-    {/each}
-  </div>
-</div>
-```
-
-:::
-
-Websites: [Simulated Playlist - React](https://playlist-react.pages.dev) & [Simulated Playlist Svelte](https://playlist-svelte.pages.dev).
-
-In programming, a side effect refers to any change or interaction that a function or expression has with the program's state or the external world, beyond simply returning a value. Some key points about side effects:
-
-1. Common examples:
-
-- Modifying a global variable
-- Writing data to a file or database
-- Sending a network request
-
-2. Impact on program behavior:
-
-- Side effects can make code harder to understand and predict
-- They can lead to bugs that are difficult to track down
-- They can complicate testing and debugging
-
-If we can analogy in real world, there's a side effects when we consume a medicine.
-
-1. Intended effect vs. side effect:
-
-Medicine: The primary goal is to heal or treat a condition.
-Programming: The primary goal is to perform a specific task or computation.
-
-2. Unexpected consequences:
-
-Medicine: A drug might cause drowsiness or nausea as a side effect.
-Programming: A function might unintentionally modify a global variable or write to a file.
-
-3. Complexity and interactions:
-
-Medicine: Different drugs can interact, causing unexpected side effects.
-Programming: Multiple functions with side effects can interact in complex ways, leading to bugs.
-
-> Use the effect wisely!
 
 ### Hooks and Signal
 
@@ -1098,13 +805,9 @@ class Signal {
 
 ### Frameworks
 
-Svelte framework is SvelteKit. I have use it for several products:
+Svelte framework is SvelteKit. I have use it for build several personal products [like list of original soundtrack of anime I've watched since childhood](https://anime.kresna.me), [list of books I have read and review in Bahasa Indonesia and English](https://buku.kresna.me), and [a utility to compare what files changed when upgrading your Laravel framework. Kind a Laravel Shift but tiny and manual](https://laraveldiff.org).
 
-- [anime.kresna.me](https://anime.kresna.me) - List of original soundtrack of anime I've watched since childhood.
-- [buku.kresna.me](https://buku.kresna.me) - List of books I have read and review in Bahasa Indonesia and English.
-- [Laravel Diff](https://laraveldiff.org) - A utility to compare what files changed when upgrading your Laravel framework. Kind a Laravel Shift but tiny and manual.
-
-React frameworks are NextJS and React Router v7 a.k.a. Remix. I don't use those frameworks but If I have to choose, I prefer React Router v7 over NextJS because I saw in tweets that people complain NextJS about memory in development mode that consume more than 1GB, inconsistency API design, and a company switch their stack from NextJS to Ruby on Rails because NextJS doesn't fullfil their needs.
+React frameworks are NextJS and React Router v7 a.k.a. Remix. I don't use those frameworks but If I have to choose, I prefer React Router v7 over NextJS because I saw in tweets that [people complain NextJS about memory in development mode that consume more than 1GB](https://x.com/programmer30an/status/1867474270320046568), [inconsistency API design](https://pilcrow.vercel.app/blog/nextjs-why), and [a company switch their stack from NextJS to Ruby on Rails because NextJS doesn't fullfil their needs](https://x.com/shpigford/status/1753188910304301260?s=46).
 
 ## Personal Choice
 

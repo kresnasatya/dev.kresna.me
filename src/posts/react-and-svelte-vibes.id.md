@@ -3,7 +3,7 @@ title: React and Svelte Vibes
 description: Dua pustaka User Interface yang memiliki atmosfer/kesan/aura yang berbeda. Yang mana pilihanmu?
 pubDate: 2025-01-18
 author: Kresna Satya
-draft: true
+draft: false
 ---
 
 Tulisan ini berisi tentang kapan saya mengenal React dan Svelte, vibes/atmosfer antara React dan Svelte, dan alasan saya memilih Svelte dibanding React.
@@ -12,7 +12,7 @@ Tulisan ini berisi tentang kapan saya mengenal React dan Svelte, vibes/atmosfer 
 
 Saya mengenal React ketika berada di semester akhir di perguruan tinggi antara tahun 2015 dan 2016. Saya melihat postingan komunitas di Indonesia yang ditulis oleh Riza Fahmi yang bekerja di Hacktiv8 dan Sonny Lazuardi yang bekerja di Sales Stock waktu itu.
 
-Jika saya tidak salah membaca tulisannya, Risa berpendapat bahwa React adalah versi masa depan dari JQuery dan ia memberikan beberapa contoh penggunaan React. Lalu, Sonny memberikan demo penggunaan React Native, sebuah jalan untuk mengembangkan aplikasi mobile menggunakan React dan Sales Stock adalah hasil dari React Native.
+Jika saya tidak salah membaca tulisannya, Riza berpendapat bahwa React adalah versi masa depan dari JQuery dan ia memberikan beberapa contoh penggunaan React. Lalu, Sonny memberikan demo penggunaan React Native, sebuah jalan untuk mengembangkan aplikasi mobile menggunakan React dan Sales Stock adalah hasil dari React Native.
 
 Di saat itu, ketika kamu membuat sebuah komponen di React, kamu perlu menulisnya menggunakan pendekatan class daripada functional.
 
@@ -55,7 +55,6 @@ class Button extends React.component {
 :::
 
 Satu tahun lalu, saya membeli sebuah kursus daring interaktif yang sangat menarik yaitu [Joy of React](https://www.joyofreact.com). Kursus ini dibuat oleh Josh Comeau yang pernah bekerja di Khan Academy dan Digital Ocean.
-
 Ia adalah seorang yang memiliki kemampuan mengajar yang hebat dan saya pun memutuskan untuk membeli kursusnya. Alasan lainnya adalah React masih memiliki permintaan yang cukup tinggi di dunia kerja sampai hari ini...
 
 > Ya, sampai hari ini. 
@@ -138,20 +137,20 @@ Setelah saya membaca tweet ini, saya bergumam:
 
 Saya hanya bergumam dan saya mungkin bisa salah. Namun, hal yang saya pelajari adalah **build observability is the key to to track end-to-end message delivery in Facebook Chat.**
 
-Kemudian, saya berpikir [kita semua harus menghormati React]we should respect React(/posts/give-a-space-for-reactjs). Karena mereka, banyak framework lahir dengan ide-ide yang lebih baik seperti Svelte dengan pendekatan compiler dan SolidJS dengan pendekatan signal.
+Kemudian, saya berpikir [kita semua harus menghormati React](/posts/give-a-space-for-reactjs). Berkatnya, banyak framework lahir dengan ide-ide yang lebih baik seperti Svelte dengan pendekatan compiler dan SolidJS dengan pendekatan signal.
 
 ## Kelahiran Svelte
 
 Pertama kali saya mengenal Svelte adalah ketika saya menonton presentasi Rich Harris tahun 2019. Ia mempresentasikan materi berjudul **Rethinking Reactivity** dan Svelte 3 adalah hasil dari **Rethinking Reactivity**.
 Sampai hari ini, saya selalu kagum dengan caranya berbicara untuk mempromosikan ide-idenya. Satu hal yang saya sangat suka dari Svelte adalah ketika kamu mengubah sebuah nilai maka gunakan operator alih-alih function atau dot notation of object.
 
-![Picture of Change value in Svelte 5](../images/change-value-in-svelte-5.jpg)
-
 ![Picture of Operator in Svelte 3](../images/operator-in-svelte-3.jpg)
+
+![Picture of Change value in Svelte 5](../images/change-value-in-svelte-5.jpg)
 
 Pertanyaannya adalah bagaimana Svelte bisa mencapai hal-hal di atas sedangkan framework lain tidak?
 
-Karena Svelte sebenarnya adalah sebuah bahasa pemrograman yang mana akan dikompilasi menjadi sebuah JavaScript yang dioptimasi secara ketat.
+Sebenarnya, [Svelte adalah sebuah bahasa pemrograman](https://gist.github.com/Rich-Harris/0f910048478c2a6505d1c32185b61934) yang mana akan dikompilasi menjadi sebuah JavaScript yang dioptimasi secara ketat.
 
 Ini adalah hasil ketika kita mendeklarasi dan melakukan perubahan nilai menggunakan cara Svelte.
 
@@ -182,17 +181,16 @@ Sintaks di atas adalah Svelte versi 5 yang mana versi teranyar setelah versi 3 d
 - `export let` untuk mengoper properti ke sebuah komponen. passing properties into component. Di Svelte 5 diubah menjadi `$props`.
 - Event listener seperti `on:click` changed into `onclick` in Svelte 5 yang mana merupakan hal yang natural di atribut HTML.
 
-Jika kamuu pernah mencoba React sebelumnya dan mencoba Svelte 5, kamu akan melihat bahwa kamu tidak kehilangan "rumah" bahkan kamu mendapatkan "rumah" yang lebih baik.
-
-Kenapa? Karena kamu hanya membutuhkan fundamental dari HTML, CSS, dan JavaScript. That's it.
+Jika kamu pernah mencoba React sebelumnya dan mencoba Svelte 5 maka kamu akan merasakan bahwa betapa mudahnya membuat sebuah komponen atau web app dengan fundamental HTML, CSS, dan JavaScript. That's it!
 
 Lantas, mengapa Rich Harris membuat Svelte seperti ini? Karena ia bekerja sebagai visual journalism programmer.
 
-Di dunia jurnalis, kamu memiliki tenggat waktu yang ketat, kamu diharapkan [membuat sebuah aplikasi interaktif sesegera mungkin](https://www.youtube.com/watch?v=uMyvt9KfpFk). Berkat Svelte, kamu hanya membutuhkan alat-alat yang dibutuhkan yang mana alat-alat itu adalah hal yang alami bagi kamu sebagai web programmer yaitu HTML, CSS, dan JavaScript.
+Di dunia jurnalis, kamu memiliki tenggat waktu yang ketat, kamu diharapkan [membuat sebuah aplikasi interaktif sesegera mungkin](https://www.youtube.com/watch?v=uMyvt9KfpFk).
+Berkat Svelte, kamu hanya membutuhkan alat-alat yang dibutuhkan sebagai web programmer yaitu HTML, CSS, dan JavaScript.
 
 ## Vibes
 
-Let's talk about vibes/aura/atmosfer/kesan. Vibes di sini artinya apa yang saya rasakan ketika melakukan pemrograman web menggunakan React dan Svelte.
+Mari kita bicara tentang vibes/aura/atmosfer/kesan. Vibes di sini artinya apa yang saya rasakan ketika melakukan pemrograman web menggunakan React dan Svelte.
 
 Pertama, mari kita lihat [definisi dari Vibes berdasarkan Merriam-Webster](https://www.merriam-webster.com/dictionary/vibe).
 
@@ -265,15 +263,13 @@ export default App
 
 :::
 
-1. Untuk membuat sebuah state di React, kita menggunakan fungsi bernama `useState()` yang kita impor dari `react`. Untuk membuat state di Svelte, kita menggunakan sebuah *rune* atau simbol bernama `$state()`. Kamu tidak perlu mengimpor apapun di `$state` karena itu adalah bagian dari bahasa pemrograman Svelte.
-
-> Rune is a letter or mark used as a mystical or magic symbol.
+1. Untuk membuat sebuah state di React, kita menggunakan fungsi bernama `useState()` yang kita impor dari `react`. Untuk membuat state di Svelte, kita menggunakan sebuah *rune* atau simbol bernama `$state()`. Kamu tidak perlu mengimpor apapun di `$state` karena itu adalah bagian dari bahasa pemrograman Svelte. _Rune is a letter or mark used as a mystical or magic symbol_.
 
 2. Ketika kamu mengklik koin, nilai berubah dari 0 menjadi 2. Di React, untuk mengubah value tersebut, kamu perlu memanggil fungsi `setNumOfCoins` seperti `setNumCoins(numOfCoins + 2)`. Di  Svelte, untuk mengubah value maka kamu hanya membutuhkan operator seperti `numOfCoins += 2` atau `numOfCoins = numOfCoins + 2`. 
 
 3. Untuk membuat komponen di React hari ini, kamu menggunakan pendekatan fungsional dibantu dengan JSX. JSX seperti HTML di JavaScript. Sehingga, atribut seperti `class` dan `onclick` berubah menjadi `className` and `onClick`. Berdasarkan pengamatan saya, kita tidak dapat menulis `class` di JSX karena akan terjadi konflik dengan keyword `class` dari JavaScript.
 
-4. Untuk membuat komponen di Svelte, gunakan HTML, bahasa ibu dari web. Atribut seperti `class` dan `onclick` di Svelte sama seperti HTML. Berterima kasihlah kepada compiler.
+4. Untuk membuat komponen di Svelte, [gunakan HTML, bahasa ibu dari web](https://www.youtube.com/watch?v=BzX4aTRPzno&t=12m16s). Atribut seperti `class` dan `onclick` di Svelte sama seperti HTML. Berterima kasihlah kepada compiler.
 
 ### Separate Component + Principle of Least Privilege
 
@@ -378,7 +374,7 @@ React dan Svelte memiliki kemiripan untuk memecah komponen tetapi memiliki vibes
 
 Di React, untuk menyimpan dan memanggil style CSS, kamu harus memberi nama `_your_component.module.css` and impor dengan perintah `import styles from './your_component.module.css'` di komponen kamu. Lalu, panggil class CSS dengan sintaks `{styles.cssClassName}`. Ini disengaja dengan tujuan untuk mencegah konflik style antar komponen jika terdapat nama style CSS yang sama. Di Svelte, kamu hanya perlu memasukkan CSS style ke dalam komponen dengan `<style>` tag.
 
-Jika kita melihat kode di atas, kita tidak mengoper `numOfCoins` state ke komponen `Coin`. Sebagai gantinya, kita mengoper sebuah fungsi untuk memperbaharui `numOfCoins` yaitu `handleNumOfCoins`. Tujuannya adalah kita ingin mengimplementasikan **Principle of Least Privilege**. Di `Coin` component, hal yang dilakukan hanyalah mengklik koin dan melakukan fungsi `handleNumOfCoins`. Lalu, nilai dari `numOfCoins` berubah di `App` component. Mari umpamakan **Principle of Least Privilege** sebagai sebuah istilah untuk memberikan kekuatan yang secukupnya ke sebuah komponen. Kamu mungkin pernah mendengar _Power tends to corrupt and absolute power corrupt absolutely_.
+Jika kita melihat kode di atas, kita tidak mengoper `numOfCoins` state ke komponen `Coin`. Sebagai gantinya, kita mengoper sebuah fungsi untuk memperbaharui `numOfCoins` yaitu `handleNumOfCoins`. Tujuannya adalah kita ingin mengimplementasikan **Principle of Least Privilege**. Di `Coin` component, hal yang dilakukan hanyalah mengklik koin dan melakukan fungsi `handleNumOfCoins`. Lalu, nilai dari `numOfCoins` berubah di `App` component. Mari umpamakan **Principle of Least Privilege** sebagai sebuah istilah untuk memberikan kekuatan yang secukupnya ke sebuah komponen. Kamu mungkin pernah mendengar istilah _Power tends to corrupt and absolute power corrupt absolutely_.
 
 ### Derived
 
@@ -490,13 +486,13 @@ Kriteria yang diharapkan adalah:
 
 Mari kita ambil momen hening sejenak. Apa saja solusi untuk menyelesaikan masalah ini?
 
-> Sebuah petunjuk: Ada dua solusi yang bisa digunakan untuk menyelesaikan masalah ini. Mari kita tebak!
+> Sebuah petunjuk: Ada dua solusi yang bisa digunakan untuk menyelesaikan masalah ini. Apa itu?
 
 <p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>3</strong></p>
 <p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>2</strong></p>
 <p style="margin-bottom: 16rem; font-size: 1.5rem;"><strong>1</strong></p>
 
-Ok! Ini adalah solusi-solusinya. Kamu tidak perlu menggunakan `useEffect` atau `$effect`. 😉
+Ok! Ada dua solusi yaitu membuat `state` baru atau membuat `derived state`. Kamu tidak perlu menggunakan `useEffect` atau `$effect`. 😉
 
 1. Buatlah sebuah state bernama `floatingTextKey`. State ini akan menangani `FloatingText`.
 
@@ -731,7 +727,10 @@ dist/assets/index-D8mISLR_.js   13.56 kB │ gzip: 5.87 kB
 
 :::
 
-Seperti yang bisa kita lihat, bahwa derived state memberikan sedikit KB of JavaScript daripada menambah state baru. Walaupun perbedaanya ini sepele, namun jika kita membuat sebuah web app yang kaya fitur, maka derived state akan menjadi salah satu penyelamat kita untuk optimasi performa. Kenapa saya peduli tentang ini? Karena biaya dari KB of JavaScript yang dimuat di web browser akan menjadi mahal ketika dimuat di low-end device. Silakan baca [The Cost of JavaScript](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e) yang ditulis oleh Addy Osmani atau tonton video [The Cost of JavaScript](https://www.youtube.com/watch?v=ZKH3DLT4BKw) yang dibuat oleh Addy Osmani.
+Seperti yang bisa kita lihat, bahwa derived state memberikan sedikit KB of JavaScript daripada menambah state baru. 
+Walaupun perbedaanya ini sepele, namun jika kita membuat sebuah web app yang kaya fitur, maka derived state akan menjadi salah satu penyelamat kita untuk optimasi performa.
+Kenapa saya peduli tentang ini? Karena biaya dari KB of JavaScript yang dimuat di web browser akan menjadi mahal ketika dimuat di low-end device.
+Silakan baca tulisan [The Cost of JavaScript](https://medium.com/dev-channel/the-cost-of-javascript-84009f51e99e) atau tonton video [The Cost of JavaScript](https://www.youtube.com/watch?v=ZKH3DLT4BKw) yang dibuat oleh Addy Osmani.
 
 Mari kita bicarakan tentang derived state. Apa itu derived state?
 
@@ -741,13 +740,13 @@ Contohnya seperti ini:
 
 ```js
 const state = {
-  firstName: "Budi",
-  lastName: "Hartaguna",
-  birthYear: 1996
+  firstName: "Senku",
+  lastName: "Ishigami",
+  birthYear: 2004
 };
 
 // This is derived from state
-const fullName = `${state.firstName} ${lastName}` // Budi Hartaguna
+const fullName = `${state.firstName} ${lastName}` // Senku Ishigami
 const age = new Date().getFullYear() - state.birthYear // Current age
 ```
 
@@ -765,261 +764,6 @@ Secara singkat, gunakan `effect` untuk:
 2. Mengelola timeouts / intervals
 3. Mendengarkan global events
 4. Melakukan DOM manipulation
-
-Saya membuat sebuah simulasi daftar putar lagu yang mana jika salah satu lagu selesai maka playlist akan mengarahkan saya ke lagu berikutnya.
-
-::: code-group labels=[React, Svelte]
-
-```js
-import { useState, useEffect, useRef } from 'react';
-
-export default function() {
-  const [currentSongIndex, setCurrentSongIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [searchMode, setSearchMode] = useState('jump'); // jump or filter
-  const songRefs = useRef([]); // Why useRef?
-
-  // Sample playlist data
-  const playlist = [
-    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
-    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
-    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
-    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
-    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
-    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
-    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
-    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
-  ];
-
-  // Scroll to the current song when it changes
-  useEffect(() => {
-    if (songRefs.current[currentSongIndex]) {
-      songRefs.current[currentSongIndex].scrollIntoView({
-        behaviour: 'smooth',
-        block: 'center'
-      });
-    }
-  }, [currentSongIndex]);
-
-  const playSong = (index) => {
-    setCurrentSongIndex(index);
-    setIsPlaying(true);
-  };
-
-  // Simulate song completion and auto-scroll to the next song
-  const handleSongEnd = () => {
-    if (currentSongIndex < playlist.length - 1) {
-      let nextIndex = currentSongIndex + 1;
-      setCurrentSongIndex(nextIndex);
-    }
-  }
-
-  const highlightSearchTerm = (text) => {
-    if (!searchTerm) return text;
-    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-    return parts.map((part, index) => {
-      return part.toLowerCase() === searchTerm.toLowerCase()
-        ? <span key={index} className="bg-yellow-200">{part}</span>
-        : part
-    });
-  }
-
-  useEffect(() => {
-    if (searchMode === 'jump' && searchTerm) {
-      const firstMatch = playlist.findIndex(song => {
-        return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-      if (firstMatch !== -1) {
-        songRefs.current[firstMatch]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        })
-      }
-    }
-  }, [searchMode, searchTerm]);
-
-  const filteredPlaylist = playlist.filter(song => {
-    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  return (
-    <div className="w-full max-w-md mx-auto">
-      <div className="bg-gray-100 p-4 mb-4 rounded">
-        <div className="text-lg font-bold mb-2">
-          Now Playing: {playlist[currentSongIndex].title}
-        </div>
-        <div className="flex gap-2">
-          <button onClick={() => setIsPlaying(!isPlaying)}
-            className="bg-blue-500 text-white px-4 py-2 rounded">
-              {isPlaying ? 'Pause' : 'Play'}
-            </button>
-            {isPlaying && (
-              <button onClick={handleSongEnd}
-                className="bg-gray-500 text-white px-4 py-2 rounded">
-                Next
-              </button>
-            )}
-        </div>
-      </div>
-
-      <div className="mb-4">
-        <div className="flex items-center gap-2 mb-2">
-          <div className="relative flex-1">
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search songs or artists..."
-            className="w-full pl-10 pr-4 py-2 border rounded" />
-          </div>
-          <select value={searchMode} onChange={(e) => setSearchMode(e.target.value)} className="border rounded px-3 py-2">
-            <option value="jump">Jump</option>
-            <option value="filter">Filter</option>
-          </select>
-        </div>
-      </div>
-
-      <div className="h-64 overflow-y-auto border rounded">
-        {(searchMode === 'filter' ? filteredPlaylist : playlist).map((song, index) => {
-          return (
-            <div
-              key={song.id}
-              ref={el => songRefs.current[index] = el }
-              className={`p-4 border-b cursor-pointer ${
-                currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'
-              }`}
-              onClick={() => playSong(index)}>
-                <div className="font-medium">{highlightSearchTerm(song.title)}</div>
-                <div className="text-sm text-gray-500">{highlightSearchTerm(song.artist)} . {song.duration}</div>
-            </div>
-          )
-        })}
-      </div>
-    </div>
-  );
-}
-```
-
-```html
-<script>
-  let currentSongIndex = $state(0);
-  let isPlaying = $state(false);
-  let songRefs = $state([]);
-  let searchMode = $state('jump'); // jump or filter
-  let searchTerm = $state(''); // for filter mode
-  
-  // Sample playlist data
-  const playlist = [
-    { id: 1, title: "Bohemian Rhapsody", artist: "Queen", duration: "3:45" },
-    { id: 2, title: "Sweet Child O' Mine", artist: "Guns N' Roses", duration: "4:20" },
-    { id: 3, title: "Hotel California", artist: "Eagles", duration: "3:30" },
-    { id: 4, title: "Stairway to Heaven", artist: "Led Zeppelin", duration: "5:15" },
-    { id: 5, title: "Sweet Home Alabama", artist: "Lynyrd Skynyrd", duration: "3:55" },
-    { id: 6, title: "Sweet Dreams", artist: "Eurythmics", duration: "4:10" },
-    { id: 7, title: "Sweet Emotion", artist: "Aerosmith", duration: "3:25" },
-    { id: 8, title: "November Rain", artist: "Guns N' Roses", duration: "4:45" },
-  ];
-
-  let filteredPlaylist = $derived(playlist.filter((song) => {
-    return song.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-  }))
-
-  // Simulate song completion and auto-scroll to next
-  const handleSongEnd = () => {
-    if (currentSongIndex < playlist.length - 1) {
-      currentSongIndex += 1;
-    }
-  }
-
-  const playSong = (index) => {
-    currentSongIndex = index;
-    isPlaying = true;
-  }
-
-  $effect(() => {
-    if (songRefs[currentSongIndex]) {
-      songRefs[currentSongIndex].scrollIntoView({
-        behavior: 'smooth',
-        block: 'center'
-      });
-    }
-  });
-
-  const highlightSearchTerm = (text) => {
-    if (!searchTerm) return text;
-    const parts = text.split(new RegExp(`(${searchTerm})`, 'gi'));
-    return parts.map((part, index) => {
-      return part.toLowerCase() === searchTerm.toLowerCase()
-        ? `<span class="bg-yellow-200">${part}</span>`
-        : part;
-    }).join('');
-  }
-
-  // Jump to first matching song
-  $effect(() => {
-    if (searchMode === 'jump' && searchTerm) {
-      const firstMatch = playlist.findIndex(song => {
-        return song.title.toLocaleLowerCase().includes(searchTerm.toLowerCase()) ||
-        song.artist.toLowerCase().includes(searchTerm.toLowerCase());
-      });
-
-      if (firstMatch !== -1) {
-        songRefs[firstMatch]?.scrollIntoView({
-          behavior: 'smooth',
-          block: 'center'
-        });
-      }
-    }
-  });
-</script>
-
-<div class="w-full max-w-md mx-auto">
-  <div class="bg-gray-100 p-4 mb-4 rounded">
-    <div class="text-lg font-bold mb-2">
-      Now Playing: {playlist[currentSongIndex].title}
-    </div>
-    <div class="flex gap-2">
-      <button onclick={() => isPlaying = !isPlaying}
-        class="bg-blue-500 text-white px-4 py-2 rounded">
-        {isPlaying ? 'Pause' : 'Play'}
-      </button>
-      {#if (isPlaying)}
-        <button onclick={handleSongEnd} class="bg-gray-500 text-white px-4 py-2 rounded">Next</button>
-      {/if}
-    </div>
-  </div>
-
-  <div class="mb-4">
-    <div class="flex items-center gap-2 mb-2">
-      <div class="relative flex-1">
-        <input type="text" bind:value={searchTerm} placeholder="Search songs or artists..."
-        class="w-full pl-10 pr-4 py-2 border rounded">
-      </div>
-      <select bind:value={searchMode} class="border rounded px-3 py-2">
-        <option value="jump">Jump</option>
-        <option value="filter">Filter</option>
-      </select>
-    </div>
-  </div>
-
-  <div class="h-64 overflow-y-auto border rounded">
-    {#each (searchMode === 'filter' ? filteredPlaylist : playlist) as song, index}
-      <!-- svelte-ignore a11y_click_events_have_key_events -->
-      <!-- svelte-ignore a11y_no_static_element_interactions -->
-      <div bind:this={songRefs[index]} class={`p-4 border-b cursor-pointer ${currentSongIndex === index ? 'bg-blue-100' : 'hover:bg-gray-50'}`}
-        onclick={() => playSong(index)}>
-        <div class="font-medium">{@html highlightSearchTerm(song.title)}</div>
-        <div class="text-sm text-gray-500">{@html highlightSearchTerm(song.artist)} . {song.duration}</div>
-      </div>
-    {/each}
-  </div>
-</div>
-```
-
-:::
-
-Websites: [Simulated Playlist - React](https://playlist-react.pages.dev) & [Simulated Playlist Svelte](https://playlist-svelte.pages.dev).
 
 ### Hooks and Signal
 
@@ -1041,7 +785,7 @@ function useState(initialValue) {
 }
 ```
 
-Signal didasarkan pada prinsip pemrograman reaktif - Signals are based on reactive programming principles - Mereka merujuk ke nilai yang dapat memberitahu subscribers ketika nilai tersebut berubah. Mereka menggunakan komputasi dependency graph yang bergantung pada nilai-nilai yang ada di Signal.
+Signal didasarkan pada prinsip pemrograman reaktif - Mereka merujuk ke nilai yang dapat memberitahu _subscribers_ ketika nilai tersebut berubah. Mereka menggunakan komputasi dependency graph yang bergantung pada nilai-nilai yang ada di Signal.
 
 ```js
 // Conceptually, signals work like this
@@ -1066,9 +810,9 @@ class Signal {
 
 ### Frameworks
 
-Framework Svelte adalah SvelteKit. I sudah pernah menggunakannya untuk membuat beberapa produk seperti [daftar putar anime yang pernah saya tonton saat kecil](https://anime.kresna.me), [daftar buku yang pernah saya baca dan saya review dalam Bahasa Indonesia dan Inggris](https://buku.kresna.me), dan sebuah [alat untuk membandingkan file-file apa yang berubah ketika melakukan upgrade Laravel framework](https://laraveldiff.org).
+Framework Svelte adalah SvelteKit. I sudah pernah menggunakannya untuk membuat beberapa produk seperti [daftar putar anime yang pernah saya tonton saat kecil](https://anime.kresna.me), [daftar buku yang pernah saya baca dan saya review dalam Bahasa Indonesia dan Inggris](https://buku.kresna.me), dan [sebuah alat untuk membandingkan file-file apa yang berubah ketika melakukan upgrade Laravel framework](https://laraveldiff.org).
 
-Framework React yang populer antara lain NextJS dan React Router v7 a.k.a. Remix. Saya tidak memakai framework-framework tersebut. Namun, jika saya diminta memilih maka saya akan memilih React Router v7 dibanding NextJS karena saya melihat tweet yang berseliweran bahwa orang-orang mengeluh tentang NextJS mulai dari memory di mode development yang memakan memori lebih dari 1GB, desain API yang tidak konsisten, dan sebuah perusahaan yang mengganti stack mereka dari NextJS ke Ruby on Rails karena NextJS tidak memenuhi kebutuhan mereka.
+Framework React yang populer antara lain NextJS dan React Router v7 a.k.a. Remix. Saya tidak memakai framework-framework tersebut. Namun, jika saya diminta memilih maka saya akan memilih React Router v7 dibanding NextJS karena saya melihat tweet yang berseliweran bahwa orang-orang mengeluh tentang NextJS mulai dari [memory di mode development yang memakan memori lebih dari 1GB](https://x.com/programmer30an/status/1867474270320046568), [desain API yang tidak konsisten](https://pilcrow.vercel.app/blog/nextjs-why), dan sebuah [perusahaan yang mengganti stack mereka dari NextJS ke Ruby on Rails](https://x.com/shpigford/status/1753188910304301260?s=46) karena NextJS tidak memenuhi kebutuhan mereka.
 
 ## Pilihan Personal
 
