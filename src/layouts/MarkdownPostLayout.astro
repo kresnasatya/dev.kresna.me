@@ -59,12 +59,3 @@ const { frontmatter, headings } = Astro.props;
         overflow-x: auto;
     }
 </style>
-
-<script>
-    const directoriesSrOnly = document.querySelectorAll('starlight-file-tree span.sr-only');
-    if (directoriesSrOnly !== undefined) {
-        Array.from(directoriesSrOnly).forEach(el => {
-            el.setAttribute('aria-label', 'Directory');
-        });
-    }
-</script>
