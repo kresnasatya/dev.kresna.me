@@ -39,9 +39,11 @@ const { frontmatter, headings } = Astro.props;
     }
 
     main :global(blockquote) {
+        font-style: italic;
+        margin: 0;
         border-left: 2px solid gray;
         padding-left: .5rem;
-        color: rgb(71 85 105 / 1);
+        color: rgb(20, 29, 40);
     }
 
     main :global(img) {
@@ -54,6 +56,32 @@ const { frontmatter, headings } = Astro.props;
     main :global(pre) {
         padding: 1rem;
     }
+
+    main :global(code) {
+		font-family:
+			Menlo,
+			Monaco,
+			Lucida Console,
+			Liberation Mono,
+			DejaVu Sans Mono,
+			Bitstream Vera Sans Mono,
+			Courier New,
+			monospace;
+		font-size: 1rem;
+		background-color: rgb(237, 238, 243);
+		padding: .25rem;
+		color: orangered;
+	}
+
+	main :global(pre) {
+		margin-bottom: 1rem;
+	}
+
+	main :global(pre > code) {
+		background-color: initial;
+		padding: initial;
+		color: initial;
+	}
 
     main :global(.rcg-tab-container) {
         overflow-x: auto;
