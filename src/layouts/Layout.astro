@@ -42,7 +42,7 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 	</body>
 </html>
 
-<style>
+<style is:global>
 	/*
 	1. Use a more-intuitive box-sizing model.
 	*/
@@ -73,12 +73,22 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 		font-family: 'DM Serif Display', serif;
 	}
 
-	nav a, footer a {
-		font-family: serif;
+	h1 {
+		font-size: 2rem;
+	}
+
+	h2 {
+		font-size: 1.5rem;
 	}
 
 	p, ol, span {
 		font-size: 1.25rem;
+	}
+
+	nav {
+		font-size: 1.25rem;
+		margin: .5rem 0;
+		padding: 1rem;
 	}
 
 	code {
