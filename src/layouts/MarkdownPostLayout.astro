@@ -1,5 +1,5 @@
 ---
-import LanguageSwitcher from '../components/LanguageSwitcher.astro';
+import PostLanguageSwitcher from '../components/PostLanguageSwitcher.astro';
 import Toc from '../components/Toc.astro';
 import Layout from "./Layout.astro";
 
@@ -11,7 +11,7 @@ const { frontmatter, headings } = Astro.props;
         <h1 style="text-align: left; font-size: 2rem;">{frontmatter.title}</h1>
         <span style="color: gray;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
         |
-        <LanguageSwitcher currentId={frontmatter.id}/>
+        <PostLanguageSwitcher currentId={frontmatter.id}/>
         <Toc headings={headings}/>
         <slot />
     </main>
