@@ -11,7 +11,7 @@ series: "Keycloak Deployment"
 Welcome to Keycloak Deployment series. This series are guidelines to you and myself related with deploy Keycloak on Kubernetes especially on Google Kubernetes Engine (GKE). Here are the guidelines I want to share with you:
 
 - Deploy Plain Keycloak on GKE
-- Deploy Keycloak on GKE with Postgresql Google Cloud SQL Proxy
+- Connect Keycloak with Postgresql Google Cloud SQL Proxy
 - Expose Keycloak Administration APIs and UI on different hostname
 - Add Keycloak Health checks into Keycloak
 - Increase Replica, Implement Sticky Session, and Implement Distributed Cache
