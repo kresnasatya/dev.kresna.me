@@ -232,4 +232,4 @@ If you want to update the update of configuration files, you just need to update
 
 That's it! I hope this guide help you and I wish you learn a thing or many things here! Thank you for reading!
 
-All files available in GitHub repo: [github.com/senkustream/keycloak-playground](https://github.com/senkustream/keycloak-playground) in `k8s/plain-keycloak` folder.
+All files available in GitHub repo: [github.com/senkulabs/keycloak-playground](https://github.com/senkulabs/keycloak-playground) in `k8s/plain-keycloak` folder.
