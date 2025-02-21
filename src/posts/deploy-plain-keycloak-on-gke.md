@@ -112,7 +112,7 @@ echo -n "admin" | base64
 If you have been try create a Docker Compose file, then you will be slightly familiar with Deployment file in Kubernetes.
 In short, the Deployment act as place to create pod, replica pod, create containers and manage resources for containers.
 
-```sh
+```yaml
 # deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -175,7 +175,7 @@ spec:
 Service is a thing you want to expose your container application from one or more pods in your cluster.
 Now, we will expose the container app in a service in order to make it accessible in the internet.
 
-```sh
+```yaml
 # service.yaml
 apiVersion: v1
 kind: Service
