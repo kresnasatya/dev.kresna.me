@@ -8,6 +8,8 @@ tags: ["keycloak", "gke", "gcp"]
 series: "Keycloak Deployment"
 ---
 
+> This guideline series use Keycloak version 23.0.7.
+
 Welcome to Keycloak Deployment series. This series are guidelines to you and myself related with deploy Keycloak on Kubernetes especially on Google Kubernetes Engine (GKE). Here are the guidelines I want to share with you:
 
 - Deploy Plain Keycloak on GKE
