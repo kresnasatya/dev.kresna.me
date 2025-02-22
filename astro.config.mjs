@@ -7,7 +7,13 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [
       rehypeCodeGroup
-    ]
+    ],
+    shikiConfig: {
+      themes: {
+        light: 'monokai',
+        dark: 'github-dark'
+      }
+    }
   },
   i18n: {
     locales: ["en", "id"],
