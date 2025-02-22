@@ -179,6 +179,13 @@ spec:
 
 As you can see, we also update the env on Keycloak container by set the `KC_DB` to `"postgres"` and `KC_DB_URL` to `"jdbc:postgresql://localhost:5432/keycloak"`. Why we set to localhost? Because we use Cloud SQL Auth Proxy approach.
 
+Now, let's apply the change files with `kubectl apply` command. Then, everything should be works now!
+
+```sh
+kubectl apply -f secrets.yaml
+kubectl apply -f deployment.yaml
+```
+
 ## Cloud SQL Auth Proxy
 
 Here are features and benefits from Cloud SQL Auth Proxy:
