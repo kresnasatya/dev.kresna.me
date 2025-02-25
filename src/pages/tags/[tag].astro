@@ -33,7 +33,7 @@ const { posts } = Astro.props;
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title={`Posts tagged with ${tag} - dev.kresna.me`}>
+<Layout title={`Posts tagged with ${tag} - dev.kresna.me`} description={`Posts tagged with ${tag}. Happy reading!`}>
   <main>
     <h1>Posts tagged with "{tag}"</h1>
     <a href="/tags" class="back-link">← All Tags</a>
