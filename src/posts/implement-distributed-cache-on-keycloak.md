@@ -101,7 +101,7 @@ spec:
 
 Then, apply the change by run `kubectl apply -f ingress.yaml`. Try again and it works now.
 
-Please visit [github.com/senkulabs/keycloak-playground] then search `k8s/distributed-cache/part1` for the complete files.
+Please visit [github.com/senkulabs/keycloak-playground](https://github.com/senkulabs/keycloak-playground) then search `k8s/distributed-cache/part1` for the complete files.
 
 ## Enable Distributed Cache
 
@@ -265,7 +265,7 @@ Run `kubectl apply -f deployment.yaml && kubectl apply -f service.yaml`. Then, c
 Received new cluster view for channel ISPN: [keycloak-deployment-5556b54567-wgdsr|1] (3) [keycloak-deployment-wgdsr, keycloak-deployment-xyz, keycloak-deployment-abc]
 ```
 
-Please visit [github.com/senkulabs/keycloak-playground] then search `k8s/distributed-cache/part2` for the complete files.
+Please visit [github.com/senkulabs/keycloak-playground](https://github.com/senkulabs/keycloak-playground) then search `k8s/distributed-cache/part2` for the complete files.
 
 ## Extra
 
@@ -312,7 +312,7 @@ spec:
       secretName: keycloak-tls-secret
 ```
 
-Apply the change with command `kubectl apply -f ingress.yaml` and everything works properly. Please visit [github.com/senkulabs/keycloak-playground] then search `k8s/distributed-cache/extra` for the complete files.
+Apply the change with command `kubectl apply -f ingress.yaml` and everything works properly. Please visit [github.com/senkulabs/keycloak-playground](https://github.com/senkulabs/keycloak-playground) then search `k8s/distributed-cache/extra` for the complete files.
 
 ## Closing
 
