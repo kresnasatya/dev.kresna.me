@@ -116,10 +116,12 @@ This is why including the intermediate certificate in your fullchain.crt is esse
 
 ## Setup and Apply Changes
 
-1. Install ingress-nginx controller.
+1. Install ingress-nginx controller with `helm` command. This command will add ingress-nginx into helm repository. Then, it will install ingress-nginx in `ingress-nginx` namespace and set the type controller into LoadBalancer.
+
+> When you run this command below, it will expose port 80 for HTTP and port 443 for HTTPS. The ingress-nginx recognize the HTTPS and redirect end-user to HTTPS if you set the `tls` in your Ingress config later.
 
 ```sh
-# Add the nginx-ingress helm repository
+# Add the ingress-nginx helm repository
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
 helm repo update
 
