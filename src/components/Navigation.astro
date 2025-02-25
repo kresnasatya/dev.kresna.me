@@ -14,12 +14,14 @@ const paths = {
     en: {
         home: '/',
         about: '/about',
-        posts: '/posts'
+        posts: '/posts',
+        tags: '/tags'
     },
     id: {
         home: '/id',
         about: '/id/about',
-        posts: '/id/posts'
+        posts: '/id/posts',
+        tags: '/id/tags'
     }
 };
 
@@ -30,6 +32,7 @@ const currentPaths = paths[currentLang];
     <a href={currentPaths.home}>{t.home}</a>
     <a href={currentPaths.about}>{t.about}</a>
     <a href={currentPaths.posts}>{t.posts}</a>
+    <a href={currentPaths.tags}>{t.tags}</a>
     |
     <!-- Language switcher -->
     { currentLang === 'en' ? (

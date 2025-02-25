@@ -1,0 +1,95 @@
+---
+// src/pages/tags/[tag].astro
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+// Get the tag from the URL
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => {
+    return import.meta.env.PROD ? data.draft !== true : true;
+  });
+  
+  // Extract all tags from posts
+  const uniqueTags = [...new Set(
+    posts.map((post) => post.data.tags || []).flat()
+  )];
+  
+  // Create a path for each tag
+  return uniqueTags.map((tag) => {
+    // Filter posts that contain this tag
+    const filteredPosts = posts.filter((post) => 
+      post.data.tags && post.data.tags.includes(tag)
+    );
+    
+    return {
+      params: { tag },
+      props: { posts: filteredPosts }
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout title={`Posts tagged with ${tag} - dev.kresna.me`}>
+  <main>
+    <h1>Posts tagged with "{tag}"</h1>
+    <a href="/tags" class="back-link">← All Tags</a>
+    
+    <ul class="post-list">
+      {posts.map((post) => (
+        <li>
+          <a href={`/posts/${post.id}/`}>
+            {post.data.title || 'Untitled Post'}
+          </a>
+          {post.data.pubDate && 
+            <span class="post-date">
+              ({new Date(post.data.pubDate).toLocaleDateString()})
+            </span>
+          }
+        </li>
+      ))}
+    </ul>
+  </main>
+</BaseLayout>
+
+<style>
+  .back-link {
+    display: inline-block;
+    margin: 1rem 0;
+    color: #64748b;
+    text-decoration: none;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  .post-list {
+    margin: 2rem 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .post-list li {
+    margin-bottom: 1rem;
+  }
+  
+  .post-list a {
+    color: #0f172a;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .post-list a:hover {
+    text-decoration: underline;
+  }
+  
+  .post-date {
+    color: #64748b;
+    margin-left: 0.5rem;
+    font-size: 0.875rem;
+  }
+</style>
