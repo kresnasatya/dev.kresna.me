@@ -187,7 +187,7 @@ The root cause is in `keycloak-service.keycloak.svc.cluster.local` in `jgroups.d
 
 > What is JGroups?
 
-> According to JGroups homepage: JGroups is a toolkit for reliable messaging. It can be used to create clusters whose nodes can send messages to each other.
+> According to [JGroups homepage](http://www.jgroups.org): JGroups is a toolkit for reliable messaging. It can be used to create clusters whose nodes can send messages to each other.
 
 > Ok! it makes sense now!
 
@@ -292,7 +292,7 @@ spec:
   # ... Same as previous guideline
   tls:
   - hosts:
-    - sso.unud.ac.id
+    - sso.domain.tld
     secretName: keycloak-tls-secret
 ---
 apiVersion: networking.k8s.io/v1
@@ -308,7 +308,7 @@ spec:
   # ... Same as previous guideline
   tls:
     - hosts:
-        - iam.unud.ac.id
+        - iam.domain.tld
       secretName: keycloak-tls-secret
 ```
 
