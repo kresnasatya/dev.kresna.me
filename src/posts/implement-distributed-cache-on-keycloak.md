@@ -191,6 +191,8 @@ The root cause is in `keycloak-service.keycloak.svc.cluster.local` in `jgroups.d
 
 > Ok! it makes sense now!
 
+> **SIDE NOTE:** If we incorrectly set the namespace in Kubernetes DNS for JGroups discovery, this also can lead redirect loop issue or 401 http code!
+
 ### Fix Error 2: 401 Unauthenticated
 
 Let's update the deployment.yaml and service.yaml files.
