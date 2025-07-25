@@ -157,9 +157,6 @@ spec:
                 key: KEYCLOAK_ADMIN_PASSWORD
           - name: JAVA_OPTS
             value: "-Xms512m -Xmx1024m"
-          envFrom:
-            - secretRef:
-                name: keycloak-secret
           resources:
             requests:
               memory: "512Mi"
