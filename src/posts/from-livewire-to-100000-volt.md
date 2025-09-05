@@ -1,6 +1,6 @@
 ---
 title: From Livewire to 100.000 Volt
-description: My journey of migrate Livewire components into Livewire Volt components. This is what I'm looking for!
+description: The reason why I migrate classic Livewire components into Livewire Volt components.
 pubDate: 2024-11-22
 author: Kresna Satya
 ---
@@ -19,9 +19,9 @@ php artisan livewire:make Project/Create
 
 > The choice is back to you.
 
-With the many choice above, sometimes it can lead you to a "trap". If you implement one of among choice above, my prediction is you will get two file: a Livewire Controller in `App\Livewire` and a Livewire View in `resources/views/livewire`. When you want to edit something then you must stand by to split your brain between those two things. If the components around 10 to 20 is okay. But, how about more than 20 components. No no no no! 😱 I get a nightmare.
+With the many choice above, sometimes it can lead you to a "trap". If you implement one of among choice above, my prediction is you will get two file: a Livewire Controller in `App\Livewire` and a Livewire View in `resources/views/livewire`. When you want to edit something then you must stand by to split your brain between logic in `App\Livewire` and blade in `resources/views/livewire`. If the components around 10 to 20 is okay. But, how about more than 20 components? No no no no! 😱 I get a nightmare.
 
-Fortunately, Livewire Volt come to rescue. With Volt, the controller and view merge into a single file which is the view it self. Also, with Volt, I just need to focus my brain into a single file. Let's give a shot by create a simple Livewire Volt component called Counter.
+Fortunately, [Livewire Volt](https://livewire.laravel.com/docs/volt) come to rescue. With Volt, the controller and view merge into a single file which is the view it self. I just need to focus my brain to a single file. Let's give a shot by create a simple Livewire Volt component called Counter.
 
 ```sh
 # Make sure you install livewire/volt first!
@@ -34,8 +34,8 @@ php artisan volt install
 ```
 
 ```sh
-# Create counter component
-php artisan make:volt counter
+# Create a class-based counter component
+php artisan make:volt counter --class
 ```
 
 ```php
@@ -96,4 +96,4 @@ class Counter extends Component
 
 :::
 
-I wish you get the point what I want to tell you in this post. Well, Livewire Volt is actually for programmers who have experience with the "old" Livewire way and see the pain point with the "old" way. If you want to get your hands dirty with Livewire Volt, I encourage you to try [Laravel Bootcamp and choose Livewire section](https://bootcamp.laravel.com/livewire/installation). I have [migrate my "old" Livewire into Livewire Volt](https://youtu.be/Hffc1zi29Ts) into my project called [Larva Interactions](https://larva-interactions.senku.stream). Finally, Livewire get 100.000 volt power! ⚡️⚡️⚡️
+I wish you get the point what I want to tell you in this post. Well, Livewire Volt is actually for programmers who have experience with the "old" Livewire way and see the pain point with the "old" way. If you want to get your hands dirty with Livewire Volt, I encourage you to try [Laravel Bootcamp and choose Livewire section](https://bootcamp.laravel.com/livewire/installation). I have [migrate my "old" Livewire into Livewire Volt](https://youtu.be/Hffc1zi29Ts) into my project called [Larva Snippets](https://larva-snippets.fly.dev). Now, you get 100.000 volt power! ⚡️⚡️⚡️
