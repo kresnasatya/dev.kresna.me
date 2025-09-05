@@ -14,14 +14,16 @@ englishPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
 <Layout>
 	<main>
 		<h1>Halo!</h1>
-		<p>Welcome to this blog!</p>
-		<p>This blog contains topic about programming and guidelines of using software. I post in English and Bahasa Indonesia.</p>
-		<p>Happy reading!</p>
+		<div style="margin-bottom: 1rem;">
+			<p>Welcome to this blog!</p>
+			<p>This blog contains topic about programming and guidelines of using software. I post in English and Bahasa Indonesia.</p>
+			<p>Happy reading!</p>
+		</div>
 
 		<h2>Posts</h2>
 
 		{englishPosts.map((post) => <article>
-            <h2><a href={`/posts/${post.id}`}>{post.data.title}</a></h2>
+            <h3><a href={`/posts/${post.id}`}>{post.data.title}</a></h3>
             <span>{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
         </article>)}
