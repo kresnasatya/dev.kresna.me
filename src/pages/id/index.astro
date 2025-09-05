@@ -21,14 +21,17 @@ indonesianPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf
 <Layout>
 	<main>
 		<h1>Halo!</h1>
-		<p>Selamat datang!</p>
-		<p>Blog ini berisi tentang topik yang berkaitan dengan pemrograman dan panduan menggunakan perangkat lunak. Saya menulis konten dalam Bahasa Indonesia dan dan Bahasa Inggris.</p>
-        <p>Selamat membaca!</p>
+		
+        <div style="margin-bottom: 1rem;">
+            <p>Selamat datang!</p>
+            <p>Blog ini berisi tentang topik yang berkaitan dengan pemrograman dan panduan menggunakan perangkat lunak. Saya menulis konten dalam Bahasa Indonesia dan dan Bahasa Inggris.</p>
+            <p>Selamat membaca!</p>
+        </div>
 
-		<h2 style="margin: 1rem 0; font-size: 1.25rem;">Tulisan</h2>
+		<h2 style="margin-bottom: 1rem;">Tulisan</h2>
 
-		{indonesianPosts.map((post) => <article>
-            <h2 style="font-size: 1.25rem;"><a href={post.data.path}>{post.data.title}</a></h2>
+		{indonesianPosts.map((post) => <article style="margin-bottom: 1rem;">
+            <h3><a href={post.data.path}>{post.data.title}</a></h3>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
         </article>)}

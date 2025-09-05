@@ -15,7 +15,7 @@ englishPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
     <main>
         <h1>Posts</h1>
 
-        {englishPosts.map((post) => <article>
+        {englishPosts.map((post) => <article style="margin-bottom: 1rem;">
             <h2><a href={`/posts/${post.id}`}>{post.data.title}</a></h2>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>

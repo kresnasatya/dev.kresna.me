@@ -22,8 +22,8 @@ indonesianPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf
     <main>
         <h1>Tulisan</h1>
 
-        {indonesianPosts.map((post) => <article>
-            <h2 style="font-size: 1.25rem;"><a href={post.data.path}>{post.data.title}</a></h2>
+        {indonesianPosts.map((post) => <article style="margin-bottom: 1rem;">
+            <h2><a href={post.data.path}>{post.data.title}</a></h2>
             <span style="font-size: .8rem;">{(new Intl.DateTimeFormat('id', { dateStyle: 'full' })).format(new Date(post.data.pubDate))}</span>
             <p>{post.data?.description}</p>
         </article>)}
