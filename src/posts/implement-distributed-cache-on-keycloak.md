@@ -14,10 +14,11 @@ Wow! We cover a lot in this series. Previously, we learn how to expose Keycloak 
 
 ## Increase Replica to N
 
-So far, we just use 1 replica in our deployment file. But, we will update the replica to N. The value of N may vary, in this case I set the value of N to 3. Here's the snippet of deployment.yaml file.
+So far, we just use 1 replica in our deployment file. But, we will update the replica to N. The value of N may vary, in this case I set the value of N to 3. After we set replica to 3, we need to change the value of kind `deployment.yaml` from `Deployment` to `StatefulSet`. [This is intended for replica use case](https://spacelift.io/blog/statefulset-vs-deployment#kubernetes-statefulset-and-deployment-use-cases). This also make predictable sequenced rollouts, with terminations that occur in reverse order. Here's the snippet of deployment.yaml file.
 
 ```yaml
 # deployment.yaml
+kind: StatefulSet
 spec:
   replicas: 3
   template:
