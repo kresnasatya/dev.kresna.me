@@ -162,21 +162,21 @@ We can also check the logs with command `kubectl logs -n keycloak <keycloak-pod-
 ```html
 Appending additional Java properties to JAVA_OPTS: -Djgroups.dns.query=keycloak-service.keycloak.svc.cluster.local
 2025-02-19 04:38:37,640 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000078: Starting JGroups channel ISPN with stack kubernetes
-2025-02-19 04:38:37,644 INFO  [org.jgroups.JChannel] (keycloak-cache-init) local_addr: f829b1c3-5389-4aea-9bb7-8ea9541af869, name: keycloak-deployment-c65548c97-sjhf4-16255
+2025-02-19 04:38:37,644 INFO  [org.jgroups.JChannel] (keycloak-cache-init) local_addr: f829b1c3-5389-4aea-9bb7-8ea9541af869, name: keycloak-deployment-0
 2025-02-19 04:38:37,671 INFO  [org.jgroups.protocols.FD_SOCK2] (keycloak-cache-init) server listening on *.57800
-2025-02-19 04:38:39,741 INFO  [org.jgroups.protocols.pbcast.GMS] (keycloak-cache-init) keycloak-deployment-c65548c97-sjhf4-16255: no members discovered after 2003 ms: creating cluster as coordinator
-2025-02-19 04:38:39,756 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000094: Received new cluster view for channel ISPN: [keycloak-deployment-c65548c97-sjhf4-16255|0] (1) [keycloak-deployment-c65548c97-sjhf4-16255]
-2025-02-19 04:38:39,941 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000079: Channel ISPN local address is keycloak-deployment-c65548c97-sjhf4-16255, physical addresses are [10.28.3.20:7800]
-2025-02-19 04:56:47,602 WARN  [org.jgroups.protocols.TCP] (TcpServer.Acceptor[7800]-1,keycloak-deployment-c65548c97-sjhf4-16255) JGRP000006: 10.28.3.20:7800: failed accepting connection from peer Socket[addr=/10.28.4.27,port=41611,localport=7800]: java.io.EOFException
+2025-02-19 04:38:39,741 INFO  [org.jgroups.protocols.pbcast.GMS] (keycloak-cache-init) keycloak-deployment-0: no members discovered after 2003 ms: creating cluster as coordinator
+2025-02-19 04:38:39,756 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000094: Received new cluster view for channel ISPN: [keycloak-deployment-0|0] (1) [keycloak-deployment-0]
+2025-02-19 04:38:39,941 INFO  [org.infinispan.CLUSTER] (keycloak-cache-init) ISPN000079: Channel ISPN local address is keycloak-deployment-0, physical addresses are [10.28.3.20:7800]
+2025-02-19 04:56:47,602 WARN  [org.jgroups.protocols.TCP] (TcpServer.Acceptor[7800]-1,keycloak-deployment-0) JGRP000006: 10.28.3.20:7800: failed accepting connection from peer Socket[addr=/10.28.4.27,port=41611,localport=7800]: java.io.EOFException
 ```
 
 In the log above, we see an important message:
 
 ```html
-keycloak-deployment-c65548c97-sjhf4-16255: no members discovered after 2003 ms: creating cluster as coordinator
+keycloak-deployment-0: no members discovered after 2003 ms: creating cluster as coordinator
 ```
 
-This means the pod keycloak-deployment-c65548c97-sjhf4 is **starting its own cluster** instead of joining an existing one, which breaks the distributed cache. The other message is:
+This means the pod `keycloak-deployment-0` is **starting its own cluster** instead of joining an existing one, which breaks the distributed cache. The other message is:
 
 ```html
 JGRP000006: 10.28.3.20:7800: failed accepting connection from peer Socket[addr=/10.28.4.27,port=41611,localport=7800]: java.io.EOFException
@@ -265,7 +265,7 @@ spec:
 Run `kubectl apply -f deployment.yaml && kubectl apply -f service.yaml`. Then, check logs again with command `kubectl logs -n keycloak <keycloak-pod-name> -c keycloak | grep -i "jgroups\|dns\|bind\|cluster"` and you will see expected logs like this:
 
 ```html
-Received new cluster view for channel ISPN: [keycloak-deployment-5556b54567-wgdsr|1] (3) [keycloak-deployment-wgdsr, keycloak-deployment-xyz, keycloak-deployment-abc]
+ISPN000094: Received new cluster view for channel ISPN: [keycloak-deployment-1-18830|14] (3) [keycloak-deployment-1-18830, keycloak-deployment-2-25513, keycloak-deployment-0-64445]
 ```
 
 Please visit [github.com/senkulabs/keycloak-playground](https://github.com/senkulabs/keycloak-playground) then search `k8s/distributed-cache/part2` for the complete files.
