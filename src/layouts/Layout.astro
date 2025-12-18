@@ -3,7 +3,7 @@ import '@fontsource/dm-serif-display';
 import '@fontsource/eb-garamond';
 import '@fontsource/eb-garamond/400-italic.css'
 import Navigation from '../components/Navigation.astro';
-import Footer from '../components/Footer.astro';
+import ConnectedLink from '../components/ConnectedLink.astro';
 
 interface Props {
 	title?: string;
@@ -33,12 +33,22 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 		<meta property="twitter:title" content={title} />
 		<meta property="twitter:description" content={description} />
 	</head>
-	<body>
-		<div class="container">
+	<body class="container">		
+		<header style="flex-shrink: 0;">
 			<Navigation lang={currentLang} />
+		</header>
+		<main style="flex: 1;">
 			<slot />
-			<Footer />
-		</div>
+		</main>
+		<footer style="flex-shrink: 0; padding-bottom: 1rem;">
+			<div style="display: flex; gap: .5rem; padding: 0 1rem; font-size: 1.25rem;">
+				<ConnectedLink url="https://github.com/kresnasatya" platform="GitHub"/>
+				<ConnectedLink url="https://youtube.com/@kresnasatya" platform="YouTube"/>
+				<ConnectedLink url="https://linkedin.com/in/kresnasatya" platform="LinkedIn"/>
+				<ConnectedLink url="https://twitter.com/_kresnasatya" platform="Twitter"/>
+				<ConnectedLink url="https://bsky.app/profile/kresna.me" platform="BlueSky"/>
+			</div>
+		</footer>
 	</body>
 </html>
 
@@ -66,6 +76,12 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 
 	html {
 		font-family: 'EB Garamond', serif;
+	}
+
+	body {
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
 	}
 
 	h1,
@@ -122,7 +138,6 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 	}
 
 	main {
-		margin: 0 auto;
 		padding: 1rem;
 		line-height: 1.6;
 	}

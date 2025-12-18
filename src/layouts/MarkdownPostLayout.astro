@@ -7,39 +7,39 @@ const { frontmatter, headings } = Astro.props;
 ---
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
-    <main>
-        <h1 style="text-align: left; font-size: 2rem;">{frontmatter.title}</h1>
-        <span style="color: gray;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
-        |
-        <PostLanguageSwitcher currentId={frontmatter.id}/>
-        <Toc headings={headings}/>
+    <h1 style="text-align: left; font-size: 2rem;">{frontmatter.title}</h1>
+    <span style="color: gray;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
+    |
+    <PostLanguageSwitcher currentId={frontmatter.id}/>
+    <Toc headings={headings}/>
+    <article>
         <slot />
-    </main>
+    </article>
 </Layout>
 
 <style>
-    main :global(h2) {
+    article :global(h2) {
         font-size: 1.75rem;
     }
 
-    main :global(h3) {
+    article :global(h3) {
         font-size: 1.5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
 
-    main :global(p) {
+    article :global(p) {
         margin-top: 1rem;
         margin-bottom: 1rem;
         font-size: 1.25rem;
         word-wrap: break-word;
     }
 
-    main :global(ol), main :global(ul) {
+    article :global(ol), article :global(ul) {
         font-size: 1.25rem;
     }
 
-    main :global(blockquote) {
+    article :global(blockquote) {
         font-style: italic;
         margin: 0;
         border-left: 2px solid gray;
@@ -47,18 +47,18 @@ const { frontmatter, headings } = Astro.props;
         color: rgb(20, 29, 40);
     }
 
-    main :global(img) {
+    article :global(img) {
         width: 100%;
         height: auto;
         aspect-ratio: 16/9;
         display: block;
     }
 
-    main :global(pre) {
+    article :global(pre) {
         padding: 1rem;
     }
 
-    main :global(code) {
+    article :global(code) {
 		font-family:
 			Menlo,
 			Monaco,
@@ -74,17 +74,17 @@ const { frontmatter, headings } = Astro.props;
 		color: orangered;
 	}
 
-	main :global(pre) {
+	article :global(pre) {
 		margin-bottom: 1rem;
 	}
 
-	main :global(pre > code) {
+	article :global(pre > code) {
 		background-color: initial;
 		padding: initial;
 		color: initial;
 	}
 
-    main :global(.rcg-tab-container) {
+    article :global(.rcg-tab-container) {
         overflow-x: auto;
     }
 </style>
