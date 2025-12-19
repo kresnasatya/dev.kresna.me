@@ -8,9 +8,10 @@ const { frontmatter, headings } = Astro.props;
 
 <Layout title={frontmatter.title} description={frontmatter.description}>
     <h1 style="text-align: left; font-size: 2rem;">{frontmatter.title}</h1>
-    <span style="color: gray;">{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
-    |
-    <PostLanguageSwitcher currentId={frontmatter.id}/>
+    <div style="display: flex; flex-wrap: wrap; gap: 0 .5rem; align-items: center;">
+        <span>{(new Intl.DateTimeFormat('en-US', { dateStyle: 'full' })).format(new Date(frontmatter.pubDate))}</span>
+        <PostLanguageSwitcher currentId={frontmatter.id}/>
+    </div>
     <Toc headings={headings}/>
     <article>
         <slot />
