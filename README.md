@@ -5,5 +5,5 @@ This site created [with Astro](https://astro.build), [the awesome rocket mustach
 ## Instructions
 
 1. Git clone.
-2. `pnpm install`.
-3. `pnpm run dev`.
+2. `bun install`.
+3. `bun run dev`.
