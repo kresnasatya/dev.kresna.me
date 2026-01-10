@@ -42,7 +42,7 @@ Because both of React and Svelte are JavaScript library for create User Interfac
 | JS bundle size (in kB) | 195.84          | 33.14            |
 | Time to build (in ms)  | 459             | 289              |
 
-The result is React bundle sizes is near to 6x than Svelte's bundle sizes. Then, time to build in React takes 1.5x than Svelte's bundle sizes.
+The result is React bundle sizes is near to 6x than Svelte's. Then, time to build in React takes 1.5x than Svelte's.
 
 ![Picture of Wordle React and Svelte](../images/wordle-react-svelte.png)
 
@@ -69,7 +69,7 @@ If you code SolidJS, you feel like you code React but with Signal and no Virtual
 
 ![Picture of Wordle React, Svelte, and Solid](../images/wordle-react-svelte-solid.png)
 
-The result is React bundle sizes is near to 15x than Solid's bundle sizes. Then, time to build in React takes 2x than Solid's bundle sizes.
+The result is React bundle sizes is near to 15x than Solid's. Then, time to build in React takes 2x than Solid's.
 
 > I will repeat again my words again below.
 
