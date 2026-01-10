@@ -44,7 +44,7 @@ Because both of React and Svelte are JavaScript library for create User Interfac
 
 The result is React bundle sizes is near to 6x than Svelte's bundle sizes. Then, time to build in React takes 1.5x than Svelte's bundle sizes.
 
-![Picture of Wordle React and Svelte](../images/wordle-react-svelte-solid.png)
+![Picture of Wordle React and Svelte](../images/wordle-react-svelte.png)
 
 Now, I would like to give some imagination here. The more lines of code you put in the program then the more times for compiler to compile your code program even you have the sophisticated compiler. This also impact to the time you need to waiting the deployment is finished in real-world while you have a very urgent thing in the real-world. This also impact to the time our software appear in our end-user screen. In order words, the more lines of code you put then you will wasted the time in the real-world. That's it. The key is lied on the JS UI library we used. So, programmers please choose *your poison* wisely.
 
