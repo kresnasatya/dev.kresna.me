@@ -1,5 +1,5 @@
 ---
-title: 'I Built a Browser Engine with Swift. But Why?'
+title: 'I Built a Browser Engine in Swift. But Why?'
 pubDate: 2026-03-31
 description: 'In short is curiosity. For long reason read the post.'
 author: 'Kresna Satya'
