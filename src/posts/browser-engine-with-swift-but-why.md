@@ -16,9 +16,9 @@ I don't know exactly when. But, I have a dream to shift my career from a web dev
 - Servo
 - LibWeb for Ladybird
 
-The moment that have trigger me to have desire to make a browser engine was when Ladybird is announced. It's a new browser engine that created from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple who works for WebKit - as far as I follow him on Twitter and I watch him YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm curious and waiting when that day happen but it doesn't happen. Instead [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria from them. Honestly, I'm sad because I really wanna see the browser engine build with Swift - mix with C/C++ interopability - oh, hi [Skia](https://github.com/google/skia) and [Harfbuzz](https://github.com/harfbuzz/harfbuzz).
+The Ladybird is a new browser engine that created from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple who works for WebKit - as far as I follow him on Twitter and I watch him on YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm excited and waiting when that day happen. But, it doesn't. Instead, [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria from them. Honestly, I'm sad because I'm really wanna see the browser engine build with Swift from scratch - mix with C/C++ interopability - oh, hi [Skia](https://github.com/google/skia) and [Harfbuzz](https://github.com/harfbuzz/harfbuzz).
 
-Then, I made a try for create a browser engine with Swift rather than waiting and waiting the perfect situation is coming.
+Then, rather than waiting and waiting to see when that day happen, why don't I made a try to make a browser engine with Swift from scratch?
 
 > No one is perfect, but making progress moves you closer to it.
 
@@ -28,7 +28,7 @@ So, I want to make a browser engine with Swift. It doesn't have to be perfect or
 
 > No no no. Please don't suggest me the WHATWG HTML Standard. It's too too too big. 😵‍💫
 
-Luckily I found it, the [Browser Engineering book](https://browser.engineering) - created by Pavel Panchekha and Chris Harrelson. This books covers the foundation how to make the web browser using Python. I have follow the chapter since October 2025 and using the Python as the authors suggest. I save it into a GitHub repository called [brownie](https://github.com/kresnasatya/brownie). Now, I'm in the last chapter and soon it will be finished. :)
+Luckily I found it! The [Browser Engineering book](https://browser.engineering) - created by Pavel Panchekha and Chris Harrelson. This books covers the foundation of how to make the web browser using Python. I have follow the chapter since October 2025 and using the Python as the authors suggest. I save it into a GitHub repository called [brownie](https://github.com/kresnasatya/brownie). Now, I'm in the last chapter and soon it will be finished. :)
 
 Before I mention the plan, I will give you three reason why I choose Swift as programming language to make a browser engine:
 
@@ -38,14 +38,13 @@ Since the Ladybird team decided to move their C/C++ code base into Rust instead 
 
 **2. Everything is Object**
 
-Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has Object Oriented Programming. That's it.
+Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has Object Oriented Programming. That's it! I don't want to explain it more detail. Ask Claude!
 
-> Well, you can ask Claude with this prompt below to get detail answers.
 > How does the DOM relate to Swift's OOP model in the context of building a browser engine?
 
 **3. The SwiftUI**
 
-In the end, we need to build a browser - desktop app on top the browser engine that build with Swift to show the result that we can see. Luckily, I'm using Apple product like MacBook - macOS and it has access to the SwiftUI. Then, I don't need to waste my time at this moment to seeking the GUI desktop engine. :)
+In the end, we need to build a browser - desktop app on top the browser engine that build with Swift to show the result that we can see. Luckily, I'm using Apple product like MacBook - macOS and it has access to the SwiftUI. I don't need to waste my time to seeking the GUI desktop engine. :)
 
 ## Execution
 
@@ -71,11 +70,11 @@ cd ToyStack
 swift package init --type=executable --name ToyStack
 ```
 
-Inside the ToyStack I put the brownie project (I don't forget to ignore the brownie) and switch into `ch01-10`. Then, I start chat with Claude with the prompt like this.
+Inside the ToyStack I put the brownie project and switch into `ch01-10` branch. Then, I start chat with Claude with the prompt like this.
 
 > I want to make a browser engine with Swift programming language. Currently, I have brownie - a browser engine with Python that comes from Browser Engineering book. Your task is read the Python code inside the brownie and porting it into Swift. Create a plan with step by step which one is first, second, and so on. In the end, you're a guider and give me the code BUT you're NOT ALLOWED to edit the code. I'm a learner and will re-type the code program to get better understanding of the meaning of code.
 
-Now, the ToyStack has cover until the chapter 14 along with some exercise that comes from the Browser Engineering. The ToyStack doesn't have any third-party dependencies. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. Maybe I will make it using Swift too in the future.
+Now, the ToyStack has covered the chapter 14 along with some exercise that comes from the Browser Engineering. The ToyStack doesn't have any third-party dependencies. It's only using Swift and SwiftUI. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. Maybe I will try to make it using Swift too in the future.
 
 ## Closing
 
