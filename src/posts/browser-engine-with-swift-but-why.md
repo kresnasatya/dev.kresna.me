@@ -30,7 +30,9 @@ So, I want to make a browser engine with Swift. It doesn't have to be perfect or
 
 Luckily I found it! The [Browser Engineering book](https://browser.engineering) - created by Pavel Panchekha and Chris Harrelson. This books covers the foundation of how to make the web browser using Python. I have follow the chapter since October 2025 and using the Python as the authors suggest. I save it into a GitHub repository called [brownie](https://github.com/kresnasatya/brownie). Now, I'm in the last chapter and soon it will be finished. :)
 
-Before I mention the plan, I will give you three reason why I choose Swift as programming language to make a browser engine:
+## Reason 
+
+There are three reasons why I choose Swift as programming language to make a browser engine:
 
 **1. Curiousity**
 
