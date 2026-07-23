@@ -1,12 +1,14 @@
 ---
 title: 'Upgrade Your Laravel Project Incrementally'
-pubDate: 2025-12-20
+pubDate: 2026-01-04
 description: 'Incremental upgrade your Laravel project to save your sanity in the future.'
 author: 'Kresna Satya'
 draft: false
 ---
 
-> Actually, I would like to create and publish this post in December 2025. But, many things happen in my real life and I keep procrastinate myself to create this post. Well, this is the result. I can deliver it on 2026.
+> Actually, I would like to make this post in December 2025. But, many things happen in my real life and I keep procrastinate myself to create this post.
+
+# Background
 
 I started make the Laravel Diff, a utility to compare what files changed when upgrade the Laravel project in September 2024. You can see the first commit by visit the [Laravel Diff's commits](https://github.com/senkulabs/laraveldiff.org/commits/main/?after=dfe5987fb7451fdc0985a32c9af54be962969fac+34). It builds on top SvelteKit and deployed on Cloudflare. I decided to buy domain [laraveldiff.org](https://laraveldiff.org) in the same month and until this post published it has 1.32k unique visitors in 30 days based on Cloudflare analytics.
 
@@ -20,16 +22,20 @@ Another side effect is security-side. In 2024, Laravel has reach version 11 with
 
 > Do you still remember deploy Laravel in `protected` folder? If so, you're an old generation in Laravel. This happened in those "ancient Laravel projects" that we take care at that time.
 
-I was still working for Udayana University at that time. We have more than 30 web apps that use the old Laravel version and also use CodeIgniter version 3.x. The deployment also doesn't follow the conventions especially for the Laravel. Around 2 to 5 web apps that uses the new Laravel version and those follow the Laravel deployment rule. We only have 12 programmers (included myself). Each of us has our responsibility to handle web apps. Even one of us is taking care hundreds of websites that using WordPress, Laravel, and CakePHP. That's crazy!
+# How It's Started
 
-With the situation my coworkers got the "ancient Laravel projects" to take care and I have created the Laravel Diff to inspect file changes in upgrade Laravel project, I see a chance to use this tool. I persuade them to upgrade the Laravel version of those projects incrementally. I voluntarily myself to involve in this project in order to test the functionallity Laravel Diff. It's not good at first, because there's no strict checker in Laravel Diff when we want to upgrade from X version (source) to Y version (target). For example, when we want to upgrade Laravel version 5.1, we don't allowed to upgrade it directly to the latest version (version 11). We must upgrade it incrementally, from Laravel 5.1 to 5.2. Also, there's specific case where there's no Laravel version 5.9. So, the latest version in 5.x is 5.8. Then, the upgrade must be from 5.8 to 6.x. Another challenge was the third-party packages in those admission systems. It uses [ixudra/curl](https://github.com/ixudra/curl) for HTTP request, the [laravel-fpdf wrapper](https://github.com/ristekusdi/laravel-fpdf) for print PDF (you create PDF with coordinate NOT HTML which is really really horrible), and [laravelcollective/html](https://laravelcollective.com/docs) for blade utility (it's support until Laravel version 10). 
+We have more than 30 web apps that use the old Laravel version and also use CodeIgniter version 3.x. The deployment also doesn't follow the conventions especially for the Laravel. Around 2 to 5 web apps that uses the new Laravel version and those follow the Laravel deployment rule. We only have 12 programmers (included myself). Each of us has our responsibility to handle web apps. Even one of us is taking care hundreds of websites that using WordPress, Laravel, and CakePHP. That's crazy!
 
-It's really hard when upgrade the web apps that have a lot of codes and a lot of routes. So, I make a simple rules: 
+I have created the Laravel Diff to inspect file changes in upgrade Laravel project and would like to test this tool to upgrade the "ancient admission project". So, I made initiative to upgrade it by fork the project. It's not good at first, because there's no strict checker in Laravel Diff when we want to upgrade from X version (source) to Y version (target). For example, when we want to upgrade Laravel version 5.1, we are not allowed to upgrade it directly to the latest version (version 11). We must upgrade it incrementally. Also, there's specific case where there's no Laravel version 5.9. So, the latest version in 5.x is 5.8. Then, the upgrade must be from 5.8 to 6.x. Another challenge was the third-party packages in those admission systems. It uses [ixudra/curl](https://github.com/ixudra/curl) for HTTP request, the [laravel-fpdf wrapper](https://github.com/ristekusdi/laravel-fpdf) for print PDF (you create PDF with coordinate NOT HTML which is really really horrible), and [laravelcollective/html](https://laravelcollective.com/docs) for blade utility (it's support until Laravel version 10). 
 
-1. If the main page or main root works well after upgrade to newer version then continue.
-2. If the third-party packages get in a way when upgrade project to the newer version then remove it.
+It's really hard to upgrade the web apps that have a lot of codes and a lot of routes. So, I make a simple rules: 
 
-The result, we successfully upgrade the Laravel version of admission systems into version 10. Although, we must keep the Laravel Collective, because one of admission systems use it a lot. This task is like a winter project. It takes 2 to 3 days of works to make upgrade succesful. It takes 1 to 2 weeks to make the functionality of web app running well.
+1. If the main page works well after upgrade to newer version then continue.
+2. If the third-party packages get in a way when upgrade project to the newer version then remove it for temporary.
+
+# Lesson Learned
+
+In short, we successfully upgrade the Laravel version of admission systems into version 10. Although, we must keep the Laravel Collective, because one of admission systems use it a lot. This task is like a winter project. It takes 2 to 3 days of works to make upgrade succesful. It takes 1 to 2 weeks to make the functionality of web app running well.
 
 ![Picture of commit upgrade laravel eregistrasi](../images/commit-upgrade-laravel-ereg.png)
 
@@ -48,4 +54,3 @@ Here are the benefits we get from incremental upgrade Laravel project:
 I don't know what is happening now in those admission systems because I no longer work there. I think that those admission systems can be merged into one admission system. If they want, they can keep going to incremental upgrade the project into the latest Laravel version by replace the Laravel Collective's Blade into the Laravel Blade. But, if they want to re-write from scratch now, it's okay too as long as they have their time.
 
 This is a story of journey of incremental upgrade your Laravel project. I hope with our story, you started upgrade your Laravel version in your project in order to save your sanity in the future. My tip is always make your project less or even zero dependency with any third-party a.k.a. [keep vanilla](https://dev.37signals.com/a-vanilla-rails-stack-is-plenty/). Because who knows those third-parties will be unmaintained and one day you will get trouble with it. Unless the third-party is credible like [Spatie](https://spatie.be). :)
-
