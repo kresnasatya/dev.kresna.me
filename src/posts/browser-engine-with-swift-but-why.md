@@ -16,7 +16,7 @@ I don't know exactly when. But, I have a dream to shift my career from a web dev
 - Servo
 - LibWeb for Ladybird
 
-The Ladybird is a new browser engine from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple who works for WebKit - as far as I follow him on Twitter and I watch him on YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm excited and waiting that day happen. But, it's not happened. Instead, [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria for them. Honestly, I'm sad because I'm really wanna see the browser engine build with Swift from scratch - mix with C/C++ interopability - oh, hi [Skia](https://github.com/google/skia) and [Harfbuzz](https://github.com/harfbuzz/harfbuzz).
+The Ladybird is a new browser engine from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple who works for WebKit - as far as I follow him on Twitter and I watch him on YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm excited and waiting that day happen. But, it's not. Instead, [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria for them. Honestly, I'm sad because I'm really wanna see the browser engine build with Swift from scratch.
 
 Rather than waiting and waiting to see that day happen, why don't I made a try to make a browser engine with Swift from scratch?
 
@@ -24,7 +24,7 @@ Rather than waiting and waiting to see that day happen, why don't I made a try t
 
 ## A Plan
 
-1. It doesn't have to be perfect or using fancy things like C/C++ interopability that can integrate with Skia or Harfbuzz or even use it widely. 
+1. It doesn't have to be perfect or using fancy things like C/C++ interopability.
 2. The browser engine can read URL, parse the content from URL with HTML parser, CSS parser, and JavaScript Engine then show it in a page in a tab. That's it for a good start. 
 
 But, I need a solid and robust resource to teach me how to make a web browser. 
@@ -39,15 +39,17 @@ There are three reasons why I choose Swift as programming language to make a bro
 
 1. Curiosity
 
-The real-world browser engines mostly build with C/C++. Recently, Rust joined this competition followed by Zig. Meanwhile, Swift is a programming language that has integration with desktop or mobile platform. Mostly, the browser engines will be wrapped into a desktop or mobile app then Swift has fulfill this criteria. I don't need to waste my time to seeking the GUI desktop engine. :)
+The real-world browser engines mostly build with C/C++. Recently, Rust joined this competition with Servo and followed by Zig with Lightpanda. So, I took another approach. I use Swift is a programming language because has well integration with GUI from macOS. I don't need to waste my time to seeking the GUI desktop engine. :)
 
 In the end I would like to know how far Swift can be used as programming language to build a browser engine.
 
 2. Everything is object
 
-Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has Object Oriented Programming. That's it! I don't want to explain it more detail. Ask Claude!
+Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has Object Oriented Programming. That's it! I don't want to explain it more detail. Ask your favorite LLM provider!
 
 > How does the DOM relate to Swift's OOP model in the context of building a browser engine?
+
+I think I will post it more detail about relation between Swift's OOP model and DOM in the future post.
 
 3. Learning
 
@@ -55,15 +57,18 @@ I'm a beginner in building browser engine area. Mostly, I'm just a consumer who 
 
 ## AI is My Assistant
 
-Artificial Intelligence has turned into Large Language Model (LLM) that turned into a product called Claude (one of them). The code program is no longer mystery. The another mystery is the meaning of the code program and it's impact to the sofware. As programmer you still need to learn programming language in the AI era. You still have the job to write and review the code to bring high quality software!
+Artificial Intelligence has turned into Large Language Model (LLM) that turned into a product called Claude (one of them). The code program is no longer mystery. The another mystery am I **understand** the meaning of the code program. As programmer I still need to learn programming language in the AI era. I still have the job to write and review the code to bring high quality software.
 
 Let's start for the execution. At the first try, I just throw all the things from the brownie and tell the Claude to port it into Swift. Errrr... It doesn't work as expected. Then, I change my workflow. 
 
 First, I split the parts of brownie into three parts (branches):
 
-- Part 1 - branch `ch01-10`: It covers chapter 1 (Downloading Web Pages) to 10 (Keeping Data Private)
-- Part 2 - branch `ch11-14`: It covers chapter 11 (Adding Visual Effects) to 14 (Making Content Accessible)
-- Part 3 - branch `ch15-16`: It covers chapter 15 (Supporting Embedded Content) to 16 (Reusing Previous Computation)
+- Part 1 - branch `ch01-10`: It covers chapter 1 to 10 (Downloading Web Pages to Keeping Data Private)
+- Part 2 - branch `ch11-14`: It covers chapter 11 to 14 (Adding Visual Effects to Making Content Accessible)
+- Part 3 - branch `ch15`: It covers chapter 15 (Supporting Embedded Content)
+- Part 4 - branch `ch16`: to 16 (Reusing Previous Computation)
+
+Part 4 is really hard to implement. Wrong put reusable state the the browser will be terrible shape. Imagine minesweeper game.
 
 Second, I create a Swift project for web browser engine. I called it `ToyStack`.
 
@@ -81,7 +86,7 @@ Inside the ToyStack I put the brownie project and switch into `ch01-10` branch. 
 
 > I want to make a browser engine with Swift programming language. Currently, I have brownie - a browser engine with Python that comes from Browser Engineering book. Your task is read the Python code inside the brownie and porting it into Swift. Create a plan with step by step which one is first, second, and so on. In the end, you're a guider and give me the code BUT you're NOT ALLOWED to edit the code. I'm a learner and will re-type the code program to get better understanding of the meaning of code.
 
-Now, the ToyStack has covered the chapter 14 along with some exercise that comes from the Browser Engineering. The ToyStack doesn't have any third-party dependencies. It's only using Swift and SwiftUI. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. Maybe I will try to built it using Swift too in the future.
+Now, the ToyStack has covered the chapter 14 along with some exercises from the Browser Engineering. The ToyStack doesn't have any third-party dependencies. It's only using Swift and SwiftUI. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. Maybe I will try to built it using Swift too in the future.
 
 ## Closing
 
@@ -90,7 +95,7 @@ Thanks to the help from AI, the code is no longer mystery and build a "toy" brow
 If I want to make a description on how the browser engine works maybe like this:
 
 - Everything starts from URL
-- The URL contains information: HTML tags along with CSS (`<style>` or <link rel="stylesheet">`) and JavaScript (`<script>` or `<script src="">`)
+- The URL contains information: HTML tags along with CSS (`<style>` or `<link rel="stylesheet">`) and JavaScript (`<script>` or `<script src="">`)
 - Then, you have two parser and one engine: HTML parser, CSS parser, and JavaScript engine. Those are used for parsing the tags into the DocumentLayout.
 - From DocumentLayout to BlockLayout. From BlockLayout into LineLayout, InputLayout, and ButtonLayout or even ImageLayout.
 - The layout result is inside a tab.
