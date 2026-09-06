@@ -1,5 +1,5 @@
 ---
-title: 'I Built a Browser Engine in Swift. But Why?'
+title: "I Built a Browser Engine in Swift. Here's Why."
 pubDate: 2026-03-31
 description: 'In short is curiosity. For long reason read the post.'
 author: 'Kresna Satya'
@@ -8,7 +8,7 @@ draft: false
 
 ## Intro
 
-I don't know exactly when. But, I have a dream to shift my career from a web developer into web browser engineer. I wish I could make it happen in a distant future. At the time this post is published, there are popular browser engines in this world:
+I don't know exactly when. But, I have a dream to shift my career from a web developer into web browser engineer. I wish I could make it happen in a closer future. At the time this post is published, there are popular browser engines in this world:
 
 - WebKit for Safari
 - Chromium (Blink) for Google Chrome
@@ -22,16 +22,17 @@ Rather than waiting and waiting to see that day happen, why don't I made a try t
 
 > No one is perfect, but making progress moves you closer to it.
 
-## A Plan
+## Target
 
-1. It doesn't have to be perfect or using fancy things like C/C++ interopability.
-2. The browser engine can read URL, parse the content from URL with HTML parser, CSS parser, and JavaScript Engine then show it in a page in a tab. That's it for a good start. 
+1. The browser engine can read URL, parse the content from URL with HTML parser, CSS parser, and JavaScript Engine then show it in a page in a tab. That's it for a good start. 
+
+2. It doesn't have to be perfect or using fancy things like C/C++ interopability.
 
 But, I need a solid and robust resource to teach me how to make a web browser. 
 
 > No no no. Please don't suggest me the WHATWG HTML Standard. It's too too too big. 😵‍💫
 
-Luckily I found it! The [Browser Engineering book](https://browser.engineering) - created by Pavel Panchekha and Chris Harrelson. This books covers the foundation of how to make the web browser using Python. I have follow the chapter since October 2025. I save it into a GitHub repository called [brownie](https://github.com/kresnasatya/brownie). Now, I'm in the last chapter and soon it will be finished. :)
+Luckily I found it! The [Browser Engineering book](https://browser.engineering) - created by Pavel Panchekha and Chris Harrelson. This book covers the foundation to make the web browser engine using Python. I have follow the chapter since October 2025. I save it on GitHub repository called [brownie](https://github.com/kresnasatya/brownie). Now, I'm in the last chapter and soon it will be finished. :)
 
 ## Reasons
 
@@ -39,27 +40,23 @@ There are three reasons why I choose Swift as programming language to make a bro
 
 1. Curiosity
 
-The real-world browser engines mostly build with C/C++. Recently, Rust joined this competition with Servo and followed by Zig with Lightpanda. So, I took another approach. I use Swift is a programming language because has well integration with GUI from macOS. I don't need to waste my time to seeking the GUI desktop engine. :)
-
-In the end I would like to know how far Swift can be used as programming language to build a browser engine.
+The real-world browser engines mostly build with C/C++. Recently, Rust joined this competition with Servo and followed by Zig with Lightpanda. So, I took another approach. I use Swift is a programming language because it has well integration with GUI from macOS. I don't need to waste my time to seeking the GUI desktop engine. I'm also would like to see how far Swift can be used as programming language to build a browser engine.
 
 2. Everything is object
 
-Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has Object Oriented Programming. That's it! I don't want to explain it more detail. Ask your favorite LLM provider!
+Everything is object. The web has [Document Object Model (DOM)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model). Swift has object-oriented programming paradigm. That's it. For more detail information, you may ask your LLM. ;)
 
 > How does the DOM relate to Swift's OOP model in the context of building a browser engine?
-
-I think I will post it more detail about relation between Swift's OOP model and DOM in the future post.
 
 3. Learning
 
 I'm a beginner in building browser engine area. Mostly, I'm just a consumer who use the browser. Now, it's time to learn how to build it.
 
-## AI is My Assistant
+## Starting Point
 
-Artificial Intelligence has turned into Large Language Model (LLM) that turned into a product called Claude (one of them). The code program is no longer mystery. The another mystery am I **understand** the meaning of the code program. As programmer I still need to learn programming language in the AI era. I still have the job to write and review the code to bring high quality software.
+Artificial Intelligence has turned into Large Language Model (LLM) that turned into a product called Claude (one of them). The code program is no longer mystery. The another mystery is **Do I understand the meaning of the code program?**. I think in this LLM era, I still need to learn how to program with programming language in order to understand the meaning of code program.
 
-Let's start for the execution. At the first try, I just throw all the things from the brownie and tell the Claude to port it into Swift. Errrr... It doesn't work as expected. Then, I change my workflow. 
+At the first try, I just throw all the things from the brownie and tell the Claude to port it into Swift. Errrr... It doesn't work as expected. Then, I change my workflow. 
 
 First, I split the parts of brownie into three parts (branches):
 
@@ -68,7 +65,7 @@ First, I split the parts of brownie into three parts (branches):
 - Part 3 - branch `ch15`: It covers chapter 15 (Supporting Embedded Content)
 - Part 4 - branch `ch16`: to 16 (Reusing Previous Computation)
 
-Part 4 is really hard to implement. Wrong put reusable state the the browser will be terrible shape. Imagine minesweeper game.
+The part 4 is really hard to implement. If I put wrong reusable state then the browser will be terrible shape. I imagine like playing minesweeper game.
 
 Second, I create a Swift project for web browser engine. I called it `ToyStack`.
 
@@ -84,13 +81,13 @@ swift package init --type=executable --name ToyStack
 
 Inside the ToyStack I put the brownie project and switch into `ch01-10` branch. Then, I start chat with Claude with the prompt like this.
 
-> I want to make a browser engine with Swift programming language. Currently, I have brownie - a browser engine with Python that comes from Browser Engineering book. Your task is read the Python code inside the brownie and porting it into Swift. Create a plan with step by step which one is first, second, and so on. In the end, you're a guider and give me the code BUT you're NOT ALLOWED to edit the code. I'm a learner and will re-type the code program to get better understanding of the meaning of code.
+> I want to make a browser engine with Swift programming language. Currently, I have brownie - a browser engine with Python that comes from Browser Engineering book. Your task is read the Python code inside the brownie and porting it into Swift. Create a plan with step by step which one is first, second, and so on. You're a guider and give me the code BUT you're NOT ALLOWED to edit the code. I'm a learner and will re-type the code program to get better understanding of the meaning of code.
 
-Now, the ToyStack has covered the chapter 14 along with some exercises from the Browser Engineering. The ToyStack doesn't have any third-party dependencies. It's only using Swift and SwiftUI. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. Maybe I will try to built it using Swift too in the future.
+The ToyStack has covered the chapter 14 along with some exercises from the Browser Engineering. It doesn't have any third-party dependencies. It's only using Swift and SwiftUI. The rendering engine is built from scratch by follow the Browser Engineering book. Meanwhile for JavaScript engine, I use JavaScriptCore (Safari) instead of build from scratch. I guess I will try to built it using Swift too in the future.
 
 ## Closing
 
-Thanks to the help from AI, the code is no longer mystery and build a "toy" browser engine can be done in days instead of weeks or months. But, for the real-world browser engine is another story. My experience when make the browser engine with Swift is mixed feeling. Mostly, I'm confused with the output of code program because I have less experience with Swift programming language. Even along with the web browser term like Chrome - it's a control for managing tabs, back and forward button, address bar input, bookmark site. I was thinking the Chrome is just the product name of Google Chrome. 🙈
+Thanks to the help from AI, the code is no longer mystery and build a "toy" browser engine can be done in days instead of weeks or months. But, for the real-world browser engine is another story. My experience when make the browser engine with Swift is mixed feeling. Mostly, I'm confused with the output of code program because I have less experience with Swift programming language. Even along with the web browser term called Chrome - it's a control for managing tabs, back and forward button, address bar input, bookmark site. I was thinking the Chrome is just the product name of Google Chrome. 🙈
 
 If I want to make a description on how the browser engine works maybe like this:
 
