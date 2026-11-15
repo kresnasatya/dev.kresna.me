@@ -1,4 +1,5 @@
 ---
+import PeleDiagrams from '../components/PeleDiagrams.astro';
 import PostLanguageSwitcher from '../components/PostLanguageSwitcher.astro';
 import Toc from '../components/Toc.astro';
 import Layout from "./Layout.astro";
@@ -16,6 +17,7 @@ const { frontmatter, headings } = Astro.props;
     <article>
         <slot />
     </article>
+    <PeleDiagrams />
 </Layout>
 
 <style>

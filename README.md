@@ -15,3 +15,7 @@ bun run new ai-still-needs-you
 ```
 
 This will create `ai-still-needs-you.md` inside `src/posts`.
+
+## Diagrams
+
+Write [Mermaid](https://mermaid.js.org) syntax in a ```` ```mermaid ```` code block inside a post. [Pele](https://pele.run) renders it to SVG in the browser (`src/components/PeleDiagrams.astro`).

@@ -1,0 +1,27 @@
+---
+// Renders ```mermaid code blocks in a post as SVG with Pele (https://pele.run).
+// Pele is only downloaded on pages that actually contain a diagram.
+---
+
+<script>
+	const blocks = document.querySelectorAll<HTMLElement>('article pre > code.language-mermaid');
+
+	if (blocks.length > 0) {
+		const { mountAsync } = await import('pele/lazy');
+
+		for (const code of blocks) {
+			const source = code.textContent ?? '';
+			const container = document.createElement('div');
+			container.className = 'diagram';
+			code.parentElement!.replaceWith(container);
+			await mountAsync(container, source);
+		}
+	}
+</script>
+
+<style is:global>
+	article .diagram {
+		margin: 1rem 0;
+		--pele-font-mono: Menlo, Monaco, 'Courier New', monospace;
+	}
+</style>
