@@ -1,4 +1,7 @@
 ---
+// Enables <lite-youtube videoid="..."></lite-youtube> in plain .md posts
+// (the same web component astro-embed's <YouTube /> renders).
+import 'lite-youtube-embed/src/lite-yt-embed.css';
 import PeleDiagrams from '../components/PeleDiagrams.astro';
 import PostLanguageSwitcher from '../components/PostLanguageSwitcher.astro';
 import Toc from '../components/Toc.astro';
@@ -19,6 +22,10 @@ const { frontmatter, headings } = Astro.props;
     </article>
     <PeleDiagrams />
 </Layout>
+
+<script>
+    import 'lite-youtube-embed';
+</script>
 
 <style>
     article :global(h2) {
