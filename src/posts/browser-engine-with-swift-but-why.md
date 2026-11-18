@@ -58,7 +58,7 @@ Artificial Intelligence has turned into Large Language Model (LLM) that turned i
 
 At the first try, I just throw all the things from the brownie and tell the Claude to port it into Swift. Errrr... It doesn't work as expected. Then, I change my workflow. 
 
-First, I split the parts of brownie into three parts (branches):
+First, I split brownie into four parts (branches):
 
 - Part 1 - branch `ch01-10`: It covers chapter 1 to 10 (Downloading Web Pages to Keeping Data Private)
 - Part 2 - branch `ch11-14`: It covers chapter 11 to 14 (Adding Visual Effects to Making Content Accessible)
