@@ -333,14 +333,30 @@ Now the code become readable enough to measure. Each performance commit from her
 **Get off the main thread (`eda4d1a`)**. Updating layers and committing them happened on the main thread. A new `ContentPresenter` does it on its own queue and keeps only the latest frame if several pile up.
 
 **Tweak style and layout before painting (`1709920` -> `bd197b7`)**. The engine matches CSS rules to elements (style) and measures text to place words on lines (layout). The AI added trace spans and counters for these steps (`1709920`, `f3bb081`): how many elements x rules style had to check, and how many times layout measured a word. From there, AI make fixed based on trace result:
-- Remember text measurements instead of measuring the same word again (`1247311`)
-- Look up the font once per text node instead of once per word (`1247311`, `c5413f3`, `bd197d7`).
-- Group CSS rules by tag, class, and id. So, an element is only checked against rules that could match it (`9aea139`).
-- Skip a rule like `nav a` right away when the element has no `nav` above it (`5b90ad6`).
+
+A. Remember text measurements instead of measuring the same word again (`1247311`)
+
+B. Look up the font once per text node instead of once per word. A text node is a run of text between two tags, and all its words share one style, so they share one font (`1247311`, `c5413f3`, `bd197d7`).
+
+Example:
+
+```html
+<p>The quick brown fox <b>jumps over</b> the lazy dog</p>
+```
+
+| Text Node | Style | Words that layout cuts it into |
+|---|---|---|
+| "The quick brown fox" | normal | The, quick, brown, fox |
+| "jumps over" | bold (inside <b>)  | jumps, over |
+| " the lazy dog" | normal | the, lazy, dog |
+
+C. Group CSS rules by tag, class, and id. So, an element is only checked against rules that could match it (`9aea139`).
+
+D. Skip a rule like `nav a` right away when the element has no `nav` above it (`5b90ad6`).
 
 ### Organize, Organize, Organize
 
-This step do rename in some files with reasonable reason and organize files into domain.
+This step rename some files with reasonable reason and organize files into domain.
 
 | Before | After | Reason |
 |---|---|---|
@@ -354,6 +370,19 @@ This step do rename in some files with reasonable reason and organize files into
 | `ScrollAnimation` | `ScrollTween` | It tweens between two values |
 | `animate()` | `nextValue()` | Says what it returns |
 | `splitTopLevel` | `splitOutsideParentheses` | Says what it does |
+
+The files organized into a folder based on domain that follow the order a web page is built:
+
+```mermaid
+flowchart LR
+    Networking --> Parsing --> Style --> Layouts --> Display --> Raster --> Presentation
+```
+
+The `Core` domain for orchestrates. The `Animation` pushes new style values into the line every frame. `Accessibility` reads the laid-out page and adds highlight outlines to the drawing. `Platform`, `Scheduling`, `Diagnostic` used for support. 
+
+With this approach, when something went wrong like "Tile shows wrong text, color, or position" or "Tile is black, stale or missing" or "Tile content is right but sits in the wrong place on screen" then you may know which folder to open.
+
+> **Note**: For the case "Tile shows wrong text, color, or position", you need to look `Display` (draw list), `Layouts` (positions), or `Style` (CSS values). For the case "Tile is black, stale or missing", you need to look `Raster` directory which contains cache key, which tiles get painted, the worker pool. For the case "Tile content is right but sits in the wrong place on screen", you need to look `Presentation` and `ContentPresenter`.
 
 ## Second Challenge: Smooth Resize Window
 
