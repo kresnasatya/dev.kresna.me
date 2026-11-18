@@ -84,8 +84,7 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 		min-height: 100vh;
 	}
 
-	h1,
-	h2 {
+	h1, h2, h3, h4, h5, h6 {
 		font-family: 'DM Serif Display', serif;
 	}
 
@@ -94,19 +93,22 @@ const currentLang = Astro.url.pathname.startsWith('/id') ? 'id' : 'en';
 	}
 
 	h2 {
-		font-size: 1.5rem;
+		font-size: 1.75rem;
 	}
 
 	h3 {
+		font-size: 1.5rem;
+	}
+
+	h4, h5, h6 {
 		font-size: 1.25rem;
 	}
 
 	p, ol {
-		font-size: 1.25rem;
+		font-size: 1rem;
 	}
 
 	nav {
-		font-size: 1.25rem;
 		margin: .5rem 0;
 		padding: 1rem;
 	}

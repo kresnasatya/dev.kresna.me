@@ -28,12 +28,7 @@ const { frontmatter, headings } = Astro.props;
 </script>
 
 <style>
-    article :global(h2) {
-        font-size: 1.75rem;
-    }
-
     article :global(h3) {
-        font-size: 1.5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;
     }
@@ -41,12 +36,7 @@ const { frontmatter, headings } = Astro.props;
     article :global(p) {
         margin-top: 1rem;
         margin-bottom: 1rem;
-        font-size: 1.25rem;
         word-wrap: break-word;
-    }
-
-    article :global(ol), article :global(ul) {
-        font-size: 1.25rem;
     }
 
     article :global(blockquote) {
