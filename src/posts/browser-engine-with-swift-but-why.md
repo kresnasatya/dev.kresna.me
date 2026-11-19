@@ -16,7 +16,7 @@ I don't know exactly when. But, I have a dream to shift my career from a web dev
 - Servo
 - LibWeb for Ladybird
 
-The Ladybird is a new browser engine from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple who works for WebKit - as far as I follow him on Twitter and I watch him on YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm excited and waiting that day happen. But, it's not. Instead, [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria for them. Honestly, I'm sad because I'm really wanna see the browser engine build with Swift from scratch.
+The Ladybird is a new browser engine from scratch by [Andreas Kling](https://awesomekling.github.io) (he was ex-Apple engineer worked for WebKit - as far as I follow him on Twitter and I watch him on YouTube). In a video, Andreas mentioned that he and the team have [a plan to move the Ladybird code from C/C++ into Swift](https://www.youtube.com/watch?v=DSEZ2ZYLdHg). I'm excited and waiting that day happen. But, it's not. Instead, [Andreas and the team decide to move it into Rust with help from AI](https://ladybird.org/posts/adopting-rust/) - because the C/C++ interopability on Swift doesn't match the expectation criteria for them. Honestly, I'm sad because I'm really wanna see the browser engine build with Swift from scratch.
 
 Rather than waiting and waiting to see that day happen, why don't I made a try to make a browser engine with Swift from scratch?
 
