@@ -6,17 +6,46 @@ author: 'Kresna Satya'
 draft: true
 ---
 
-In the previous post, I told you that I want to build a browser engine from scratch using Swift. The initial step is building a rendering engine from scratch which is no WebKit. The starting point is using [Browser Engineering book](https://browser.engineering) created by awesome people: Pavel Panchekka & Chris Harrelson. Today, I would like to share to you my journey so far on how build this thing especially rendering engine with misconception of **Everything is object**.
+> **Note:** This post involves the AI intervention, but I have personally reviewed it. 
 
-## Impression
+## Preface
 
-Building browser engine with AI is harder than I think. The harder parts are I **must** learn lot of terms in browser engineering, I need to re-read again and again to understand what it means and what's going on. If I just let AI write the code it means I don't learn as one of Richard Feynman's popular quote:
+Today, we have a lot of web browsers. Start from Google Chrome, Firefox, Safari, Microsoft Edge, Brave, Opera, and maybe many more. If we take a look closer, some of these browsers use the same engine. Example: Microsoft Edge, Brave, and Opera use the Google Chrome's engine. Now, let's take a look deeper about engine inside the browsers. Here's the list:
 
-> What I cannot create, I do not understand.
+- Blink: Google Chrome, Microsoft Edge, Brave, and Opera
+- Gecko: Firefox
+- WebKit: Safari
 
-Or if I want to modify the quote maybe like this:
+These engines are rendering engine. Those rendering engines above are mostly written with C/C++. Few years ago, there is another rendering engine called Servo written with Rust. Recently, we also have a new web browser called Ladybird. This browser has rendering engine called LibWeb written with Rust too.
 
-> What I don't write, I do not understand.
+> Should I add "I hate Rust." and "Rust is amazing." here? IYKYK.
+
+Now, the question is: what is rendering engine? It's an engine to turn web page into pixel on the screen. In this post, I will discuss deeper about rendering engine, it's responsibilities, and some challenges I'm facing on in rendering engine.
+
+But first, let me show you the simple anatomy of browser.
+
+## Anatomy of Browser
+
+![Anatomy of browser](../images/browser_anatomy_layout_tree.svg)
+
+Here's how to read it, from the outside in:
+
+- **The shell (Browser, Chrome, Tab, Frame, Viewport)**. The `Browser` holds the `Chrome`, which is the browser's own interface (address bar, tab strip, buttons), plus one or more `Tab`s. Each tab loads a page into a `Frame`. An iframe on the page creates another nested frame. The `Viewport` is the part of the frame you can actually see and scroll.
+- **The layout tree (the teal boxes)**. `DocumentLayout` is the root. Under it, `BlockLayout` nodes stack vertically and can contain other blocks. When a block holds text, it splits that content into `LineLayout` rows.
+- **Inline content**. I drew `InlineLayout` as the group of things that sit inside a line. There are kinds of leaf: `TextLayout` for words and `EmbedLayout` for non-text items like images, inputs, and iframes.
+
+## Parts of Browser
+
+A browser is more than its engine.
+
+![Parts of Browser](../images/web_browser_major_parts.svg)
+
+Here's how to read it, from top to bottom:
+
+- **Browser UI / chrome** is the only part you see directly. It takes your clicks and typing and passes them down to the page in the current tab.
+- **Rendering engine** is the core. It turns a page into pixels in five steps: build the DOM, work out styles, lay out the boxes, paint them, then hand the layers off for compositing. The layout tree from the first diagram (`DocumentLayout` -> `BlockLayout` -> ...) is what Layout step builds.
+- **Script engine and networking / storage** are separate parts the rendering engine calls on. Scripts read and change the DOM. The network loads the HTML, CSS, images and scripts, and applies cache, cookie and origin rules.
+- **OS compositor / display** sits outside the browser. The operating system combines the browser's layers with every other window and shows the result on screen at the display's refresh rate.
 
 ## Rendering Engine
 
@@ -52,53 +81,6 @@ flowchart LR
 - **Draw / Composite**: the compositor **assembles the already-rasterized layers** into one final frame, applying transform, opacity, and scroll position along the way. This usually runs on separate thread or on the GPU. `transform` and `opacity` animations can jump straight to this stage without repeating layout, paint, and raster.
 - **Present**: the final frame is sent to the screen, synchronized with **Vsync** (the monitor's refresh rate, e.g. 60 Hz ≈ 16 ms per frame) to prevent *tearing*.
 
-**REMINDER**: A browser is more than its engine.
-
-| Part | Job |
-|---|---|
-| Browser UI / chrome | tabs, address bar, window, input routing |
-| Rendering engine | HTML/CSS/JS integration, DOM, style, layout, paint, compositing hand-off |
-| Script engine | JavaScript execution (JSC/V8/SpiderMonkey) |
-| Networking / storage | fetch, cache, cookies, origins |
-| OS compositor / display | window animation, final composition, display timing |
-
-## What We Have Now?
-
-In real-world, we as end-users use these browsers: Google Chrome, Safari, Firefox, Opera, Brave, Microsoft Edge.
-
-> No IE! You're done. Rest in peace.
-
-These browsers have their own rendering engine. Some of them using the a giant rendering engine.
-
-- Blink: Google Chrome, Opera, Brave, Microsoft Edge
-- WebKit: Safari
-- Gecko: Firefox
-
-There's also another rendering engines like Servo and LibWeb by Ladybird.
-
-The thing that I would like to highlight is they are build with C/C++ and Rust. I wonder if I can make a rendering engine from scratch by using another programming language. Then, I pick Swift as my choice.
-
-## Why Swift?
-
-1. I'm using macOS. It's ridiculous if I never touch Swift programming language when I'm using macOS. Although, I'm using base model of MacBook Air M1, it should not be a gap to prevent me to use this language.
-
-2. Saving my time with GUI (Graphical User Interface). In the end, the browser used by end-user is a desktop application. By using macOS and Swift, I have access to Apple GUI library like AppKit and Swift.
-
-3. Curiosity. Previously, I mentioned about LadyBird. It's a new web browser written by scratch and truly independent. The truly independent means no interference from hands of giant corporations like Google. In 2024, the LadyBird team trying to replace C++ with Swift. But, the experiment failed because Swift support for C++ interopt doesn't meet their expectation and platform support outside Apple ecosystem was limited. So, here I go to try it again and who knows I learn things. :D
-
-## Starting Point
-
-I have follow along the practical guide from Browser Engineering and it turns to be a repository called Brownie (Browser Engineering). It used Python programming language as illustrated in the book. I start it from October 2025 and finish it in April 2026.
-
-When I'm porting the code program into Swift, I split it into 4 parts (branches):
-
-- Part 1 - branch `ch01-10`: It covers chapter 1 to 10 (Downloading Web Pages to Keeping Data Private)
-- Part 2 - branch `ch11-14`: It covers chapter 11 to 14 (Adding Visual Effects to Making Content Accessible)
-- Part 3 - branch `ch15`: It covers chapter 15 (Supporting Embedded Content)
-- Part 4 - branch `ch16`: to 16 (Reusing Previous Computation)
-
-Of course I'm using AI. For part 1 and 2, I use Claude Sonnet and Opus as assistance. I write the code that generated from AI instead of AI write the code by itself. Why? At least I want to make an effort to learn the syntax and behavior of Swift because I'm newbie in Swift programming. Of course, I prohibit myself to put any Swift third-party dependencies to build the rendering engine. :)
-
 ## Rendering Engine Responsibilities
 
 Rendering engine has lot of responsibilities. Here's the list:
@@ -127,107 +109,66 @@ Rendering engine has lot of responsibilities. Here's the list:
 
 In this post, I will discuss about the two hard things I'm facing on in rendering engine: scrolling and resize handling.
 
+## Why Swift?
+
+1. I'm using macOS. It's ridiculous if I never touch Swift programming language when I'm using macOS. Although, I'm using base model of MacBook Air M1, it should not be a gap to prevent me to use this language.
+
+2. Saving my time with GUI (Graphical User Interface). In the end, the browser used by end-user is a desktop application. By using macOS and Swift, I have access to Apple GUI library like AppKit and Swift.
+
+3. Trying something new and curiosity. Previously, I mentioned about Ladybird. It's a new web browser written by scratch and truly independent. The truly independent means no interference from hands of giant corporations like Google. In 2024, the LadyBird team trying to replace C++ with Swift. But, the experiment failed because Swift support for C++ interopt doesn't meet their expectation and platform support outside Apple ecosystem was limited. That's why they pick Rust. So, here I go to try it again and who knows I learn things. :D
+
+## Starting Point
+
+I have follow along the practical guide from Browser Engineering and it turns to be a repository called Brownie (Browser Engineering). It used Python programming language based on the book. I start it from October 2025 and finish it in April 2026.
+
+When I'm porting the code program into Swift, I split it into 4 parts (branches):
+
+- Part 1 - branch `ch01-10`: It covers Downloading Web Pages to Keeping Data Private
+- Part 2 - branch `ch11-14`: It covers Adding Visual Effects to Making Content Accessible
+- Part 3 - branch `ch15`: It covers Supporting Embedded Content
+- Part 4 - branch `ch16`: It covers Reusing Previous Computation
+
+Of course I'm using AI. For part 1 and 2, I use Claude Sonnet and Opus as assistance. For part 3 and 4, I use Deepseek v4.1 Flash but later on I'm back to Claude Opus.
+Instead of AI write the code, I write the code generated by AI. Why? At least I want to make an effort to learn the syntax and behavior of Swift because I'm newbie in Swift programming and browser engineering. Of course, I prohibit myself to put any Swift third-party dependencies to build the rendering engine. :)
+
 ## First Challenge: Smooth Scrolling
 
-Given video side by side: the left side is bad scroll and the right side is good scroll.
+Given video side by side: the left side is bad scroll (before fix) and the right side is good scroll (after fix).
 
 <lite-youtube videoid="LfeJ1Hru42s" title="Bad Scroll vs Good Scroll"></lite-youtube>
 
-In fps (frame per second) measurement, the bad scroll achieves 20 fps and good scroll achieves 52 fps. It increased 2.6x than the bad scroll. You may wondering why the bad scroll happened and how come I improve it. Before that, let me introduce you some glossaries.
+Let's illustrate the bad scroll pipeline into a interactive animation.
 
-| Word | Meaning |
-| ---- | ------------ |
-| frame | one new picture shown on the screen |
-| fps | frames per second |
-| gap | time between two frames; a long gap is a visible freeze |
-| median | the middle value: half of the values are smaller, half are bigger |
-| 95th percentile | 95% of the values are smaller than this — "how slow the slow cases are" |
-| main thread | the one thread that handles clicks, keys and scrolling; if it is busy, the app freezes |
-| worker thread | an extra thread that does heavy work so the main thread stays free |
-| tile | a 128 × 128 px square piece of the page, drawn once and reused |
-| layer | a picture that macOS (Core Animation) can move around on screen without redrawing it |
-| interest region | the part of the page the bad build has already drawn (2400 px tall) |
+<script type="module" src="/rendering-engine/bad-scroll-pipeline.js"></script>
+<bad-scroll-pipeline>
+    <p><em>Interactive diagram of the scroll pipeline (needs JavaScript).</em></p>
+</bad-scroll-pipeline>
 
-Now, let's jump to a sequence diagram.
+Why is it slow?
 
-**Bad scroll commit `e8da50c`**
-```mermaid
-sequenceDiagram
-    participant E as NSEvent
-    participant T as Tab
-    participant B as Browser (main thread)
-    participant R as RasterThread
-    participant S as SwiftUI Canvas
+1. **The main thread does almost everything**. Four of the five boxes run on it, and it also reads your trackpad. `RasterThread` only builds the draw list; the actual painting goes back to the main thread. So while the main thread draws, your scroll events wait.
 
-    E->>T: scrollAt(x, y, deltaY) ToyStack.swift:182
-    T->>T: scrollDown / scrollUp Tab.swift:659
-    T->>T: checkInterestRegion() Tab.swift:752
-    alt still inside the 2400 px interest region
-        T->>B: applyScroll(scroll) Tab.swift:688 -> Browser.swift:380
-        B->>R: rasterThread.submit (draw.only) Browser.swift:172
-        R-->>B: new draw list (~0.5 ms)
-        B->>S: objectWillChange.send() Browser.swift:201
-    else scrolled out of the interest region
-        T->>T: setNeedsLayout() Tab.swift:756
-        B->>T: next timer tick: runAnimationFrame() Browser.swift:112
-        T->>T: render(): layout + accessibility + paint, whole page Tab.swift:538
-        Note over T: ~470 ms main-thread freeze, not in the trace
-        T->>B: commit(tab:data:) "redo everything" Tab.swift:571
-        B->>R: rebuild all layers Browser.swift:177
-        R-->>B: layers
-        B->>B: rasterIfNeeded per layer (ImageRenderer) Browser.swift:195
-        Note over B: up to 484 ms, still on the main thread
-        B->>S: objectWillChange.send() Browser.swift:201
-    end
-    Note over R: a newer job replaces a waiting one RasterThread.swift:20<br/>its measure.stop never runs, so the span stays open
-    Note over B: the timer also redraws 60 times a second when idle Browser.swift:131
-```
+2. **Scrolling far repaints the whole page**. The engine only paints 2400 px around what you see. Leave that area and `Tab` lays out and paints the *entire page* again, and `ImageRenderer` repaints every layer. Each time, the screen freezes for about 470 ms. In the trace this happened 34 times, the screen was **frozen for 15.9 s out of 30.6 s** of scrolling. That's the stutter in the video.
 
-**Good scroll commit `5377322`**
+3. **Nothing is reused**. Each layer is painted as one big image instead of tiles, so even a small scroll can't reuse pixels that are already implemented.
 
-```mermaid
-sequenceDiagram
-    participant E as NSEvent
-    participant T as BrowserTab
-    participant B as Browser (main thread)
-    participant R as RasterScheduler
-    participant W as RasterWorkerPool
-    participant P as Present thread
+4. **SwiftUI redraws all the time, and slowly**. The `objectWillChange` fires on every frame, even when the page is standing still (60 frames per second of nothing). Each redraw makes `Canvas` replay the whole draw list. Before the fix in `eb5cd01`, that took about 250 ms, or about 4 updates per second, while 60 Hz frame has about 16 ms.
 
-    E->>T: scrollAt(x, y, deltaY) ToyStack.swift:190 -> BrowserTab.swift:713
-    T->>T: scrollBy(deltaY) BrowserTab.swift:735
-    T->>T: checkInterestRegion() BrowserTab.swift:786
-    alt still inside the interest region
-        T->>B: applyScroll(scroll) BrowserTab.swift:739 -> Browser.swift:806
-        B->>P: dispatchPresent() every event Browser.swift:220 (0.04 ms)
-        Note over B: ask for new tiles only after moving 128 px Browser.swift:814
-    else scrolled out the interest region
-        T->>B: applyScrollAndUpdateInterest Browser.swift:826 (tiles only, no layout)
-    end
-    opt new tiles needed (468 of 1266 scroll frames)
-        B->>R: schedule job Browser.swift:306
-        R->>R: raster.plan: find missing tiles Browser.swift:310
-        R->>W: one raster.worker per strip RasterWorkerPool.swift:48
-        W-->>R: strip images (usually 1-2 strips, up to 8 in parallel)
-        R->>R: raster.install: store tiles Browser.swift:392 (88% reused)
-        R-->>B: then: back on main
-        B->>P: dispatchPresent() Browser.swift:485
-    end
-    P->>P: enqueue: a new frame replaces a waiting one ContentPresenter.swift:27
-    P->>P: view.apply -> view.updateSublayers -> view.commit ContentPresenter.swift:56-62
-    Note over P: view.commit usually under 1 ms, 71.5 ms on a 2000 px jump
-    Note over B: no layout and no paint while scrolling
-```
+**Also: scrolling ignores your fingers**. Every wheel event moves the page exactly 100 px and restarts the animation, however fast you swipe.
+
+**In short**: the main thread repaints the entire page from scratch, even when you only scroll a few pixels.
 
 ## Refactoring Smooth Scrolling
 
-This is a side-effect of vibe-coding, you accepted every output from your model and don't set the safety rails. The result is the bad scroll and messed up code. Think like you see kraby patty but when you eat it then the taste like chumb bucket. YIKES!
+The bad scroll experience is one of result from vibe coding where you don't set the safety rails and accept every output from the model. Imagine you see kraby patty but when you eat it the taste like chumb bucket. YIKES!
+
+To fix this problem, I stepped back and took a look at the code. The first thing I noticed was that the rendering engine was mixed up with SwiftUI: 10 files in the engine did `import SwiftUI`. My intuition said that if I made the rendering engine free from SwiftUI, finding the culprit would be much easier.
 
 ### Separate Rendering Engine from SwiftUI
 
-So, I take a look closer the code and I spot the first issue. The rendering engine is mixed up with SwiftUI. So, I put the two rules here: 
+I put the two rules: 
 
-1. The rendering engine must be free from SwiftUI declaration. 
+1. The rendering engine must be free from SwiftUI. 
 2. Make protocol to make rendering engine and SwiftUI communicate each other.
 
 I introduced small protocol called `Renderer`. It has contract for fill a rect, draw text, save/restore state. Then, I make two implementations based on `Renderer` protocol: `CGRenderer` (Core Graphics, inside `Engine` directory) and `SwiftUIRenderer` (inside the app).
@@ -241,7 +182,7 @@ Thanks to this one change, now it unlocks to things:
 
 Thanks to the first step, now the scroll code become readable. There are three problems: the two problems were there from the start; the third one caused by myself during the cleanup.
 
-**The UI was redrawing for nothing**. Every frame told SwiftUI "something changed", even when nothing did. SwiftUI then re-ran the whole page drawing (~250 ms) and the main thread was stuck at about 4 visible updates per second ([`eb5cd01`](https://github.com/kresnasatya/ToyStack/commit/eb5cd0132a2866e0bc3dc158286c4f8551d5cabe#diff-5329dfe88160bce2fcb345f233dbcc30bd1dc5c1dc91e779c174b7ef54652ede)). The fix: only signal a change when the painted output actually changed.
+**The UI was redrawing for nothing**. Every frame told SwiftUI "something changed", even when nothing did. SwiftUI then re-ran the whole page drawing (~250 ms) and the main thread was stuck at about 4 visible updates per second ([`eb5cd01`](https://github.com/kresnasatya/ToyStack/commit/eb5cd0132a2866e0bc3dc158286c4f8551d5cabe#diff-5329dfe88160bce2fcb345f233dbcc30bd1dc5c1dc91e779c174b7ef54652ede)). The fix was only signal a change when the painted output actually changed.
 
 **Scrolling ignored the trackpad**. Every wheel event moved the page a fixed 100 px and restarted a scroll animation. Now the real trackpad delta is used, and scrolling inside a scroll container repaints without running style and layout (`64cea66`).
 
@@ -250,24 +191,33 @@ Thanks to the first step, now the scroll code become readable. There are three p
 ```swift
 if let t = translation {
     renderer.saveState()
-    renderer.translateBy(x: t.x, y: t.y)
+    renderer.translateBy(x: t.x, y: t.y) // only saves when there's a CSS transform
 }
 
 // ...draw children...
-renderer.restoreState() // runs even when nothing was saved.
+renderer.restoreState() // but always restore
 ```
 
-Every block on the page is wrapped in a `Transform`, and most have no translation, so most restores undid a state that some *other* code had saved. The SwiftUI renderer hid this: restoring with nothing saved did nothing. To fix it just move one line, so every restore has a matching save:
+`saveState()` writes down the current shift, and `restoreState()` puts back the newest one written down, no matter who wrote it.
+
+Every tag on the page is drawn by its own `Transform`, and most tags have no CSS transform. So what happens when one of them calls `restoreState()`? step through it:
+
+<script src="/rendering-engine/transform-leak-demo.js"></script>
+<transform-leak-demo></transform-leak-demo>
+
+The `<h1>` saved nothing, but its restore still ran and put back the 0px that the scroll loop had written down. The scroll was gone, and every tag after `<h1>` was drawn as if the page weren't scrolled. The scrollbar still looked right because it uses the scroll number, not the shift, so the bug was easy to miss.
+
+The fix moves one line, so every restore has its own save (press **B** in the demo to replay it with the fix):
 
 ```diff
 + renderer.saveState()
-if let t = translation {
--   renderer.saveState()
-    renderer.translateBy(x: t.x, y: t.y)
-}
+  if let t = translation {
+-     renderer.saveState()
+      renderer.translateBy(x: t.x, y: t.y)    
+  }
 ```
 
-> **Note**: If I tell AI to put a test for `Transform`, I bet this problem will never appear.
+> **Note:** Actually this bug never happen if I put a test for `Transform` with no CSS transform.
 
 ### Too Much Arguments
 
@@ -277,7 +227,7 @@ The first scroll fixes worked, but they piled more arguments onto already crowde
 func rasterIfNeeded(scale: CGFloat, store: TileStore, hintTop: CGFloat, hintBottom: CGFloat, visibleTop: CGFloat, visibleBottom: CGFloat, budget: RasterBudget, visibleOnly: Bool = false)
 ```
 
-Oh, also there's a class called `CommitData` that holds 13 arguments. Some of the arguments turned out to be dead.
+Oh, there's also a class called `CommitData`, the data a tab hands over to the browser for every frame. It started this story with 10 arguments. My own scroll fixes added three more: `paintEpoch` (`eb5cd01`), `layoutHeight` (`1a1a0c0`) and `maxScroll` (`e5ca898`). That made 13:
 
 ```swift 
 class CommitData {
@@ -295,15 +245,15 @@ class CommitData {
 
 I paused for a moment and then I say "What the hell!?"
 
-First, that function contains 8 arguments. 
-Second, if I keep continue then, it can be grow up into more than 8. 
+First, `rasterIfNeeded` takes 8 arguments and `CommitData` takes 13.
+Second, if I keep going, it will be more messing up. 
 Third, I don't know which of these values belongs to.
 
-So, I put an idea by set maximum accepted parameters in a function is 4 parameters. Also, maximum properties are stored in a struct is four 4 parameters.
+So I set a rule (`d348182`): **a function takes at most 4 parameters, and a struct has at most 4 stored properties.**
 
 > Psst... This idea come from declaration of margin and padding in CSS. The margin and padding have 4 properties: top, right, bottom, left.
 
-Thanks to this approach, these arguments are shrinked and become like this:
+Thanks to this approach, for `rasterIfNeeded` the four edges became one `RasterWindow` (`d348182`), and `visibleOnly` was removed later the same day (`ed173f2`):
 
 ```swift
 struct RasterWindow {
@@ -316,7 +266,15 @@ struct RasterWindow {
 func rasterIfNeeded(scale: CGFloat, store: TileStore, window: RasterWindow, budget: RasterBudget, visibleOnly: Bool = false)
 ```
 
-You may see the commit [`d348182`](https://github.com/kresnasatya/ToyStack/commit/d3481829dc1523d91a31606b84b18f69450bf2ff) for detail refactoring.
+For `CommitData`, the 13 arguments became three named groups (`47cf03b`): `ScrollState` (scroll, interest area, max scroll), `PaintResult` (draw list, composited updates, paint epoch), and `ThemeState` (dark mode, forced colors). Four arguments turned out to be dead: `url`, `height`, `accessibilityTree`, and `focus` were passed in but never read, so I deleted them.
+
+```swift
+class CommitData {
+    let scrollState: ScrollState
+    let paint: PaintResult
+    let theme: ThemeState
+}
+```
 
 ### Make The Scroll Fast, With Numbers
 
@@ -347,7 +305,7 @@ Example:
 | Text Node | Style | Words that layout cuts it into |
 |---|---|---|
 | "The quick brown fox" | normal | The, quick, brown, fox |
-| "jumps over" | bold (inside <b>)  | jumps, over |
+| "jumps over" | bold (inside `<b>`)  | jumps, over |
 | " the lazy dog" | normal | the, lazy, dog |
 
 C. Group CSS rules by tag, class, and id. So, an element is only checked against rules that could match it (`9aea139`).
@@ -384,9 +342,91 @@ With this approach, when something went wrong like "Tile shows wrong text, color
 
 > **Note**: For the case "Tile shows wrong text, color, or position", you need to look `Display` (draw list), `Layouts` (positions), or `Style` (CSS values). For the case "Tile is black, stale or missing", you need to look `Raster` directory which contains cache key, which tiles get painted, the worker pool. For the case "Tile content is right but sits in the wrong place on screen", you need to look `Presentation` and `ContentPresenter`.
 
+### The Scroll Pipeline, Before and After
+
+Let's compare the scroll pipeline before and after the refactoring.
+
+**Before**
+
+```mermaid
+flowchart LR
+    subgraph M1[Main thread]
+        T[Tab<br/>style · layout · paint]
+        L[Paint every whole layer<br/>into one image<br/>SwiftUI ImageRenderer]
+        N[objectWillChange<br/>sent on every frame]
+        V[SwiftUI Canvas<br/>replays the whole draw list<br/>~250 ms]
+    end
+    subgraph Q1[browser.raster.queue]
+        R[RasterThread<br/>group into layers,<br/>build draw list]
+    end
+    T -->|CommitData<br/>10 arguments| R
+    R --> L --> N --> V --> Screen
+```
+
+**After**
+
+```mermaid
+flowchart LR
+    subgraph M2[Main thread]
+        T[BrowserTab<br/>style · layout · paint]
+        H[Browser<br/>build PresentedFrame]
+    end
+    subgraph Q2[browser.compositor queue]
+        S[RasterScheduler<br/>plan which tiles]
+        C[Install tiles<br/>into TileStore cache]
+    end
+    subgraph Q3[browser.raster.workers]
+        W[RasterWorkerPool<br/>4 workers paint tiles]
+    end
+    subgraph Q4[browser.present queue]
+        P[ContentPresenter<br/>update layers, commit]
+    end
+    T -->|FrameCommit<br/>3 named groups| S
+    S --> W --> C -->|RasterOutput| H
+    H -->|PresentedFrame| P --> Screen
+```
+
+In both versions, style, layout, and paint still run on the main thread. What changed is everything after paint:
+
+| Bad scroll | Good scroll |
+|---|---|
+| `ImageRenderer` paints the whole page into one image on the main thread | `RasterScheduler` picks only the tiles that need painting, and 4 workers paint them off the main thread (`e3d397c`, `33d1b6e`) |
+| `objectWillChange` fires every frame, so SwiftUI redraws even when nothing changed | A change is signaled only when the painted output changed (`eb5cd01`) |
+| `Canvas` replays the whole draw list (~250 ms) on the main thread | `ContentPresenter` updates Core Animation layers on its own queue (`eda4d1a`) |
+| `CommitData` with 10 loose arguments | `FrameCommit` with 3 named groups: `scrollState`, `display`, `preferences` |
+
+The main thread now only builds a small `PresentedFrame` and hands it off. A pure scroll moves the tile container; only tiles coming into view get painted.
+
+With this refactoring, the fps (frame per second) of scrolling increased from 20.3 fps into 52.4 fps.
+
 ## Second Challenge: Smooth Resize Window
 
-### Refactoring Part 2
+Given video side by side. The left side is bad resize (before fix) and the right side is good resize (after fix).
+
+<lite-youtube videoid="jEPf1MgczAI" title="Bad Resize vs Good Resize"></lite-youtube>
+
+Let's illustrate the bad resize into a flowchart diagram
+
+```mermaid
+flowchart LR
+    subgraph M1[Main thread]
+        R[Resize event] --> L[Layout<br/> rebuild 13.218 words<br/> 2.2-6.8 s, growing]
+        L --> P[Paint whole page<br/>~69 ms, 13,266 items]
+    end
+    P --> C[Raster + present<br/>other queues] --> Screen
+```
+
+Why is it slow? Follow the arrows in the diagram:
+
+- **Every resize event goes straight to layout.** Nothing sits between `Resize event` and `Layout`. Dragging the window edge fires many resize events, and each one starts a full layout. Nothing groups them into one update per frame, even though resize is the most expensive path and should be throttled to the frame rate.
+- **Layout rebuilds the whole page from scratch.** All 13,218 words are laid out again on every resize, which takes 2.2 to 6.8 s. One frame at 60 Hz has about 16 ms, so a single layout costs the time of 140 to 425 frames. The window freezes for seconds.
+- **It gets worse the longer you drag.** The layout time keeps growing, from 2.2 s up to 6.8 s. A long drag feels slower than a short one.
+- **Paint redoes the whole page too.** After layout, paint rebuilds all 13,266 draw items, which takes about 69 ms. Even if layout were free, paint alone is about 4 times over the 16 ms frame budget.
+- **The other queues can only wait.** Raster and present run on other queues, but they need the main thread's output first. While layout and paint are still running, they have nothing to draw, so the screen keeps showing the old picture.
+
+In short, every resize event makes the main thread lay out and paint the whole page from scratch, which takes seconds, while the screen expects a new frame every 16 ms.
+
+### Refactoring Smooth Resize Window
 
 ## Benefit of Using Swift
 
@@ -394,4 +434,10 @@ With this approach, when something went wrong like "Tile shows wrong text, color
 
 ### Swift UI
 
-### Statically typed toolchain (?)
+### The Compiler Has My Back
+
+Swift checks a lot before the program runs. Three kinds of checks mattered here.
+
+**A `switch` must handle every case**. I showed this in the refactor above: add a new kind of layout node, every `switch` that forgets it becomes a compiler error.
+
+**Threads: who may touch what**. Swift has two labels for this. `@MainActor` means "this runs only on the main thread". `Sendable` means "this value is safe to hand to another thread". At first AI used `@unchecked Sendable` and `MainActor.assumeIsolated`, which both mean "trust me".
